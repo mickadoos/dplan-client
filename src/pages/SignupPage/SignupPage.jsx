@@ -11,6 +11,8 @@ function SignupPage() {
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -22,11 +24,25 @@ function SignupPage() {
   const handleGender = (e) => setGender(e.target.value);
   const handleCountry = (e) => setCountry(e.target.value);
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value);
+  const handleBirthdate = (e) => setBirthdate(e.target.value);
+  const handleProfileImage = (e) => setProfileImage(e.target.files[0])
+  
   
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name, username, gender, country, phoneNumber}; //UPDATE MODEL
+    // const requestBody = { email, password, name, username, gender, country, phoneNumber, birthdate, profileImage: uploadData}; //UPDATE MODEL
+
+    const uploadData = new FormData();
+    uploadData.append('email', email)
+    uploadData.append('password', password)
+    uploadData.append('name', name)
+    uploadData.append('username', username)
+    uploadData.append('gender', gender)
+    uploadData.append('country', country)
+    uploadData.append('phoneNumber', phoneNumber)
+    uploadData.append('birthdate', birthdate)
+    uploadData.append('profileImage', profileImage)
 
     // Send a request to the server using axios
     /* 
@@ -41,7 +57,7 @@ function SignupPage() {
 
     // Or using a service
     authService
-      .signup(requestBody)
+      .signup(uploadData)
       .then((response) => {
         // If the POST request is successful redirect to the login page
         navigate("/login");
@@ -57,7 +73,7 @@ function SignupPage() {
     <div className="SignupPage">
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
+      <form onSubmit={handleSignupSubmit} encType="multipart/form-data">
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
 
@@ -82,20 +98,28 @@ function SignupPage() {
           <option value="other">Other</option>
         </select> */}
         
-        <label htmlFor="gender"> Select you gender: </label>
-<select name="gender" onChange={handleGender}>
-<option value="">Gender</option>
-	<option value="male">Male</option>
-	<option value="female">Female</option>
-	<option value="other">Other</option>
-</select>
-<br></br>
-<label>Country:</label>
-        <input type="text" name="country" value={country} onChange={handleCountry} />
-       
-        <label>Phone Number:</label>
-      <input type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
+      <label htmlFor="gender"> Select you gender: </label>
+      <select name="gender" onChange={handleGender}>
+        <option value="">Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
       <br></br>
+
+      <label>Country:</label>
+      <input type="text" name="country" value={country} onChange={handleCountry} />
+       
+      <label>Phone Number:</label>
+      <input type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
+
+      <label>Birthdate:</label>
+      <input type="date" id="datePickerId" onChange={handleBirthdate}/>
+      
+      <label>Profile Image:</label>
+      <input type="file" name="profileImage" onChange={handleProfileImage}/>
+      <br></br>
+
         <button type="submit">Sign Up</button>
       </form>
 
