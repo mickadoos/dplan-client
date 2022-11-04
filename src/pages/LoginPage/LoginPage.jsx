@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
@@ -13,12 +13,12 @@ function LoginPage() {
 
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  const handleEmail = (e) => setEmail(e.target.value);
+  const handleUsername = (e) => setUsername(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { email, password };
+    const requestBody = { username, password };
 
     // Send a request to the server using axios
     /* 
@@ -49,8 +49,8 @@ function LoginPage() {
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+        <label>Username:</label>
+        <input type="text" name="username" value={username} onChange={handleUsername} />
 
         <label>Password:</label>
         <input

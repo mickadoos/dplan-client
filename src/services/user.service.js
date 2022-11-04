@@ -48,6 +48,14 @@ class UserService {
   sendFriendRequest(username, idPerson){
     return this.api.post(`/+${username}/friendRequest/${idPerson}`)
   }
+
+  acceptFriendRequest(username, idPerson){
+    return this.api.post(`/+${username}/acceptFriend/${idPerson}/`)
+  }
+
+  declineFriendRequest(username, idPerson){
+    return this.api.post(`/+${username}/declineFriend/${idPerson}/`)
+  }
 }
 
 // Create one instance of the service

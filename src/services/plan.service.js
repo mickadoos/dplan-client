@@ -20,8 +20,8 @@ class PlanService {
   }
 
   // POST - CREATE PLAN (PLAN IS AN OBJECT)
-  addPlan(plan) {
-    return this.api.post('/newPlan', plan)
+  addPlan(username, plan) {
+    return this.api.post('/' + username + '/newPlan', plan)
   }
 
   //GET PLANS
@@ -37,7 +37,7 @@ class PlanService {
   getGuests(planId) {
     return this.api.get('/' + planId + '/guests')
   }
-  
+
 
   // EDIT PLAN (PLAN IS AN OBJECT, RECOLLIR L'ID DEL PARAMS.)
   editPlan(plan) {
@@ -49,6 +49,21 @@ class PlanService {
     return this.api.delete('/' + planId)
   }
 
+  acceptPlan(planId, username) {
+    return this.api.post('/' + planId + '/' + username + '/accept')
+  }
+
+  declinePlan(planId,username) {
+    return this.api.post('/' + planId + '/' + username + '/decline')
+  }
+
+  getGuestsFriends(planId, username){
+    return this.api.get('/' + planId + '/' + username +'/invite')
+  }
+
+  inviteGuestsFriends(planId, idPerson){
+    return this.api.get('/' + planId + '/' + idPerson +'/invite')
+  }
 }
 
 // Create one instance of the service
