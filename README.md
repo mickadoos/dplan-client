@@ -19,23 +19,25 @@ $ npm start
 ## Routes
 | Route                | Privacy         | Renders                  |
 | -------------------- | :-------------: | ------------------------ |
-|/signup |	Public|	SignupPage|
+|/signup|	Public|	SignupPage|
 |/login	|Public	|LoginPage|
-|/plans/:username	|Private (user)|	PlansPage
-|/new-plan	Private |(user)|	NewPlanPage
-|/plan/:planId	|Private (user)	|PlanPan|
-|/plan/:planId/edit|	Private (usercreator)	|EditPlanPage|
-|/plan/:planId/attendees|	Private (user)|	AttendesPlanPage
-|/profile/:username	|Private (user)|	ProfilePage|
-|/profile/:username/friends|	Private (user)|	ProfileFriendsPage|
-|/profile/:username/edit|	Private(currentUser)|	ProfileEditPage|
-|/addfriends	|Private (user|)	AddFriendsPage|
+|/plans |Private (user)|	PlansPage |
+|/plans/newPlan  |Private(user)|	NewPlanPage |
+|/plans/:planId |Private (user)	|PlanPage|
+|/plans/:planId/edit |	Private (user)	|EditPlanPage|
+|/plans/:planId/invite |	Private (user)	|InvitePeoplePage|
+|/plans/:planId/guests|	Private (user)|	GuestsPlanPage |
+|/:username/profile |Private (user)|	ProfilePage|
+|/:username/profile/edit |	Private(user)|	ProfileEditPage|
+|/:username/profile/friends |	Private (user)|	ProfileFriendsPage|
+|/:username/addFriends |Private (user|)	AddFriendsPage|
+
 
 ## Components
 - Navbar
 - Plan
 - Friend
-- Attendees
+- Guests
 
 Welcome to the Olympus.
 
