@@ -1,10 +1,8 @@
-// import "./Navbar.css";
-// import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service.js"
 
-function PersonComponent({person, updatePeople}) {
+function PersonAddFriends({person, updatePeople}) {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     const {_id, username, name, profileImage} = person
 
@@ -27,4 +25,4 @@ function PersonComponent({person, updatePeople}) {
   );
 }
 
-export default PersonComponent;
+export default PersonAddFriends;

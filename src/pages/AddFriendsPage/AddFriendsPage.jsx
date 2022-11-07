@@ -4,7 +4,7 @@ import { useState } from "react";
 import userService from "../../services/user.service.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import PersonComponent from "../../components/Person/Person.Component";
+import PersonAddFriends from "../../components/Person/PersonAddFriends";
 
 
 function AddFriendsPage() {
@@ -33,7 +33,7 @@ function AddFriendsPage() {
       <h1>Add Friends page</h1>
       {addFriends.length === 0 && <p>No more people to add</p>}
       {addFriends.map(person => {
-                return <PersonComponent person={person} updatePeople={updatePeople} key={person._id}/>
+                return <PersonAddFriends person={person} updatePeople={updatePeople} key={person._id}/>
             })}  
     </div>
   );
