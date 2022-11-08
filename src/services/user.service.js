@@ -46,7 +46,6 @@ class UserService {
 
   // SEND PETICIÓ D'AMISTAT a la persona adient
   sendFriendRequest(username, idPerson){
-    console.log("Hey from sendFrinedRequest service")
     return this.api.post(`/${username}/friendRequest/${idPerson}`)
   }
 
