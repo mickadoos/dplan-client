@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service.js"
+import { Link } from "react-router-dom";
 
 function PersonAddFriends({person, updatePeople}) {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -19,6 +20,7 @@ function PersonAddFriends({person, updatePeople}) {
         <div className="card-body">
             <h5 className="card-title">{username}</h5>
             <p className="card-text">{name}</p>
+            <Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link>
             <button href="#" className="btn btn-primary" onClick={friendRequestHandle}>Send Friend Request</button>
         </div>
     </div>

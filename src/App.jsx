@@ -45,6 +45,7 @@ function App() {
         <Route path="/plans/:planId" element={<PlanPage />} />
         <Route path="/plans/:planId/edit" element={<EditPlanPage />} />
         <Route path="/plans/:planId/guests" element={<GuestsPlanPage />} />
+        <Route path="/plans/:planId/invite" element={<InviteFriendsPage />} />
         <Route
           path="/:username/profile"
           element={
@@ -56,7 +57,7 @@ function App() {
         <Route path="/:username/profile/friends" element={<ProfileFriendsPage />} />
         <Route path="/:username/profile/edit" element={<ProfileEditPage />} />
         <Route path="/:username/addFriends" element={<AddFriendsPage />} />
-        <Route path="/:username/invite" element={<InviteFriendsPage />} />
+        {/* <Route path="/:username/invite" element={<InviteFriendsPage />} /> */}
 
 
      
