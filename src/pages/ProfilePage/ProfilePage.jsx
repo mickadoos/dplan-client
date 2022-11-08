@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PendingFriendComp from "../../components/PendingReq/PendingFriendComp";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service";
@@ -8,6 +8,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 function ProfilePage() {
+  const {username} = useParams();
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function ProfilePage() {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    userService.getUserProfile(user.username).then((resp) => {
+    userService.getUserProfile(username).then((resp) => {
       console.log(
         "resp data useEffect userService: ",
         resp.data.friendsToAccept.length
@@ -48,7 +49,7 @@ function ProfilePage() {
     <div>
       <h1>Profile page</h1>
       <div className="card" style={{ width: "18rem" }}>
-        <img src={user.profileImage} className="card-img-top" alt="..." />
+        <img src={profile.profileImage} className="card-img-top" alt="..." />
 
         {/* <!-- Button trigger modal --> */}
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -78,11 +79,11 @@ function ProfilePage() {
 </div>
 
         <div className="card-body">
-          <h5 className="card-title">{user.name}</h5>
+          <h5 className="card-title">{profile.name}</h5>
           <p className="card-text">
-            <span>Username: {user.username}</span>
+            <span>Username: {profile.username}</span>
           </p>
-          <Link to={`/${user.username}/profile/edit`} >Editar perfil</Link>
+          <Link to={`/${profile.username}/profile/edit`} >Editar perfil</Link>
         </div>
       </div>
       <h4>Friends Request: </h4>

@@ -9,8 +9,9 @@ function PersonInvite({friend, updatePeople}) {
     const {_id, username, name, profileImage} = friend
 
     const inviteHandle = ()=>{
-        planService.inviteGuestsFriends(_id, planId)
+        planService.inviteGuestsFriends(planId, _id)
         .then (resp => {
+            console.log("INVITE - FRONT. Resp: ", resp)
             updatePeople (Math.random()*1000)
           })
     }

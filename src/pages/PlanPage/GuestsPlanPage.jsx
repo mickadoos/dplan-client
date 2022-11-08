@@ -27,7 +27,6 @@ function GuestsPlanPage() {
           return allGuests.push(guest)
         })
         setGuests(allGuests)
-        console.log("GUESTS INVITE: ",allGuests)
     })}
   },[isLoggedIn])
 
