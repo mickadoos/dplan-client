@@ -17,6 +17,7 @@ import InviteFriendsPage from './pages/InviteFriendsPage/InviteFriendsPage'
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+import ProfileEditImgPage from "./pages/ProfilePage/ProfileEditImgPage";
 
 function App() {
   return (
