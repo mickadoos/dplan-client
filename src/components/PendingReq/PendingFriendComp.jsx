@@ -3,9 +3,12 @@ import { useState } from "react";
 import userService from "../../services/user.service.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
-function PendingFriendComp({ fri }) {
+
+function PendingFriendComp({ fri, updateHandler }) {
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
     
@@ -13,6 +16,7 @@ function PendingFriendComp({ fri }) {
         userService.acceptFriendRequest(user.username, fri._id)
         .then(resp => {
             console.log(resp.data)
+            updateHandler(Math.random()*100000)
         })
     }
 
@@ -20,7 +24,8 @@ function PendingFriendComp({ fri }) {
         userService.declineFriendRequest(user.username, fri._id)
         .then(resp => {
             console.log(resp.data)
-        })
+            updateHandler(Math.random()*100000)
+          })
     }
 
   return (
