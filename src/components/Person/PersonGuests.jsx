@@ -2,9 +2,16 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Link } from "react-router-dom";
 
-function GuestComponent({guest}) {
+function GuestComponent({guest, planId}) {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-    const {_id, username, name, profileImage} = guest //status missing
+    const { username, name, profileImage, plans } = guest //status missing
+
+    let planStatus = ""
+    plans.forEach(plan => {
+      if (plan._id === planId){
+        planStatus = plan.status
+      }
+    })
 
 
   return (
@@ -13,7 +20,8 @@ function GuestComponent({guest}) {
         <div className="card-body">
             <h5 className="card-title">{username}</h5>
             <p className="card-text">{name}</p>
-            {/* <Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link> */}
+            <p className="card-text">{planStatus}</p>
+            <Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link>
         </div>
     </div>
 

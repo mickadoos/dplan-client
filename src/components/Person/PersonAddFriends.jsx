@@ -8,11 +8,13 @@ function PersonAddFriends({person, updatePeople}) {
 
     const friendRequestHandle = ()=>{
         userService.sendFriendRequest(user.username, _id)
-        updatePeople (Math.random()*1000)
+        .then (resp => {
+          updatePeople (Math.random()*1000)
+        })
     }
 
   return (
-    <div className="card" Style= "width: 18rem;">
+    <div className="card" style= {{"width": "18rem"}}>
         <img src={profileImage} alt={name}/>
         <div className="card-body">
             <h5 className="card-title">{username}</h5>

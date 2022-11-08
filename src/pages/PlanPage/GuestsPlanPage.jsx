@@ -38,7 +38,7 @@ function GuestsPlanPage() {
       <h1>Guests Page</h1>
       {guests.length === 0 && <p>Still no guests for this plan</p>}
       {guests.map(guest => {
-                return <GuestComponent guest={guest} key={guest._id}/>
+                return <GuestComponent guest={guest} planId = {planId} key={guest._id}/>
             })}  
     </div>
   );

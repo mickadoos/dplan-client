@@ -8,7 +8,7 @@ function FriendComponent({friend}) {
 
 
   return (
-    <div className="card" Style= "width: 18rem;">
+    <div className="card" style={{"width": "18rem"}}>
         <img src={profileImage} alt={name}/>
         <div className="card-body">
             <h5 className="card-title">{username}</h5>

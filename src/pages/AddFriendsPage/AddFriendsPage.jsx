@@ -23,6 +23,7 @@ function AddFriendsPage() {
         .then (result =>{
           setAddFriends(result.data)
         })
+        .catch((err) => console.log(err))
       }    
     },[isLoggedIn, update])
 
