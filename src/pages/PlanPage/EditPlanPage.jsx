@@ -1,6 +1,6 @@
 import "./EditPlanPage.css";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import planService from "../../services/plan.service";
 
 function EditPlanPage() {
@@ -77,7 +77,7 @@ const handleEditSubmit = (e) => {
       <h1>Edit Plan page</h1>
       <div className="card text-center">
             <div className="card-body">
-               <Link to={"/plans/" + planId}> <img src={plan.planImage} alt={plan.title} /></Link>
+            <img src={plan.planImage} alt={plan.title} />
                {/* <!-- Button trigger modal --> */}
 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
