@@ -28,7 +28,6 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                 <img src={plan.planImage} alt={plan.title} />
                 <h5 className="card-title">{plan.title}</h5>
                 <p className="card-text">{plan.description}</p>
-                <p className="card-text">{plan.description}</p>
                 <p className="card-text">{plan.date}</p>
                 <p className="card-text">{plan.time}</p>
                 <p className="card-text">{plan.location}</p>
