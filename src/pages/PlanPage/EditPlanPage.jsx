@@ -33,6 +33,8 @@ const handleTime = (e) => setTime(e.target.value);
 const handleLocation = (e) => setLocation(e.target.value);
 const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
 
+const cancelEdit = () => {navigate("/plans/" + planId)};
+
 const handleImageSubmit = (e) => {
   e.preventDefault();
   const uploadData = new FormData();
@@ -142,6 +144,7 @@ const handleEditSubmit = (e) => {
                     onChange={handleLocation} className="form-control" id="formGroupExampleInput" placeholder={plan.location}/>
                 </div>
                  <button type="submit">Edit Plan</button>
+                  <button className="btn btn-danger" type="button" onClick={cancelEdit}>Cancel</button>
                 </form>
             </div>
 

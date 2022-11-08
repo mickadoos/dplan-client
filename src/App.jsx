@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -18,13 +18,19 @@ import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import ProfileEditImgPage from "./pages/ProfilePage/ProfileEditImgPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
+
+  // const navigate = useNavigate();
+
   return (
     <div className="App">
       <Navbar />
 
       <Routes>
+      <Route path="/" element={<HomePage/>}/>
+      
       <Route
           path="/signup"
           element={

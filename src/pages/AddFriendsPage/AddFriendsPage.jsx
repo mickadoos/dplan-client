@@ -30,7 +30,7 @@ function AddFriendsPage() {
 
   return (
     <div>
-      <p>{user && user.username}</p>
+      {/* <p>{user && user.username}</p> */}
       <h1>Add Friends page</h1>
       {addFriends.length === 0 && <p>No more people to add</p>}
       {addFriends.map(person => {
