@@ -40,8 +40,8 @@ class PlanService {
 
 
   // EDIT PLAN (PLAN IS AN OBJECT, RECOLLIR L'ID DEL PARAMS.)
-  editPlan(plan) {
-    return this.api.put('/' + plan._id, plan)
+  editPlan(planId, plan) {
+    return this.api.put('/' + planId, plan)
   }
 
   // DELETE PLAN 
