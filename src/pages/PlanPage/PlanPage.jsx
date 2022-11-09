@@ -3,7 +3,6 @@ import { useEffect, useState, useContext} from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
-import { AuthContext } from "../../context/auth.context";
 
 function PlanPage() {
   const {isLoggedIn, user } = useContext(AuthContext);
