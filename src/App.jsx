@@ -29,7 +29,12 @@ function App() {
       <Navbar />
 
       <Routes>
-      <Route path="/" element={<HomePage/>}/>
+      <Route path="/" element={
+      <IsAnon>
+      <HomePage/>
+      </IsAnon>
+      }
+      />
       
       <Route
           path="/signup"
@@ -47,12 +52,49 @@ function App() {
             </IsAnon>
           }
         />
-        <Route path="/plans" element={<PlansPage />} />
-        <Route path="/plans/newPlan" element={<NewPlanPage />} />
-        <Route path="/plans/:planId" element={<PlanPage />} />
-        <Route path="/plans/:planId/edit" element={<EditPlanPage />} />
-        <Route path="/plans/:planId/guests" element={<GuestsPlanPage />} />
-        <Route path="/plans/:planId/invite" element={<InviteFriendsPage />} />
+        <Route path="/plans" 
+        element={
+          <IsPrivate>
+          <PlansPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/plans/newPlan" 
+        element={
+          <IsPrivate>
+        <NewPlanPage />
+          </IsPrivate>
+        }
+         />
+
+        <Route path="/plans/:planId" 
+        element={
+          <IsPrivate>
+        <PlanPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/plans/:planId/edit" 
+        element={
+          <IsPrivate>
+        <EditPlanPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/plans/:planId/guests" 
+        element={
+          <IsPrivate>
+        <GuestsPlanPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/plans/:planId/invite" 
+        element={
+          <IsPrivate>
+        <InviteFriendsPage />
+          </IsPrivate>
+        }
+         />
         <Route
           path="/:username/profile"
           element={
@@ -61,9 +103,27 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route path="/:username/profile/friends" element={<ProfileFriendsPage />} />
-        <Route path="/:username/profile/edit" element={<ProfileEditPage />} />
-        <Route path="/:username/addFriends" element={<AddFriendsPage />} />
+        <Route path="/:username/profile/friends" 
+        element={
+          <IsPrivate>
+        <ProfileFriendsPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/:username/profile/edit" 
+        element={
+          <IsPrivate>
+        <ProfileEditPage />
+          </IsPrivate>
+        }
+         />
+        <Route path="/:username/addFriends" 
+        element={
+          <IsPrivate>
+        <AddFriendsPage />
+          </IsPrivate>
+        }
+         />
         {/* <Route path="/:username/invite" element={<InviteFriendsPage />} /> */}
 
 

@@ -1,11 +1,15 @@
 import "./EditPlanPage.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context"
 import planService from "../../services/plan.service";
+
 
 function EditPlanPage() {
   const {planId} = useParams();
   const [plan, setPlan] = useState({});
+  const {isLoggedIn, user} = useContext(AuthContext);
+
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -34,6 +38,18 @@ const handleLocation = (e) => setLocation(e.target.value);
 const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
 
 const cancelEdit = () => {navigate("/plans/" + planId)};
+const deletePlan = () => {
+  console.log('USER-------', user)
+  planService
+  .deletePlan(planId)
+  .then(response => {
+    navigate("/plans")
+  })
+  .catch((error) => {
+    const errorDescription = error.response.data.message;
+    setErrorMessage(errorDescription);
+  })
+}
 
 const handleImageSubmit = (e) => {
   e.preventDefault();
@@ -143,8 +159,10 @@ const handleEditSubmit = (e) => {
                     // value={plan.title}
                     onChange={handleLocation} className="form-control" id="formGroupExampleInput" placeholder={plan.location}/>
                 </div>
+                  <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
                  <button type="submit">Edit Plan</button>
-                  <button className="btn btn-danger" type="button" onClick={cancelEdit}>Cancel</button>
+                 <br></br>
+                  <button className="btn btn-danger" type="button" onClick={deletePlan}>Delete</button>
                 </form>
             </div>
 
