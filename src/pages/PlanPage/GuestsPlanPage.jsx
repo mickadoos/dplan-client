@@ -23,7 +23,7 @@ function GuestsPlanPage() {
         resp.data.accepted.map(guest => {
           return allGuests.push(guest)
         })
-        resp.data.denied.map(guest => {
+        resp.data.declined.map(guest => {
           return allGuests.push(guest)
         })
         setGuests(allGuests)

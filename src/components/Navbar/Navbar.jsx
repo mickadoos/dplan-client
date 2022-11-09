@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
 function Navbar() {
@@ -8,10 +8,15 @@ function Navbar() {
   // the values from AuthContext.Provider's `value` prop
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
+  useEffect(()=> {
+    console.log("USER: ",user)
+  },[isLoggedIn])
+
+
   return (
     <nav>
 
-      {isLoggedIn && (
+      {isLoggedIn && 
         <>
         <nav className="navbar navbar-dark bg-dark fixed-top">
   <div className="container-fluid">
@@ -27,7 +32,7 @@ function Navbar() {
       <div className="offcanvas-body">
         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to={"/" + user.usename + "/profile"}>My Profile</Link>
+            <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
@@ -38,11 +43,9 @@ function Navbar() {
             </Link>
             <ul className="dropdown-menu dropdown-menu-dark">
               <li><Link className="dropdown-item" to="/plans/newPlan">Create a Plan</Link></li>
-              <li><a className="dropdown-item" href="#">Another action</a></li>
               <li>
                 <hr className="dropdown-divider"></hr>
               </li>
-              <li><a className="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
         </ul>
@@ -80,7 +83,7 @@ function Navbar() {
           <button onClick={logOutUser}>Logout</button> */}
 
         </>
-      )}
+      }
 
       {!isLoggedIn && (
         <>
