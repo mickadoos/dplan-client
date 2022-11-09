@@ -18,6 +18,8 @@ function ProfileEditPage() {
   const [country, setCountry] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handleName = (e) => setName(e.target.value);
@@ -26,6 +28,8 @@ function ProfileEditPage() {
   const handleCountry = (e) => setCountry(e.target.value);
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value);
   const handleBirthdate = (e) => setBirthdate(e.target.value);
+  const handleProfileImage = (e) => setProfileImage(e.target.files[0])
+
 
   useEffect(() => {
     if(user){
@@ -50,6 +54,19 @@ function ProfileEditPage() {
   }
   },[isLoading]);
 
+  const handleImgSubmit = (e) => {
+    e.preventDefault();
+    const uploadData = new FormData();
+    uploadData.append('profileImage', profileImage)
+
+    userService.editProfile(user.username, uploadData)
+    .then(resp => {
+      console.log("resp edit prof. post service: ", resp)
+      storeToken(resp.data)
+      authenticateUser()
+      navigate(`/${user.username}/profile`);
+    })
+  }
   const handleSignupSubmit = (e) => {
     e.preventDefault();
 
@@ -73,8 +90,76 @@ function ProfileEditPage() {
   }
 
   return (
-    <div>
+    <div> 
+  
     <h1>Edit Profile</h1>
+    <div className="card" style={{ width: "18rem" }}>
+        <img src={user.profileImage} className="card-img-top" alt={user.username} />
+        
+          <>
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Editar foto
+            </button>
+            <div
+              className="modal fade"
+              id="exampleModal"
+              tabIndex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">
+                      Editar foto perfil
+                    </h1>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <form
+                    onSubmit={handleImgSubmit}
+                    encType="multipart/form-data"
+                  >
+                    <div className="modal-body">
+                      <label>New Profile Image: </label>
+                      <br />
+                      <input
+                        type="file"
+                        name="profileImage"
+                        onChange={handleProfileImage}
+                      />
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Save changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </>
+        
     <form onSubmit={handleSignupSubmit} encType="multipart/form-data">
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={handleEmail} />
@@ -107,6 +192,7 @@ function ProfileEditPage() {
 
         <button type="submit">Confirm changes</button>
       </form>
+    </div>
     </div>
   );
 }

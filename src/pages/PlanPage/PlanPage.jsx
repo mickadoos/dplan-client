@@ -88,9 +88,9 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                   </button>
                 </div>} */}
 
-                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
+              { plan.isAdmin === user.username && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
                     Edit this plan
-                </button>
+                </button>}
               
             </div>
 

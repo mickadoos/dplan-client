@@ -7,7 +7,7 @@ function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider's `value` prop
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-
+  
   return (
     <nav>
 
@@ -27,7 +27,8 @@ function Navbar() {
       <div className="offcanvas-body">
         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to={"/" + user.usename + "/profile"}>My Profile</Link>
+            <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>
+            {/* <Link className="nav-link active" aria-current="page" onClick={goProfile}>My Profile 2</Link> */}
           </li>
           <li className="nav-item">
             <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>

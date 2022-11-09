@@ -34,16 +34,16 @@ function PlansPage() {
       console.log("allPlans admin: ", allPlans)
     }
 
-    const acceptedHandler = () => {
+    const confirmedHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "accepted"
+        return pla.status === "confirmed"
       }))
       console.log("allPlans admin: ", allPlans)
     }
 
-    const deniedHandler = () => {
+    const declinedHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "denied"
+        return pla.status === "declined"
       }))
       console.log("allPlans admin: ", allPlans)
     }
@@ -65,9 +65,9 @@ function PlansPage() {
         <section>
           <button onClick={resetHandler}>All Plans</button>
           <button onClick={adminHandler}>Admin</button>
-          <button onClick={acceptedHandler}>Accepted</button>
+          <button onClick={confirmedHandler}>Confirmed</button>
           <button onClick={pendingHandler}>Pending</button>
-          <button onClick={deniedHandler}>Denied</button>
+          <button onClick={declinedHandler}>Declined</button>
         </section>
         <div className="row justify-content-center">
           {plans.map((plan, k) => (
