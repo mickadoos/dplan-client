@@ -62,7 +62,7 @@ class PlanService {
   }
 
   inviteGuestsFriends(planId, idPerson){
-    return this.api.get('/' + planId + '/' + idPerson +'/invite')
+    return this.api.post('/' + planId + '/' + idPerson +'/invite')
   }
 }
 
