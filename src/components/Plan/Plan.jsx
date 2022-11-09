@@ -13,7 +13,7 @@ export default function Plan ({plan}) {
                 <p className="card-text">{plan._id.time}</p>
                 <p className="card-text">{plan._id.location}</p>
                 <p className="card-text">Status: {plan.status}</p>
-                <Link to={"/plans/"+plan._id}>View details</Link>
+                <Link to={"/plans/"+plan._id._id}>View details</Link>
             </div>
         </div>
     );
