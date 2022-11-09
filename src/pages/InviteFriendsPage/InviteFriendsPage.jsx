@@ -21,22 +21,20 @@ function InviteFriendsPage() {
     if (isLoggedIn){
       userService.getUserFriends(user.username) 
       .then (result =>{
-
-        let friendsNotInvited = [...result.data.friends]
-        console.log("FRIENDS NOT INVITED 0: ",friendsNotInvited)
-        friendsNotInvited.forEach(friend => {
-          friend.plans.forEach(plan => {
+        let friendsNotInvited = result.data.friends.filter(friend => {
+          let friendInPlan = false
+          friend.plans.forEach (plan => {
             if(plan._id === planId){
-              console.log("INSIDE IF!!! - planFriend/Plan/friend: ", plan._id, planId, friend)
-              let index = friendsNotInvited.indexOf(friend)
-              console.log("INDEX OF YABEL", index)
-              friendsNotInvited.splice(index, 1)
+              friendInPlan = true
             }
           })
+          return !friendInPlan
         })
-        console.log("FRIENDS NOT INVITED 1: ",friendsNotInvited)
+
+
         setFriends(result.data.friends)
         setFriends2(friendsNotInvited)
+        console.log("friends2: ",friends2)
         
       })
     }   
