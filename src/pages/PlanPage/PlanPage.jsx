@@ -11,7 +11,6 @@ function PlanPage() {
   const [plan, setPlan] = useState({});
   const [update, setUpdate] = useState(0)
   const [status, setStatus] = useState(false)
-  const {user} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
