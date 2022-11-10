@@ -1,3 +1,15 @@
+.navBarBackground{
+    background-color: rgb(24, 24, 24);
+    padding: 10px;
+}
 .logo{
     width: 6vw;
+    min-width: 68px;
+    max-width: 63px;
+}
+.profileImage{
+    width: 5vw;
+    min-width: 60px;
+    max-width: 63px;
+    border-radius: 50%;
 }
