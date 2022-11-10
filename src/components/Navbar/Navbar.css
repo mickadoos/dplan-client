@@ -2,6 +2,18 @@
     width: 6vw;
 }
 
+<<<<<<< HEAD
 .body {
     overflow: scroll;
+=======
+.App {
+    overflow: auto;
+    height: 100vh;
+    width: auto;
+}
+
+.root {
+    max-width: 100%;
+    overflow-x: hidden;
+>>>>>>> eloi
 }

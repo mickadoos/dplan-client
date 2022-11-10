@@ -49,7 +49,8 @@ function PlanPage() {
 
 const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
 
-
+  console.log("user.usernameMod: ", user.usernameMod)
+  console.log("user.username: ", user.username)
   return (
     <div>
       <h1>Plan page</h1>
@@ -90,7 +91,7 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                   </button>
                 </div>} */}
 
-              { plan.isAdmin === user.username && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
+              { (plan.isAdmin === user.username || user.username === "moderador") && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
                     Edit this plan
                 </button>}
               

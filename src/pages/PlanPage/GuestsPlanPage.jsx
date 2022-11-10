@@ -12,14 +12,16 @@ function GuestsPlanPage() {
   const {planId} = useParams();
   const { isLoggedIn, user } = useContext(AuthContext);
   const [guests, setGuests] = useState();
+  const [reset, setReset] = useState(false)
+
   
   useEffect (() => {
     if(isLoggedIn){
       planService.getGuests(planId)
       .then (resp => {
-        console.log("GUESTS FRONT: ",resp.data.accepted)
+        console.log("GUESTS FRONT: ",resp.data)
         // const allGuests = []
-        guestsSearch = [];
+        guestsSearch = []
         if(resp.data.invited.length > 0){
         resp.data.invited.map(guest => {
           return guestsSearch.push(guest)
@@ -36,7 +38,7 @@ function GuestsPlanPage() {
         setGuests(guestsSearch)
       })}
       
-  },[isLoggedIn])
+  },[isLoggedIn, reset])
 
   const formOnChangeHandle = (e) => {
     console.log("e: ", e.target.value)
@@ -49,6 +51,31 @@ function GuestsPlanPage() {
     console.log("searchFriend: ", searchFriend)
   }
 
+  const confirmedHandler = () => {
+    setGuests(guestsSearch.filter(guest => {
+      return guest.plans.some(pla => (pla._id === planId && pla.status === "confirmed"))
+    }))
+    console.log("guestsSearch: ", guestsSearch)
+  }
+
+  const declinedHandler = () => {
+    setGuests(guestsSearch.filter(guest => {
+      return guest.plans.some(pla => (pla._id === planId && pla.status === "declined"))
+    }))
+    console.log("guestsSearch: ", guestsSearch)
+  }
+
+  const pendingHandler = () => {
+    setGuests(guestsSearch.filter(guest => {
+      return guest.plans.some(pla => (pla._id === planId && pla.status === "pending"))
+    }))
+    console.log("guestsSearch: ", guestsSearch)
+  }
+
+  const resetHandler = () => {
+    setReset(!reset)
+  }
+
   return (
     <div>
       <h1>Guests Page</h1>
@@ -56,6 +83,12 @@ function GuestsPlanPage() {
       <form onChange={formOnChangeHandle}>
         <input placeholder="Search users"/>
       </form>
+      <section>
+          <button onClick={resetHandler}>All Guests</button>
+          <button onClick={confirmedHandler}>Confirmed</button>
+          <button onClick={pendingHandler}>Pending</button>
+          <button onClick={declinedHandler}>Declined</button>
+        </section>
       {guests?.length === 0 && <p>Still no guests for this plan</p>}
       {guests?.map((guest, k) => {
                 return <GuestComponent guest={guest} planId = {planId} key={k}/>

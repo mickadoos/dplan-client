@@ -4,6 +4,7 @@ import { useState } from "react";
 import userService from "../../services/user.service";
 import Plan from "../../components/Plan/Plan";
 import { AuthContext } from "../../context/auth.context";
+import planService from "../../services/plan.service";
 
 let allPlans;
 
@@ -17,11 +18,18 @@ function PlansPage() {
       if(isLoggedIn) {
         userService.getUserPlans(user.username)
         .then(results => {
-          console.log("results get User Plans: ", results.data.plans)
+          console.log("results get User Plans: ", results.data.plans.length)
           allPlans = results.data.plans.map(plan => {
             return plan;
           })
-            setPlans(allPlans);
+            setPlans(allPlans)
+            if((results.data.plans.length === 0 && user.username === "moderador")){
+              planService.getPlans()
+              .then(resp => {
+                console.log("resp inside length mod: ", resp.data)
+              setPlans(resp.data)
+              })
+            }
         })
       }
     }, [isLoggedIn, reset]);
