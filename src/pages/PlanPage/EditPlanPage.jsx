@@ -8,7 +8,7 @@ import planService from "../../services/plan.service";
 function EditPlanPage() {
   const {planId} = useParams();
   const [plan, setPlan] = useState({});
-  const {isLoggedIn, user} = useContext(AuthContext);
+  const {isLoggedIn, user, isLoading} = useContext(AuthContext);
 
 
   const [title, setTitle] = useState("");
@@ -26,6 +26,11 @@ function EditPlanPage() {
     planService.getPlan(planId)
     .then(response => {
         setPlan(response.data);
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+        setDate(response.data.date)
+        setTime(response.data.time)
+        setLocation(response.data.location)
     })
 
 }, [planId])
@@ -128,35 +133,35 @@ const handleEditSubmit = (e) => {
                 <label htmlFor="formGroupExampleInput" className="form-label">Title: </label>
                 <input type="text"  
                     name="title" 
-                    // value={plan.title}
+                    value={title}
                     onChange={handleTitle} className="form-control" id="formGroupExampleInput" placeholder={plan.title}/>
                 </div>
                 <div className="mb-3">
                 <label htmlFor="formGroupExampleInput" className="form-label">Description: </label>
                 <input type="text"  
                     name="description" 
-                    // value={plan.title}
+                    value={description}
                     onChange={handleDescription} className="form-control" id="formGroupExampleInput" placeholder={plan.description}/>
                 </div>
                 <div className="mb-3">
                 <label htmlFor="formGroupExampleInput" className="form-label">Date: </label>
                 <input type="date"  
                     name="date" 
-                    // value={plan.date}
-                    onChange={handleDate} className="form-control" id="formGroupExampleInput" placeholder={plan.date}/>
+                    value={date}
+                    onChange={handleDate} className="form-control" id="formGroupExampleInput" placeholder={plan.date} required/>
                 </div>
                 <div className="mb-3">
                 <label htmlFor="formGroupExampleInput" className="form-label">Time: </label>
                 <input type="time"  
                     name="time" 
-                    // value={plan.time}
+                    value={time}
                     onChange={handleTime} className="form-control" id="formGroupExampleInput" placeholder={plan.time} required/>
                 </div>
                 <div className="mb-3">
                 <label htmlFor="formGroupExampleInput" className="form-label">Location: </label>
                 <input type="text"  
                     name="location" 
-                    // value={plan.title}
+                    value={location}
                     onChange={handleLocation} className="form-control" id="formGroupExampleInput" placeholder={plan.location}/>
                 </div>
                   <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
