@@ -27,8 +27,8 @@ function GuestsPlanPage() {
         resp.data.accepted.map(guest1 => {
           return guestsSearch.push(guest1)
         })}
-        if(resp.data.denied.length > 0){
-        resp.data.denied.map(guest2 => {
+        if(resp.data.declined.length > 0){
+        resp.data.declined.map(guest2 => {
           return guestsSearch.push(guest2)
         })}
         console.log("guestsSearch: ", guestsSearch)

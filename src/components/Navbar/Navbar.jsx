@@ -33,7 +33,7 @@ function Navbar() {
                 <div className="offcanvas-body">
                   <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li className="nav-item">
-                      <Link to={"/plans"} className="nav-link">Plans Overview</Link>
+                      <Link to={"/plans"} className="nav-link">My Plans</Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>

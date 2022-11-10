@@ -61,7 +61,7 @@ function PlansPage() {
 
     return (
       <div className="container">
-        <h1>Plans Page</h1>
+        <h1>My Plans</h1>
         <section>
           <button onClick={resetHandler}>All Plans</button>
           <button onClick={adminHandler}>Admin</button>
@@ -74,7 +74,7 @@ function PlansPage() {
             <Plan plan={plan} key={k} />
           ))}
         </div>
-        {plans.length < 0 && <h5>You don't have plans</h5>}
+        {plans.length <= 0 && <h5>You don't have plans</h5>}
       </div>
     );
 }
