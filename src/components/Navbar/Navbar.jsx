@@ -31,7 +31,7 @@ function Navbar() {
                     <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
+                    <Link className="nav-link" to={"/" + user.username + "/addFriends"}>Add Friends</Link>
                   </li>
                   <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

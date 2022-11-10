@@ -163,8 +163,8 @@ function ProfilePage() {
           )}
         </div>
       </div>
-      <h3>Friends</h3>
-      {profile.friends?.length > 0? 
+      <Link to={`/${user.username}/profile/friends`} ><h3>Friends</h3></Link>
+      {/* {profile.friends?.length > 0? 
       <div id="carouselExampleControls" className="carousel carousel slide" data-bs-ride="carousel">
       <div className="carousel-inner">
         {profile.friends?.map((friend, k) => {
@@ -188,7 +188,7 @@ function ProfilePage() {
     <span className="carousel-control-next-icon" aria-hidden="true"></span>
     <span className="visually-hidden">Next</span>
   </button>
-</div> : <h6>Friends not found</h6>}
+</div> : <h6>Friends not found</h6>} */}
       {isUser && (
         <>
           <h4>Friends Request: </h4>

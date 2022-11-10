@@ -49,7 +49,8 @@ function PlanPage() {
 
 const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
 
-
+  console.log("user.usernameMod: ", user.usernameMod)
+  console.log("user.username: ", user.username)
   return (
     <div>
       <h1>Plan page</h1>
@@ -62,7 +63,7 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                 <p className="card-text">{plan.date}</p>
                 <p className="card-text">{plan.time}</p>
                 <p className="card-text">{plan.location}</p>
-
+                <p className="card-text">Created by: {plan.isAdmin === user.username? "Me" : plan.isAdmin}</p>
               {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="col-sm-6">
                   <button
                     onClick={acceptHandle}
@@ -88,7 +89,7 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                   </button>
                 </div>} */}
 
-              { plan.isAdmin === user.username && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
+              { (plan.isAdmin === user.username || user.username === "moderador") && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
                     Edit this plan
                 </button>}
               

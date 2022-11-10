@@ -1,3 +1,14 @@
 .logo{
     width: 6vw;
 }
+
+.App {
+    overflow: auto;
+    height: 100vh;
+    width: auto;
+}
+
+.root {
+    max-width: 100%;
+    overflow-x: hidden;
+}
