@@ -1,0 +1,89 @@
+/* .headPlan{
+    background-image: url("https://woguclimbing.com/wp-content/uploads/2018/11/Santiago-Valerga-2-1024x768.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 40vh;
+} */
+.headPlan{
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+}
+.title{
+    font-weight: bold;
+}
+.dateInfo{
+    font-weight: bold;
+}
+.titleBgnd{
+    text-align:left;
+    padding-top: 9px;
+    padding-bottom: 1px;
+    padding-right: 3px;
+    padding-left: 30px;
+    background-color: rgba(0, 0, 0, 0.457);
+    border-radius: 10px; 
+}
+.guestsPosition{
+    text-align:left;
+    margin-top: 10px;
+}
+.guestsIcon{
+    width: 65px;
+    transition: 0.5s all ease-in-out;
+}
+
+.guestsIcon:active{
+    transform: scale(0.9);
+}
+
+.declineButton {
+    margin-left: 20px;
+}
+.buttonsPlan{
+    margin-top: 40px;
+    padding-bottom: 10px;
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-between;
+}
+.CreatedBy{
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+}
+.infoPlan{
+    margin: auto;
+    padding-bottom: 30px;
+}
+.description{
+    background-color: rgba(0, 0, 0, 0.603);
+    border-radius: 8px;
+    margin-left: 30px;
+    margin-right: 30px;
+    min-height: 15vh;
+}
+.descriptionTitle{
+    color: rgba(236, 236, 236, 0.512);
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-left: 40px;
+    width: 80vw;
+}
+.descriptionPlan{
+    color: rgb(219, 219, 219);
+    text-align: left;
+    margin-top: 2px;
+    margin: auto;
+    padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+
+

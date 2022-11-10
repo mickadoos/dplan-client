@@ -69,7 +69,7 @@ function PlansPage() {
 
     return (
       <div className="container">
-        <h1>Plans Page</h1>
+        <h1>My Plans</h1>
         <section>
           <button onClick={resetHandler}>All Plans</button>
           <button onClick={adminHandler}>Admin</button>
