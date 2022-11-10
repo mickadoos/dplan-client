@@ -62,6 +62,8 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                 <p className="card-text">{plan.date}</p>
                 <p className="card-text">{plan.time}</p>
                 <p className="card-text">{plan.location}</p>
+                <p className="card-text">Created by: <Link to={`/${plan.isAdmin}/profile`}>{plan.isAdmin === user.username? "Me" : plan.isAdmin}</Link></p>
+
 
               {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="col-sm-6">
                   <button

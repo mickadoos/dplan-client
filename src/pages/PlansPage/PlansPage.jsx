@@ -74,7 +74,7 @@ function PlansPage() {
             <Plan plan={plan} key={k} />
           ))}
         </div>
-        {plans.length < 0 && <h5>You don't have plans</h5>}
+        {plans.length <= 0 && <h5>You don't have plans</h5>}
       </div>
     );
 }

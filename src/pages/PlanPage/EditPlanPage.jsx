@@ -178,8 +178,12 @@ const handleEditSubmit = (e) => {
             {/* modal */}
             
             </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
+            {errorMessage && 
+        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+        {errorMessage}
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      }
     </div>
   );
 }

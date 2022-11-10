@@ -1,3 +1,7 @@
 .logo{
     width: 6vw;
 }
+
+.body {
+    overflow: scroll;
+}
