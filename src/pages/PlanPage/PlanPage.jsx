@@ -39,8 +39,8 @@ function PlanPage() {
   useEffect(()=>{
     planService.getPlan(planId)
     .then(response => {
-      console.log("USER: ",user.username)
-      console.log("isAdmin: ",response.data.isAdmin)
+      console.log("USER: ",user._id)
+      console.log("isAdmin: ",response.data)
       console.log("STATUS: ",status)
         setPlan(response.data);
     })
@@ -63,7 +63,7 @@ const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
                 <p className="card-text">{plan.time}</p>
                 <p className="card-text">{plan.location}</p>
 
-              {plan.isAdmin !== user?.username && !status && <div className="col-sm-6">
+              {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="col-sm-6">
                   <button
                     onClick={acceptHandle}
                     className="btn btn-primary text-bg-success">

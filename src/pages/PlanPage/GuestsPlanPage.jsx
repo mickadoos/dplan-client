@@ -56,8 +56,8 @@ function GuestsPlanPage() {
         <input placeholder="Search users"/>
       </form>
       {guests?.length === 0 && <p>Still no guests for this plan</p>}
-      {guests?.map(guest => {
-                return <GuestComponent guest={guest} planId = {planId} key={guest._id}/>
+      {guests?.map((guest, k) => {
+                return <GuestComponent guest={guest} planId = {planId} key={k}/>
             })}  
     </div>
   );
