@@ -42,16 +42,33 @@ function AddFriendsPage() {
 
 
   return (
-    <div>
-      {/* <p>{user && user.username}</p> */}
-      <h1>Add Friends page</h1>
-      <form onChange={formOnChangeHandle}>
-        <input placeholder="Search users"/>
-      </form>
+    // <div className = "global">
+    //   <h1 className = "text-white">Add Friends</h1>
+    //   <form onChange={formOnChangeHandle}>
+    //     <input placeholder="Search users"/>
+    //   </form>
+    //   <div className = "container mt-10">
+    //   {addFriends.length === 0 && <p>No results</p>}
+    //   {addFriends.map(person => {
+    //             return <PersonAddFriends person={person} updatePeople={updatePeople} key={person._id}/>
+    //         })}  
+    //   </div>
+    // </div>
+
+
+    <div className = "global">
+      <h1 className = "title">Add Friends</h1>
+      <div className="input-group rounded">
+        <form className = "searchBar" onChange={formOnChangeHandle}>
+          <input type="search" className="form-control rounded" placeholder="Search users" />
+        </form>
+      </div>
+      <div className = "contentContainer">
       {addFriends.length === 0 && <p>No results</p>}
       {addFriends.map(person => {
                 return <PersonAddFriends person={person} updatePeople={updatePeople} key={person._id}/>
             })}  
+      </div>
     </div>
   );
 }
