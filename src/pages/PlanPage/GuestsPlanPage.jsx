@@ -83,6 +83,7 @@ function GuestsPlanPage() {
   return (
     <div>
       <h1>Guests Page</h1>
+<<<<<<< HEAD
       <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
       <Link to={"/plans/"+planId+"/invite"} className="btn btn-primary">Invite People</Link>
       <form onChange={formOnChangeHandle}>
@@ -94,10 +95,26 @@ function GuestsPlanPage() {
           <button onClick={pendingHandler}>Pending</button>
           <button onClick={declinedHandler}>Declined</button>
         </section>
+=======
+      <Link to={"/plans/"+planId+"/invite"} className="btn btn-primary invite">Invite People</Link>
+      <div className="input-group rounded">
+        <form className = "searchBar" onChange={formOnChangeHandle}>
+          <input type="search" className="form-control rounded" placeholder="Search users" />
+        </form>
+      </div>
+      <section className="buttonsStatus">
+          <button className="butGen btn btn-dark" onClick={resetHandler}>All Guests</button>
+          <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
+          <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
+          <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
+      </section>
+      <div className = "contentContainer">
+>>>>>>> jusi
       {guests?.length === 0 && <p>Still no guests for this plan</p>}
       {guests?.map((guest, k) => {
                 return <GuestComponent guest={guest} planId = {planId} key={k}/>
             })}  
+      </div>
     </div>
   );
 }

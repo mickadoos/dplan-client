@@ -70,10 +70,10 @@ function ProfilePage() {
   }
 
   return (
-    <div>
+    <div className="divGen">
       <h1>Profile page</h1>
-      <div className="card" style={{ width: "18rem" }}>
-        <img src={profile.profileImage} className="card-img-top" alt="..." />
+      <div className="profile" style={{ width: "18rem" }}>
+        <img src={profile.profileImage} className="card-img-top profileImg" alt="..." />
         {isUser && (
           <>
             <button
@@ -82,7 +82,7 @@ function ProfilePage() {
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              Editar foto
+              Edit Profile Picture
             </button>
             <div
               className="modal fade"
@@ -95,7 +95,7 @@ function ProfilePage() {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h1 className="modal-title fs-5" id="exampleModalLabel">
-                      Editar foto perfil
+                      Edit Profile Picture
                     </h1>
                     <button
                       type="button"
@@ -141,63 +141,45 @@ function ProfilePage() {
         )}
 
         <div className="card-body">
-          <h5 className="card-title">{profile.name}</h5>
-          <p className="card-text">
-            <strong>Username: </strong>
+        <div className="margins">
+          <h5 className="card-text">
             {profile.username}
-          </p>
+          </h5>
+          <p className="card-title">{profile.name}</p>
+        </div>
+        <div className="margins">
           <p className="card-text">
             <strong>Birthdate: </strong>
             {profile.birthdate?.slice(0, 10)}
           </p>
+        </div>
+        <div className="margins">
           <p className="card-text">
             <strong>Country: </strong>
             {profile.country}
           </p>
+        </div>
+        <div className="margins"></div>
+    
           {isUser && (
-            <>
+            <div className="btn btn-primary">Edit Profile
               <Link to={`/${profile.username}/profile/edit`}>
-                Editar perfil
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
-      <Link to={`/${user.username}/profile/friends`} ><h3>Friends</h3></Link>
-      {/* {profile.friends?.length > 0? 
-      <div id="carouselExampleControls" className="carousel carousel slide" data-bs-ride="carousel">
-      <div className="carousel-inner">
-        {profile.friends?.map((friend, k) => {
-          return <div className={`carousel-item ${k === 0? "active":""}`} data-bs-interval="10000" key={k}>
-      <img src={friend.profileImage} className="d-block w-100" alt={friend.name}/>
-      <div className="carousel-caption d-none d-md-block">
-        <h5>{friend.name}</h5>
-        <p>{friend.username}</p>
-      </div>
-      <Link to={`/${friend.username}/profile`}>
-            <button>Profile</button>
-          </Link>
-    </div>
-        })}
-        </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div> : <h6>Friends not found</h6>} */}
+      <Link to={`/${user.username}/profile/friends`} ><h3 className="btn btn-primary margins">Friends</h3></Link>
+    
       {isUser && (
         <>
-          <h4>Friends Request: </h4>
+          <h4 className="colorText margins">Friends Request: </h4>
           {profile.friendsToAccept?.length > 0 ? (
             profile.friendsToAccept.map((fri, k) => {
               return <PendingFriendComp fri={fri} updateHandler={updateHandler} key={k} />;
             })
           ) : (
-            <p>You don't have requests</p>
+            <p className="colorText">You don't have requests</p>
           )}
         </>
       )}

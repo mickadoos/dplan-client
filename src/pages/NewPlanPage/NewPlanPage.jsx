@@ -39,20 +39,6 @@ function NewPlanPage() {
     uploadData.append('date', date)
     uploadData.append('time', time)
     uploadData.append('location', location)
-    
-    // uploadData.append('location', location)
-    // uploadData.append('tags', tags)
-
-    // Send a request to the server using axios
-    /* 
-    const authToken = localStorage.getItem("authToken");
-    axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/auth/signup`, 
-      requestBody, 
-      { headers: { Authorization: `Bearer ${authToken}` },
-    })
-    .then((response) => {})
-    */
 
     // Or using a service
     planService
@@ -71,36 +57,47 @@ function NewPlanPage() {
   
 
   return (
-    <div>
-      <h1>New Plan page</h1>
+    <div className="newPlanDiv">
+      <h1>Create Plan</h1>
         <form onSubmit={handleNewPlamSubmit} encType="multipart/form-data">
-        <label>Title:</label>
-        <input type="title" name="title" value={title} onChange={handleTitle} />
-
-        <label>Description:</label>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={handleDescription}
-        />
-
-      <label>Plan Image:</label>
-      <input type="file" name="planImage" onChange={handleImage}/>
-      <br></br>
-
-      <label>Date:</label>
-      <input type="date" id="datePickerId" onChange={handleDate}/>
-
-      <label htmlFor="appt">Choose a time for your meeting:</label>
-<input type="time" id="appt" name="time" onChange={handleTime} required/>
- {/* min="09:00" max="18:00" */}
-{/* <small>Office hours are 9am to 6pm</small> */}
-
-<label>Location:</label>
-      <input type="text" name="location" onChange={handleLocation}/>
-
-        <button type="submit">Create Plan</button>
+          <div className="gen titleDiv">
+            <input type="title" className="titlePlan" name="title" placeholder="Title" value={title} onChange={handleTitle} />
+          </div>
+          <div className="gen descriptionDiv">
+            <textarea
+              type="textArea"
+              className = "planDescription"
+              placeholder="Description"
+              name="description"
+              value={description}
+              onChange={handleDescription}
+            />
+          </div>
+          <div className="gen dateDiv">
+            <p className="dateTitle">Date & Time:</p>
+            <input type="date" className="date" id="datePickerId" onChange={handleDate}/>
+          </div>
+          <div className="gen time">
+            <input type="time" className="date" id="appt" name="time" onChange={handleTime} required/>
+          </div>
+          <div className="gen locationDiv">
+            <input type="text" className="location" name="location" placeholder="Location" onChange={handleLocation}/>
+          </div>
+          {/* <div>
+            <label>Plan Image:</label>
+            <input type="file" name="planImage" onChange={handleImage}/>
+            <br></br>
+          </div> */}
+          <br></br>
+          <div className="planImage">
+            <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
+            <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} />
+            <br></br>
+          </div>
+          <br></br>
+          <div className="gen button">
+            <button type="submit" className="btn btn-primary">Create Plan</button>
+          </div>
       </form>
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
