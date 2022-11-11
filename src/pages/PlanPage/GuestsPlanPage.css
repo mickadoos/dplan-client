@@ -1,0 +1,19 @@
+.butGen{
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+    min-width: 102px
+}
+.buttonsStatus{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 20px;
+    
+}
+.invite{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
