@@ -48,7 +48,7 @@ function LoginPage() {
     <div className="LoginPage">
       <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
+      {/* <form onSubmit={handleLoginSubmit}>
         <label>Username:</label>
         <input type="text" name="username" value={username} onChange={handleUsername} />
 
@@ -61,7 +61,31 @@ function LoginPage() {
         />
 
         <button type="submit">Login</button>
-      </form>
+      </form> */}
+
+      <form onSubmit={handleLoginSubmit} className="container">
+  {/* <!-- Username input --> */}
+  <div className="form-outline mb-4">
+    <input type="text" id="form2Example1" className="form-control col-4" name="username" value={username} onChange={handleUsername} />
+    <label className="form-label col-4" for="form2Example1">Username</label>
+  </div>
+
+  {/* <!-- Password input --> */}
+  <div className="form-outline mb-4">
+    <input type="password" id="form2Example2" className="form-control" name="password"
+          value={password}
+          onChange={handlePassword} />
+    <label className="form-label" for="form2Example2">Password</label>
+  </div>
+
+ 
+  {/* <!-- Submit button --> */}
+  <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+
+</form>
+
+
+
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
         {errorMessage}
@@ -69,7 +93,8 @@ function LoginPage() {
         </div>
       }
       <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+      <Link to={"/signup"}> Register</Link>
+      
     </div>
   );
 }

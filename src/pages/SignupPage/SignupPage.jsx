@@ -73,23 +73,30 @@ function SignupPage() {
     <div className="SignupPage">
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit} encType="multipart/form-data">
+      <form className="container" onSubmit={handleSignupSubmit} encType="multipart/form-data">
         <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
+        <input className="form-control col-4" type="email" name="email" value={email} onChange={handleEmail} />
+    <br></br>
+    <br></br>
         <label>Password:</label>
         <input
+        className="form-control col-4"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
-
+        <br></br>
+        <br></br>
         <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
+        <input className="form-control col-4" type="text" name="name" value={name} onChange={handleName} />
+        <br></br>
+        <br></br>
         <label>Username:</label>
-        <input type="text" name="username" value={username} onChange={handleUsername} />
+        <input className="form-control col-4" type="text" name="username" value={username} onChange={handleUsername} />
+        <br></br>
+        <br></br>
+
 
         {/* <label htmlFor="gender">Gender:</label>
         <select name="gender" id="gender" multiple>
@@ -106,21 +113,29 @@ function SignupPage() {
         <option value="other">Other</option>
       </select>
       <br></br>
+      <br></br>
 
       <label>Country:</label>
-      <input type="text" name="country" value={country} onChange={handleCountry} />
+      <input className="form-control col-4" type="text" name="country" value={country} onChange={handleCountry} />
+    <br></br>
+    <br></br>
        
       <label>Phone Number:</label>
-      <input type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
+      <input className="form-control col-4" type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
+      <br></br>
+      <br></br>
 
       <label>Birthdate:</label>
-      <input type="date" id="datePickerId" onChange={handleBirthdate}/>
+      <input  className="form-control col-4" type="date" id="datePickerId" onChange={handleBirthdate}/>
+    <br></br>
+    <br></br>
       
       <label>Profile Image:</label>
       <input type="file" name="profileImage" onChange={handleProfileImage}/>
       <br></br>
+      <br></br>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
       </form>
 
       

@@ -66,7 +66,9 @@ function AddFriendsPage() {
       <div className = "contentContainer">
       {addFriends.length === 0 && <p>No results</p>}
       {addFriends.map(person => {
+        if(person.username !== 'moderador'){
                 return <PersonAddFriends person={person} updatePeople={updatePeople} key={person._id}/>
+  }
             })}  
       </div>
     </div>

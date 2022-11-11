@@ -30,7 +30,7 @@ function ProfileEditPage() {
   const handleBirthdate = (e) => setBirthdate(e.target.value);
   const handleProfileImage = (e) => setProfileImage(e.target.files[0])
 
-
+  const cancelEdit = () => {navigate("/" + user.username + "/profile")};
   useEffect(() => {
     if(user){
       console.log("user: ", user)
@@ -189,6 +189,7 @@ function ProfileEditPage() {
       <input type="date" id="datePickerId" onChange={handleBirthdate}/>
       
       <br></br>
+      <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
 
         <button type="submit">Confirm changes</button>
       </form>

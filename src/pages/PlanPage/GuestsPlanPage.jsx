@@ -1,13 +1,14 @@
 import "./GuestsPlanPage.css";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import planService from "../../services/plan.service.js"
 import GuestComponent from "../../components/Person/PersonGuests";
 
 let guestsSearch = [];
 
 function GuestsPlanPage() {
+  const navigate = useNavigate();
 
   const {planId} = useParams();
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -76,9 +77,13 @@ function GuestsPlanPage() {
     setReset(!reset)
   }
 
+  const cancelEdit = () => {navigate("/plans/" + planId)};
+
+
   return (
     <div>
       <h1>Guests Page</h1>
+      <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
       <Link to={"/plans/"+planId+"/invite"} className="btn btn-primary">Invite People</Link>
       <form onChange={formOnChangeHandle}>
         <input placeholder="Search users"/>
