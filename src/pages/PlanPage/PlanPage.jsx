@@ -59,46 +59,12 @@ const planPhoto = {
 };
 
   return (
-    // <div>
-    //   <h1>Plan page</h1>
-    //   <div className="card text-center">
-    //         <div className="card-body">
-    //             <Link to={"/plans/"+planId+"/guests"} className="btn btn-primary">Plan Guests</Link>
-    //             <img className="img-fluid" src={plan.planImage} alt={plan.title} />
-    //             <h5 className="card-title">{plan.title}</h5>
-    //             <p className="card-text">{plan.description}</p>
-    //             <p className="card-text">{plan.date}</p>
-    //             <p className="card-text">{plan.time}</p>
-    //             <p className="card-text">{plan.location}</p>
-    //             <p className="card-text">Created by: {plan.isAdmin === user.username? "Me" : plan.isAdmin}</p>
-
-    //           {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="col-sm-6">
-    //               <button
-    //                 onClick={acceptHandle}
-    //                 className="btn btn-primary text-bg-success">
-    //                 Confirm
-    //               </button>
-    //               <button
-    //                 onClick={declineHandle}
-    //                 className="btn btn-primary text-bg-danger ">
-    //                 Decline
-    //               </button>
-    //             </div>}
-
-    //           { plan.isAdmin === user.username && <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
-    //                 Edit this plan
-    //             </button>}
-              
-    //         </div>
-    //         </div>
-    // </div>
-
     
       <div className="DIV-GLOBAL">
         <div className="DIV-IMAGE-INFO headPlan" style = {planPhoto}>
           <div className="titleBgnd">
             <h2 className="title">Plan: {plan.title}</h2>
-            <h6>Date: {plan.date} at {plan.time}</h6>
+            <h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6>
             <div className="DIV-BUTTONS buttonsPlan">
           {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
                   <button

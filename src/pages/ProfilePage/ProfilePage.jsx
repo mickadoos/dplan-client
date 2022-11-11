@@ -42,10 +42,6 @@ function ProfilePage() {
   useEffect(() => {
     userService.getUserProfile(username)
     .then((resp) => {
-      console.log(
-        "resp data useEffect userService: ",
-        resp.data.friendsToAccept.length
-      );
       setProfile(resp.data)
       if(user.username === resp.data.username ) setIsUser(true)
       if(user.username !== resp.data.username ) setIsUser(false)
@@ -162,9 +158,8 @@ function ProfilePage() {
         <div className="margins"></div>
     
           {isUser && (
-            <div className="btn btn-primary">Edit Profile
-              <Link to={`/${profile.username}/profile/edit`}>
-              </Link>
+            <div>
+              <Link to={`/${profile.username}/profile/edit`}  className="btn btn-primary">Edit Profile</Link>
             </div>
           )}
         </div>
@@ -174,6 +169,7 @@ function ProfilePage() {
       {isUser && (
         <>
           <h4 className="colorText margins">Friends Request: </h4>
+          <div className="requests">
           {profile.friendsToAccept?.length > 0 ? (
             profile.friendsToAccept.map((fri, k) => {
               return <PendingFriendComp fri={fri} updateHandler={updateHandler} key={k} />;
@@ -181,7 +177,8 @@ function ProfilePage() {
           ) : (
             <p className="colorText">You don't have requests</p>
           )}
-        </>
+          </div>
+          </>
       )}
     </div>
   );

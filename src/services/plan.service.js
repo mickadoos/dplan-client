@@ -3,7 +3,7 @@ import axios from 'axios';
 class PlanService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}api/plans` || "http://localhost:5005/api/plans"
+      baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:5005/api/plans"
     });
 
     // Automatically set JWT token in the headers for every request

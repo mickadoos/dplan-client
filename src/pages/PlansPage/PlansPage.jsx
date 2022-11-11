@@ -18,7 +18,7 @@ function PlansPage() {
       if(isLoggedIn) {
         userService.getUserPlans(user.username)
         .then(results => {
-          console.log("results get User Plans: ", results.data.plans.length)
+          console.log(results.data)
           allPlans = results.data.plans.map(plan => {
             return plan;
           })

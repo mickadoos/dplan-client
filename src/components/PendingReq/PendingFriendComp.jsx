@@ -4,6 +4,7 @@ import userService from "../../services/user.service.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Navigate, useNavigate } from "react-router-dom";
+import "./Pending.css";
 
 
 
@@ -30,20 +31,19 @@ function PendingFriendComp({ fri, updateHandler }) {
 
   return (
     <div className="col-sm-6">
-      <div className="card">
+      <div className="cardA">
         <div className="card-body">
-          <h5 className="card-title">{fri.name}</h5>
-          <p className="card-text">
+          <h5 className="card-text">
             {fri.username}
-          </p>
+          </h5>
           <button
             onClick={acceptHandle}
-            className="btn btn-primary text-bg-success">
+            className="btn btn-success">
             Aceptar amistad
           </button>
           <button
             onClick={declinetHandle}
-            className="btn btn-primary text-bg-danger ">
+            className="btn btn-danger">
             Rechazar amistad
           </button>
         </div>
