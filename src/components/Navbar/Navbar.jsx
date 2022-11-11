@@ -32,16 +32,16 @@ function Navbar() {
                 </div>
                 <div className="offcanvas-body">
                   <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li className="nav-item">
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link to={"/plans"} className="nav-link">My Plans</Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link className="nav-link" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link className="nav-link" to="/plans/newPlan">Create a Plan</Link>
                     </li>
                   </ul>
