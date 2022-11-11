@@ -70,19 +70,23 @@ function PlansPage() {
     return (
       <div className="container">
         <h1>My Plans</h1>
-        <section>
-          <button onClick={resetHandler}>All Plans</button>
-          <button onClick={adminHandler}>Admin</button>
-          <button onClick={confirmedHandler}>Confirmed</button>
-          <button onClick={pendingHandler}>Pending</button>
-          <button onClick={declinedHandler}>Declined</button>
+        <section className="buttons">
+          <div>
+            <button className="butGen admin btn btn-warning" onClick={adminHandler}>Admin</button>
+          </div>
+          <div className="buttonsStatus">
+            <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
+            <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
+            <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
+            <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
+          </div>
         </section>
         <div className="row justify-content-center">
           {plans.map((plan, k) => (
             <Plan plan={plan} key={k} />
           ))}
         </div>
-        {plans.length <= 0 && <h5>You don't have plans</h5>}
+        {plans.length <= 0 && <h5 className="noPlans">You don't have plans</h5>}
       </div>
     );
 }

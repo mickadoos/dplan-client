@@ -43,13 +43,17 @@ function ProfileFriendsPage() {
   return (
     <div>
       <h1>{username} Friends page</h1>
-      <form onChange={formOnChangeHandle}>
-        <input placeholder="Search your friends"/>
-      </form>
+      <div className="input-group rounded">
+        <form className = "searchBar" onChange={formOnChangeHandle}>
+          <input type="search" className="form-control rounded" placeholder="Search friends" />
+        </form>
+      </div>
+      <div className = "contentContainer">
       {friends.length === 0 && <p>You still have no friends</p>}
       {friends.map(friend => {
                 return <PersonUserFriends friend={friend} key={friend._id}/>
             })}  
+      </div>
     </div>
   );
 }

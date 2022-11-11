@@ -42,19 +42,6 @@ function AddFriendsPage() {
 
 
   return (
-    // <div className = "global">
-    //   <h1 className = "text-white">Add Friends</h1>
-    //   <form onChange={formOnChangeHandle}>
-    //     <input placeholder="Search users"/>
-    //   </form>
-    //   <div className = "container mt-10">
-    //   {addFriends.length === 0 && <p>No results</p>}
-    //   {addFriends.map(person => {
-    //             return <PersonAddFriends person={person} updatePeople={updatePeople} key={person._id}/>
-    //         })}  
-    //   </div>
-    // </div>
-
 
     <div className = "global">
       <h1 className = "title">Add Friends</h1>

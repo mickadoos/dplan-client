@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Link } from "react-router-dom";
+import "./PersonUserFriends.css";
 
 function FriendComponent({friend}) {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -8,14 +9,16 @@ function FriendComponent({friend}) {
 
 
   return (
-    <div className="card" style={{"width": "18rem"}}>
-        <img src={profileImage} alt={name}/>
-        <div className="card-body">
-            <h5 className="card-title">{username}</h5>
-            <p className="card-text">{name}</p>
-            <Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link>
-        </div>
-    </div>
+    <>
+    <div className="addFriendCard" >
+      <div><Link to={"/"+username+"/profile"}><img className = "imgUser" src={profileImage} alt={name}/></Link></div>
+      <div className="userInfo">
+        <h5 className="username">{username}</h5>
+        <p className="name">{name}</p>
+      </div>
+      <div><Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link></div>
+    </div>  
+    </>
 
     
   );
