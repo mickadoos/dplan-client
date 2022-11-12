@@ -1,7 +1,7 @@
 import "./InviteFriendsPage.css";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import userService from "../../services/user.service.js"
 import PersonInvite from "../../components/Person/PersonInvite";
 
@@ -10,7 +10,6 @@ function InviteFriendsPage() {
   const {planId} = useParams();
   const { isLoggedIn, user } = useContext(AuthContext);
   const [friends, setFriends] = useState([]);
-  const [friends2, setFriends2] = useState([]);
   const [update, setUpdate] = useState(0)
 
   const updatePeople = (num) => {
@@ -30,12 +29,7 @@ function InviteFriendsPage() {
           })
           return !friendInPlan
         })
-
-
-        setFriends(result.data.friends)
-        setFriends2(friendsNotInvited)
-        console.log("friends2: ",friends2)
-        
+        setFriends(friendsNotInvited)        
       })
     }   
   },[isLoggedIn, update])
@@ -44,8 +38,8 @@ function InviteFriendsPage() {
     <div>
       <h1>Invite People</h1>
       <div className = "contentContainer">
-      {friends2.length === 0 && <p>You have no more friends to invite</p>}
-      {friends2.map(friend => {
+      {friends.length === 0 && <p>You have no more friends to invite</p>}
+      {friends.map(friend => {
                 return <PersonInvite friend={friend} updatePeople={updatePeople} key={friend._id}/>
             })} 
       </div>

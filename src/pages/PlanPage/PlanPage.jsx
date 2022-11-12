@@ -21,7 +21,6 @@ function PlanPage() {
   const acceptHandle = () => {
     planService.acceptPlan(planId, user.username)
     .then(resp => {
-        console.log(resp.data)
         setStatus (true)
         updatePlan(Math.random()*1000)  
     })
@@ -30,7 +29,6 @@ function PlanPage() {
   const declineHandle = () => {
     planService.declinePlan(planId, user.username)
     .then(resp => {
-        console.log(resp.data)
         setStatus (true)
         updatePlan(Math.random()*1000)
     })
@@ -40,9 +38,6 @@ function PlanPage() {
   useEffect(()=>{
     planService.getPlan(planId)
     .then(response => {
-      console.log("USER: ",user._id)
-      console.log("isAdmin: ",response.data)
-      console.log("STATUS: ",status)
         setPlan(response.data);
     })
 

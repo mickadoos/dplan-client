@@ -29,15 +29,12 @@ function AddFriendsPage() {
       }    
     },[isLoggedIn, update])
 
-    console.log("addFriends: ", addFriends)
 
     const formOnChangeHandle = (e) => {
-      console.log("e: ", e.target.value)
       let searchFriend = [...friendsSearch]
       setAddFriends(searchFriend.filter(friend => {
         return (friend.name.toLowerCase().includes(e.target.value.toLowerCase()) || friend.username.toLowerCase().includes(e.target.value.toLowerCase()))
       }))
-      console.log("searchFriend: ", searchFriend)
     }
 
 

@@ -1,18 +1,14 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
 import { useParams, Link } from "react-router-dom";
 import planService from "../../services/plan.service.js"
 import "./PersonInvite.css";
 
 function PersonInvite({friend, updatePeople}) {
     const {planId} = useParams();
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     const {_id, username, name, profileImage} = friend
 
     const inviteHandle = ()=>{
         planService.inviteGuestsFriends(planId, _id)
         .then (resp => {
-            console.log("INVITE - FRONT. Resp: ", resp)
             updatePeople (Math.random()*1000)
           })
     }

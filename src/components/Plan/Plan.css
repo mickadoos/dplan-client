@@ -1,49 +1,145 @@
 .targeta{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     margin-top: 15px;
+    /* background-image: url("../../assets/plan_bckgnd.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black; */
+    max-height: 138px;
+    border-radius: 15px;
+    /* border-top-right-radius: 50px; */
+    min-height: 165px;
+    max-width: 805px;
+}
+.targetaBgnd{
     background-image: url("../../assets/plan_bckgnd.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
-    max-height: 138px;
-    border-radius: 15px;
-    min-height: 165px;
+    background-position:right top;
+    /* border-top-right-radius: 50px; */
 }
-.imgDiv{
-    max-width: 180px;
+.targetaBgndConfirmed{
+    background-image: url("../../assets/planConfirmed.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
 }
-.planImg{
-    width: 20vw;
-    border-radius: 15px;
-    object-fit: cover;
+.targetaBgndDeclined{
+    background-image: url("../../assets/planDeclined.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
+}
+.targetaBgndPending{
+    background-image: url("../../assets/planPending.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
+}
+.targetaBgndAdmin{
+    background-image: url("../../assets/planAdmin.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
 }
 .details{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-content: center;
     align-items: center;
-    width: 100%;
-    padding: 20px 20px 20px 30px;
     text-align: left;
     color: rgb(186, 186, 186);
 }
-.viewButton{
-    align-self: flex-end;
-    margin-left: 100px;
-    min-width: 114px;
+.divDetailsA{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    color: rgb(186, 186, 186);
+    padding-top: 8px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
+.divDetailsB{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    color: rgb(186, 186, 186);
+    padding-right: 10px;
+    padding-left: 20px;
+}
+/* DivDetailsA */
 .title{
     font-weight: bolder;
+    font-size:x-large;
+    width: 80vw;
 }
-.statusA{
-    display: inline;
+.dateP{
+   color: rgb(221, 221, 221); 
+   font-weight: bold;
+
 }
-.statusB{
+/* DivDetailsB */
+.statusP2{
     display: inline;
     font-weight: bold;
+    font-size: medium;
+    align-self: flex-end;
+    color: rgb(36, 153, 255);
 }
-.divDetails{
-    padding-bottom: 10px;
+.statusP{
+    display: inline;
+    font-weight: bold;
+    align-self: flex-end;
+    color: rgb(177, 177, 177);
 }
+.statusConfirmed{
+    display: inline;
+    font-weight: bold;
+    align-self: flex-end;
+    color: rgb(37, 151, 73);
+}
+.statusDeclined{
+    display: inline;
+    font-weight: bold;
+    align-self: center;
+    color: rgb(221, 66, 66);
+}
+.statusPending{
+    display: inline;
+    font-weight: bold;
+    align-self: center;
+    color: rgb(193, 193, 193);
+}
+.statusAdmin{
+    display: inline;
+    font-weight: bold;
+    align-self: center;
+    color: rgb(255, 191, 0);
+}
+
+.viewButton{
+    align-self: flex-end;
+    min-width: 114px;
+    /* color: white;
+    background-color: rgb(63, 63, 63); */
+}
+
+/* .imgDiv{
+    max-width: 180px;
+} */
+/* .planImg{
+    width: 20vw;
+    border-radius: 15px;
+    object-fit: cover;
+} */
