@@ -62,12 +62,21 @@ function PlansPage() {
 
     return (
       <div className="plansDiv">
-        <h1>{user.username} Plans</h1>        
-        <div className="buttonsStatus">
+        <h1>{user.username} Plans</h1>   
+        {/* Buttons colored */}
+        {/* <div className="buttonsStatus">
           <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
           <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
           <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
           <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
+          <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
+        </div> */}
+        {/* Buttons colors Simple */}
+        <div className="buttonsStatus">
+          <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
+          <button className="butGen btn btn-primary" onClick={confirmedHandler}>Confirmed</button>
+          <button className="butGen btn btn-secondary" onClick={declinedHandler}>Declined</button>
+          <button className="butGen btn btn-light" onClick={pendingHandler}>Pending</button>
           <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
         </div>
         <div className="row justify-content-center">

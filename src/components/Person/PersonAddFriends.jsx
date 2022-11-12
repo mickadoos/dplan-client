@@ -17,7 +17,7 @@ function PersonAddFriends({person, updatePeople}) {
 
   return (
     <div className="addFriendCard" >
-      <div><Link to={"/"+username+"/profile"}><img className = "imgUser" src={profileImage} alt={name}/></Link></div>
+      <Link to={"/"+username+"/profile"} className=""><img className = "imgUserAddF profilePic" src={profileImage} alt={name}/></Link>
       <div className="userInfo">
         <h5 className="username">{username}</h5>
         <p className="name">{name}</p>

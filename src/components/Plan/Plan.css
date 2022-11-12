@@ -50,6 +50,33 @@
     background-position:right top;
     border-top-right-radius: 50px;
 }
+/* Background colors V2 */
+.targetaBgndConfirmedV2{
+    background-image: url("../../assets/planConfirmedV2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
+}
+.targetaBgndDeclinedV2{
+    background-image: url("../../assets/planDeclinedV2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
+}
+.targetaBgndPendingV2{
+    background-image: url("../../assets/planPendingV2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+    border-top-right-radius: 50px;
+}
+
+
 .details{
     display: flex;
     flex-direction: column;

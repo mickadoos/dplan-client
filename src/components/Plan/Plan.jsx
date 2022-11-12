@@ -23,7 +23,7 @@ export default function Plan ({plan}) {
             //     </div>
             // </div>
          <>   
-        {plan.status === "confirmed" && <div className="targeta targetaBgndConfirmed">
+        {plan.status === "confirmed" && <div className="targeta targetaBgndConfirmedV2">
         <div className="details">
             <div className="divDetailsA">
                 <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
@@ -35,7 +35,7 @@ export default function Plan ({plan}) {
             </div>
         </div>
         </div>}
-        {plan.status === "declined" && <div className="targeta targetaBgndDeclined">
+        {plan.status === "declined" && <div className="targeta targetaBgndDeclinedV2">
         <div className="details">
             <div className="divDetailsA">
                 <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
@@ -47,7 +47,7 @@ export default function Plan ({plan}) {
             </div>
         </div>
         </div>}
-        {plan.status === "pending" && <div className="targeta targetaBgndPending">
+        {plan.status === "pending" && <div className="targeta targetaBgndPendingV2">
         <div className="details">
             <div className="divDetailsA">
                 <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
