@@ -1,18 +1,29 @@
 .navBarBackground{
     background-color: rgb(23, 23, 23);
-    padding: 10px;
+    padding: 15px;
 }
+.burgerOpen{
+    padding-bottom: 28px;
+}
+
 .logo{
     width: 6vw;
-    min-width: 68px;
-    max-width: 63px;
+    width: 62px;
+    transition: 0.2s all ease-in-out;
 }
-.profileImage{
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo:active {
+    transform: scale(0.9);
+}
+/* .profileImageNav{
     width: 5vw;
     min-width: 60px;
     max-width: 63px;
     border-radius: 50%;
-}
+} */
 
 .body {
     overflow: scroll;
@@ -27,4 +38,16 @@
 .root {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+.profilePicNav {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px; 
+    margin-bottom: 15px;
+}
+
+.logOutDiv{
+    margin-top: 10px;
 }

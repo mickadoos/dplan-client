@@ -52,7 +52,7 @@ function ProfilePage() {
     <div className="divGen">
       <h1>Profile page</h1>
       <div className="profile" style={{ width: "18rem" }}>
-        <img src={profile.profileImage} className="card-img-top profileImg" alt="..." />
+        <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
         {isUser && (
           <>
             <button

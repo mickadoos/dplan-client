@@ -33,10 +33,13 @@
 }
 .guestsIcon{
     width: 65px;
-    transition: 0.5s all ease-in-out;
+    transition: 0.2s all ease-in-out;
+}
+.guestsIcon:hover {
+    transform: scale(1.05);
 }
 
-.guestsIcon:active{
+.guestsIcon:active {
     transform: scale(0.9);
 }
 

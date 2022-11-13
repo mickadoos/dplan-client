@@ -1,54 +1,40 @@
 .targeta{
     margin-top: 15px;
-    /* background-image: url("../../assets/plan_bckgnd.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black; */
     max-height: 138px;
     border-radius: 15px;
-    /* border-top-right-radius: 50px; */
     min-height: 165px;
     max-width: 805px;
+    transition: all 0.2s ease-in-out;
 }
-.targetaBgnd{
-    background-image: url("../../assets/plan_bckgnd.png");
+
+.targeta:hover {
+    transform: scale(1.05);  
+}
+
+.targeta:active {
+    transform: scale(0.9);
+}
+
+.targetaBgndAll{
+    /* background-image: url("../../assets/plan_bckgnd.png"); */
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
     background-position:right top;
-    /* border-top-right-radius: 50px; */
+    border-top-right-radius: 50px;
+    text-decoration: none;
 }
 .targetaBgndConfirmed{
     background-image: url("../../assets/planConfirmed.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 .targetaBgndDeclined{
     background-image: url("../../assets/planDeclined.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 .targetaBgndPending{
     background-image: url("../../assets/planPending.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 .targetaBgndAdmin{
     background-image: url("../../assets/planAdmin.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 /* Background colors V2 */
 .targetaBgndConfirmedV2{
@@ -58,22 +44,13 @@
     background-color: black;
     background-position:right top;
     border-top-right-radius: 50px;
+    text-decoration: none;
 }
 .targetaBgndDeclinedV2{
     background-image: url("../../assets/planDeclinedV2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 .targetaBgndPendingV2{
     background-image: url("../../assets/planPendingV2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    background-position:right top;
-    border-top-right-radius: 50px;
 }
 
 
@@ -158,9 +135,15 @@
 .viewButton{
     align-self: flex-end;
     min-width: 114px;
-    /* color: white;
-    background-color: rgb(63, 63, 63); */
+    /* transition: all 0.2s ease-in-out; */
 }
+/* .viewButton:hover {
+    transform: scale(1.1);
+}
+
+.viewButton:active {
+    transform: scale(0.9);
+} */
 
 /* .imgDiv{
     max-width: 180px;
