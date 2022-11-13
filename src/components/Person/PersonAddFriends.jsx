@@ -16,13 +16,13 @@ function PersonAddFriends({person, updatePeople}) {
     }
 
   return (
-    <div className="addFriendCard" >
+    <div className="addFriendCard1" >
       <Link to={"/"+username+"/profile"} className=""><img className = "imgUserAddF profilePic" src={profileImage} alt={name}/></Link>
-      <div className="userInfo">
-        <h5 className="username">{username}</h5>
-        <p className="name">{name}</p>
+      <div className="userInfo1">
+        <h5 className="username1">{username}</h5>
+        <p className="name1">{name}</p>
       </div>
-      <div><button className="btn btn-primary" onClick={friendRequestHandle}>Send Friend Request</button></div>
+      <div className="RequestButton1"><button className="btn btn-primary rqButt" onClick={friendRequestHandle}>Send Friend Request</button></div>
     </div>
   );
 }
