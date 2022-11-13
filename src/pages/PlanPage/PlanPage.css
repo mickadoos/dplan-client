@@ -17,7 +17,20 @@
 .dateInfo{
     font-weight: bold;
     color: rgb(241, 241, 241);
+    padding-left: 15px;
+    margin:0px;
 }
+.calendarlogoPlanDet{
+    width: 14px;
+}
+.planDetDateDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+
+}
+
 .titleBgnd{
     text-align:left;
     padding-top: 9px;
