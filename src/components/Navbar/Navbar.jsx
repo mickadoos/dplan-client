@@ -21,16 +21,16 @@ function Navbar() {
             </button>
             <div className="collapse navbar-collapse burgerOpen" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                   <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}><img className = "profileImageNav profilePicNav" src={user.profileImage} alt="logo"></img></Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                   <Link to={"/plans"} className="nav-link">{user.username} Plans</Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                   <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" data-bs-dismiss="offcanvas">
                       <Link className="nav-link" to="/plans/newPlan">Create a Plan</Link>
                     </li>
                 {/* <li className="nav-item dropdown">
