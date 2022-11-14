@@ -1,42 +1,108 @@
-.global{
-    margin: auto;
+/* SMALL SCREEN */
+@media screen and (max-width:480px){
+    .addFriendCard1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 7px;
+        border-radius: 15px;
+        padding: 5px 20px 5px 30px;
+        min-width: 394px;
+        height: 92px;
+
+        background-image: url("../../assets/plan_bckgnd.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: black;
+        background-position:right top;
+    }
+    .profilePic {
+        object-fit: cover;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px; 
+    }
+    .RequestButton1{
+        max-width: 114px;
+    }
+    .rqButt{
+        font-size: 12px;
+        margin: 0px;
+    }
+    .userInfo1{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        padding-right: 10px;
+        width: 180px;
+        text-align: left;
+    }
+    .username1{
+        color: white;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+    .name1{
+        color: rgb(172, 172, 172);
+        font-size: 11px;
+        font-weight:bold;
+        max-width: 130px;
+        margin: 0px;
+    }
 }
-.title{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-    color: rgb(218, 218, 218);
-}
-.searchBar{
-    margin: auto;
-}
-.contentContainer{
-    margin-top: 15px;
-    display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;
-}
-.addFriendCard {
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.678);
-    border-radius: 15px;
-    padding: 20px;
-    min-width: 222px;
-}
-.imgUser {
-    width: 13vw;
-    border-radius: 50%;
-}
-.userInfo{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.username{
-    color: white;
-    font-weight: bolder;
-}
-.name{
-    color: white;
-    font-weight:lighter
+
+/* REGULAR SCREEN */
+@media screen and (min-width:481px){
+    .addFriendCard1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 7px;
+        border-radius: 15px;
+        padding: 5px 20px 5px 30px;
+        width: 500px;
+        height: 110px;
+
+        background-image: url("../../assets/plan_bckgnd.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: black;
+        background-position:right top;
+    }
+    .profilePic {
+        object-fit: cover;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px; 
+    }
+    .RequestButton1{
+        width: 180px;
+    }
+    .rqButt{
+        font-size: 15px;
+        margin: 0px;
+    }
+    .userInfo1{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        padding-right: 10px;
+        width: 180px;
+        text-align: left;
+    }
+    .username1{
+        color: white;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+    .name1{
+        color: rgb(172, 172, 172);
+        font-size: 11px;
+        font-weight:bold;
+        max-width: 130px;
+        margin: 0px;
+    }
 }
 

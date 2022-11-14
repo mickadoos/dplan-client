@@ -18,7 +18,6 @@ function PlansPage() {
       if(isLoggedIn) {
         userService.getUserPlans(user.username)
         .then(results => {
-          console.log(results.data)
           allPlans = results.data.plans.map(plan => {
             return plan;
           })
@@ -26,41 +25,35 @@ function PlansPage() {
             if((results.data.plans.length === 0 && user.username === "moderador")){
               planService.getPlans()
               .then(resp => {
-                console.log("resp inside length mod: ", resp.data)
               setPlans(resp.data)
               })
             }
         })
       }
     }, [isLoggedIn, reset]);
-    console.log("allPlans useEffect: ", allPlans)
 
     const adminHandler = () => {
       setPlans(allPlans.filter(pla => {
         return pla.status === "admin"
       }))
-      console.log("allPlans admin: ", allPlans)
     }
 
     const confirmedHandler = () => {
       setPlans(allPlans.filter(pla => {
         return pla.status === "confirmed"
       }))
-      console.log("allPlans admin: ", allPlans)
     }
 
     const declinedHandler = () => {
       setPlans(allPlans.filter(pla => {
         return pla.status === "declined"
       }))
-      console.log("allPlans admin: ", allPlans)
     }
 
     const pendingHandler = () => {
       setPlans(allPlans.filter(pla => {
         return pla.status === "pending"
       }))
-      console.log("allPlans admin: ", allPlans)
     }
 
     const resetHandler = () => {
@@ -68,19 +61,24 @@ function PlansPage() {
     }
 
     return (
-      <div className="container">
-        <h1>My Plans</h1>
-        <section className="buttons">
-          <div>
-            <button className="butGen admin btn btn-warning" onClick={adminHandler}>Admin</button>
-          </div>
-          <div className="buttonsStatus">
-            <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
-            <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
-            <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
-            <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
-          </div>
-        </section>
+      <div className="plansDiv">
+        <h1>{user.username} Plans</h1>   
+        {/* Buttons colored */}
+        {/* <div className="buttonsStatus">
+          <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
+          <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
+          <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
+          <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
+          <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
+        </div> */}
+        {/* Buttons colors Simple */}
+        <div className="buttonsStatus">
+          <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
+          <button className="butGen btn btn-primary" onClick={confirmedHandler}>Confirmed</button>
+          <button className="butGen btn btn-secondary" onClick={declinedHandler}>Declined</button>
+          <button className="butGen btn btn-light" onClick={pendingHandler}>Pending</button>
+          <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
+        </div>
         <div className="row justify-content-center">
           {plans.map((plan, k) => (
             <Plan plan={plan} key={k} />

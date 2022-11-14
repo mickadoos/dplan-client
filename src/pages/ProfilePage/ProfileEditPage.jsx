@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
-import authService from "../../services/auth.service";
 import userService from "../../services/user.service";
 import "./ProfileEditPage.css";
 
@@ -33,13 +32,8 @@ function ProfileEditPage() {
   const cancelEdit = () => {navigate("/" + user.username + "/profile")};
   useEffect(() => {
     if(user){
-      console.log("user: ", user)
     userService.getUserProfile(user.username)
     .then((resp) => {
-      console.log(
-        "resp data useEffect prof.Edit.Page: ",
-        resp
-      );
       setEmail(resp.data.email);
       setName(resp.data.name);
       setUsername(resp.data.username);
@@ -61,7 +55,6 @@ function ProfileEditPage() {
 
     userService.editProfile(user.username, uploadData)
     .then(resp => {
-      console.log("resp edit prof. post service: ", resp)
       storeToken(resp.data)
       authenticateUser()
       navigate(`/${user.username}/profile`);
@@ -82,7 +75,6 @@ function ProfileEditPage() {
 
     userService.editProfile(user.username, bodyEdit)
     .then(resp => {
-      console.log("resp edit prof. post service: ", resp)
       storeToken(resp.data)
       authenticateUser()
       navigate(`/${username}/profile`);

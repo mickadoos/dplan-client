@@ -11,45 +11,43 @@ function Navbar() {
   
   return (
     <nav>
-
     {isLoggedIn && 
       <>
         <nav className="navbar navbar-dark navBarBackground fixed-top">
-          <div className="container-fluid"> 
-            <div>
-              <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}><img className = "profileImage" src={user.profileImage} alt="logo"></img></Link>
-            </div>
-            <div>
-              <Link to={"/plans"} className="navbar-brand"><img className = "logo" src={logo} alt="logo"></img></Link>
-            </div>
-            <div>
-              <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="offcanvas offcanvas-end text-bg-dark" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-                <div className="offcanvas-header">
-                  <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div className="offcanvas-body">
-                  <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
-                      <Link to={"/plans"} className="nav-link">My Plans</Link>
-                    </li>
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
-                      <Link className="nav-link" aria-current="page" to={"/" + user.username + "/profile"}>My Profile</Link>
-                    </li>
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
-                      <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
-                    </li>
-                    <li className="nav-item" data-bs-dismiss="offcanvas">
+          <div className="container-fluid">
+            <Link to={"/plans"} className="navbar-brand"><img className = "logo" src={logo} alt="logo"></img></Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse burgerOpen" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link active" aria-current="page" to={"/" + user.username + "/profile"}><img className = "profileImageNav profilePicNav" src={user.profileImage} alt="logo"></img></Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/plans"} className="nav-link">{user.username} Plans</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/" + user.usename + "/addFriends"}>Add Friends</Link>
+                </li>
+                <li className="nav-item">
                       <Link className="nav-link" to="/plans/newPlan">Create a Plan</Link>
                     </li>
+                {/* <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li><a className="dropdown-item" href="#">Action</a></li>
+                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                    <li><hr className="dropdown-divider"/></li>
+                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                   </ul>
-                  <br></br>
-                  <button className="btn btn-danger" type="submit" onClick={logOutUser}>Log out</button>
-
-                </div>
-              </div>
+                </li> */}
+                <li className="nav-item dropdown logOutDiv">
+                    <button className="btn btn-danger" type="submit" onClick={logOutUser}>Log out</button>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>

@@ -11,7 +11,7 @@ function FriendComponent({friend}) {
   return (
     <>
     <div className="addFriendCard" >
-      <div><Link to={"/"+username+"/profile"}><img className = "imgUser" src={profileImage} alt={name}/></Link></div>
+      <div><Link to={"/"+username+"/profile"}><img className = "imgUserFriends profilePicfriends" src={profileImage} alt={name}/></Link></div>
       <div className="userInfo">
         <h5 className="username">{username}</h5>
         <p className="name">{name}</p>

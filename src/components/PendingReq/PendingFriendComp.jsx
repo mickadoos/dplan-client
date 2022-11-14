@@ -1,22 +1,17 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import userService from "../../services/user.service.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-import { Navigate, useNavigate } from "react-router-dom";
 import "./Pending.css";
 
 
 
 function PendingFriendComp({ fri, updateHandler }) {
-    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
     
     const acceptHandle = () => {
         userService.acceptFriendRequest(user.username, fri._id)
         .then(resp => {
-            console.log(resp.data)
             updateHandler(Math.random()*100000)
         })
     }
@@ -24,7 +19,6 @@ function PendingFriendComp({ fri, updateHandler }) {
     const declinetHandle = () => {
         userService.declineFriendRequest(user.username, fri._id)
         .then(resp => {
-            console.log(resp.data)
             updateHandler(Math.random()*100000)
           })
     }

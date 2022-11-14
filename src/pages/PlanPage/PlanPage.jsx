@@ -4,6 +4,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
 import guestsIcon from "../../assets/Guests_icon.png"
+import calendarLogo from "../../assets/calendar-icon.png"
 
 function PlanPage() {
   const {isLoggedIn, user } = useContext(AuthContext);
@@ -21,7 +22,6 @@ function PlanPage() {
   const acceptHandle = () => {
     planService.acceptPlan(planId, user.username)
     .then(resp => {
-        console.log(resp.data)
         setStatus (true)
         updatePlan(Math.random()*1000)  
     })
@@ -30,7 +30,6 @@ function PlanPage() {
   const declineHandle = () => {
     planService.declinePlan(planId, user.username)
     .then(resp => {
-        console.log(resp.data)
         setStatus (true)
         updatePlan(Math.random()*1000)
     })
@@ -40,9 +39,6 @@ function PlanPage() {
   useEffect(()=>{
     planService.getPlan(planId)
     .then(response => {
-      console.log("USER: ",user._id)
-      console.log("isAdmin: ",response.data)
-      console.log("STATUS: ",status)
         setPlan(response.data);
     })
 
@@ -64,7 +60,7 @@ const planPhoto = {
         <div className="DIV-IMAGE-INFO headPlan" style = {planPhoto}>
           <div className="titleBgnd">
             <h2 className="title">Plan: {plan.title}</h2>
-            <h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6>
+            <div className="planDetDateDiv"><img className="calendarlogoPlanDet" src={calendarLogo} alt="Calendar Icon"/><h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6></div>
             <div className="DIV-BUTTONS buttonsPlan">
           {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
                   <button

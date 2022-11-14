@@ -29,28 +29,25 @@ function AddFriendsPage() {
       }    
     },[isLoggedIn, update])
 
-    console.log("addFriends: ", addFriends)
 
     const formOnChangeHandle = (e) => {
-      console.log("e: ", e.target.value)
       let searchFriend = [...friendsSearch]
       setAddFriends(searchFriend.filter(friend => {
         return (friend.name.toLowerCase().includes(e.target.value.toLowerCase()) || friend.username.toLowerCase().includes(e.target.value.toLowerCase()))
       }))
-      console.log("searchFriend: ", searchFriend)
     }
 
 
   return (
 
-    <div className = "global">
+    <div>
       <h1 className = "title">Add Friends</h1>
       <div className="input-group rounded">
         <form className = "searchBar" onChange={formOnChangeHandle}>
           <input type="search" className="form-control rounded" placeholder="Search users" />
         </form>
       </div>
-      <div className = "contentContainer">
+      <div className = "contentContainerAddF">
       {addFriends.length === 0 && <p>No results</p>}
       {addFriends.map(person => {
         if(person.username !== 'moderador'){

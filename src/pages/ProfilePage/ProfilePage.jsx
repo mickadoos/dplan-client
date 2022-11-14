@@ -4,16 +4,14 @@ import PendingFriendComp from "../../components/PendingReq/PendingFriendComp";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service";
 import "./ProfilePage.css";
-import { Navigate, useNavigate } from "react-router-dom";
-import { prettyFormat } from "@testing-library/react";
-
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const {username} = useParams();
 
   const navigate = useNavigate();
 
-  const { isLoggedIn, user, isLoading, authenticateUser, storeToken } = useContext(AuthContext);
+  const { user, authenticateUser, storeToken } = useContext(AuthContext);
   
   const [profileImage, setProfileImage] = useState("");
   const [profile, setProfile] = useState({});
@@ -21,19 +19,7 @@ function ProfilePage() {
   const [isUser, setIsUser] = useState(false)
   const [update, setUpdate] = useState(0)
   
-  console.log("isUser: ", isUser)
   const handleProfileImage = (e) => setProfileImage(e.target.files[0])
-
-
-  // useEffect(() => {
-  //   userService.getUserProfile(username).then((resp) => {
-  //     console.log(
-  //       "resp data useEffect userService: ",
-  //       resp.data.friendsToAccept.length
-  //     );
-  //     setProfile(resp.data);
-  //   });
-  // }, []);
 
   const updateHandler = (num) => {
     setUpdate(num)
@@ -48,8 +34,6 @@ function ProfilePage() {
     })
   }, [username, user, update]);
 
-  console.log("profile: ", profile)
-
   const handleImgSubmit = (e) => {
     e.preventDefault();
     const uploadData = new FormData();
@@ -57,7 +41,6 @@ function ProfilePage() {
 
     userService.editProfile(user.username, uploadData)
     .then(resp => {
-      console.log("resp edit prof. post service: ", resp)
       storeToken(resp.data)
       authenticateUser()
       navigate(`/${profile.username}/profile`);
@@ -69,7 +52,7 @@ function ProfilePage() {
     <div className="divGen">
       <h1>Profile page</h1>
       <div className="profile" style={{ width: "18rem" }}>
-        <img src={profile.profileImage} className="card-img-top profileImg" alt="..." />
+        <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
         {isUser && (
           <>
             <button

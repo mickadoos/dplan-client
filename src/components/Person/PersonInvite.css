@@ -23,10 +23,10 @@
     padding: 20px;
     min-width: 222px;
 }
-.imgUser {
+/* .imgUserInvite {
     width: 13vw;
     border-radius: 50%;
-}
+} */
 .userInfo{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -43,4 +43,10 @@
 .status{
     color: white;
     font-weight: bolder;
+}
+.profilePicInvite {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px; 
 }

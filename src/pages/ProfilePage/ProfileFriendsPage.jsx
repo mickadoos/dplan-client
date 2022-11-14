@@ -12,15 +12,13 @@ let friendsSearch = [];
 function ProfileFriendsPage() {
 
   const {username} = useParams();
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [friends, setFriends] = useState([])
 
     useEffect(()=>{
       if (isLoggedIn){
-        // userService.getUserFriends(user.username) //Current user
-        userService.getUserFriends(username) //Any user
+        userService.getUserFriends(username)
         .then (result =>{
-          console.log("result.data: ", result.data)
           friendsSearch = []
           friendsSearch = result.data.friends
           setFriends(friendsSearch)
@@ -29,14 +27,10 @@ function ProfileFriendsPage() {
     },[isLoggedIn])
 
     const formOnChangeHandle = (e) => {
-      console.log("e: ", e.target.value)
       let searchFriend = [...friendsSearch]
       setFriends(searchFriend.filter(friend => {
-        console.log("searchFriend dins: ", friend)
-  
         return (friend.name.toLowerCase().includes(e.target.value.toLowerCase()) || friend.username.toLowerCase().includes(e.target.value.toLowerCase()))
       }))
-      console.log("searchFriend: ", searchFriend)
     }
 
 

@@ -1,15 +1,12 @@
 import "./EditPlanPage.css";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../context/auth.context"
 import planService from "../../services/plan.service";
 
 
 function EditPlanPage() {
   const {planId} = useParams();
   const [plan, setPlan] = useState({});
-  const {isLoggedIn, user, isLoading} = useContext(AuthContext);
-
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -44,7 +41,6 @@ const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
 
 const cancelEdit = () => {navigate("/plans/" + planId)};
 const deletePlan = () => {
-  console.log('USER-------', user)
   planService
   .deletePlan(planId)
   .then(response => {

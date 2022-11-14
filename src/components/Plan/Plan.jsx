@@ -1,38 +1,135 @@
 import "./Plan.css"
 import { Link } from "react-router-dom";
 import {React} from "react";
+import calendarLogo from "../../assets/calendar-icon.png"
 
 export default function Plan ({plan}) {
-    console.log("plan: ", plan._id._id)
     return(
-        // <div className="card col-3 m-3">
-        //     <img src={plan._id.planImage === undefined? plan.planImage : plan._id.planImage} className="card-img-top" alt={plan._id.planImage === undefined? plan.planImage : plan._id.planImage} />
-        //     <div className="card-body">
-        //         <h5 className="card-title">{plan._id.title === undefined? plan.title : plan._id.title}</h5>
-        //         <p className="card-text">{plan._id.description === undefined? plan.description : plan._id.description}</p>
-        //         <p className="card-text">{plan._id.date === undefined? plan.date : plan._id.date}</p>
-        //         <p className="card-text">{plan._id.time === undefined? plan.time : plan._id.time}</p>
-        //         <p className="card-text">{plan._id.location === undefined? plan.location : plan._id.location}</p>
-        //         <p className="card-text">{plan.status === undefined? "" : `Status: ${plan.status}`}</p>
-        //         <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`}>View details</Link>
+            // <div className="targeta targetaBgnd">
+            //     <div className="details">
+            //         <div className="divDetailsA">
+            //             <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+            //             <div className="dateDiv"><p className="dateP">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+            //         </div>
+            //         <div className="divDetailsB">
+            //         {/* Status color + background image color */}
+            //             {/* {plan.status === "confirmed" && <div className="statusP"><p className="card-text statusConfirmed">{plan.status === undefined? "" : `${plan.status}`}</p></div>}
+            //             {plan.status === "declined" && <div className="statusP"><p className="card-text statusDeclined">{plan.status === undefined? "" : `${plan.status}`}</p></div>}
+            //             {plan.status === "pending" && <div className="statusP"><p className="card-text statusPending">{plan.status === undefined? "" : `${plan.status}`}</p></div>}
+            //             {plan.status === "admin" && <div className="statusP"><p className="card-text statusAdmin">{plan.status === undefined? "" : `${plan.status}`}</p></div>} */}
+            //         {/* Simple style */}
+            //             <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status}`}</p></div>
+            //             <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+            //         </div>
+            //     </div>
+            // </div>
+
+
+
+        //  <>   
+        // {plan.status === "confirmed" && <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndConfirmedV2">
+        // <div className="details">
+        //     <div className="divDetailsA">
+        //         <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+        //         <div className="dateDiv"><p className="dateP">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+        //     </div>
+        //     <div className="divDetailsB">
+        //         <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+        //         <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
         //     </div>
         // </div>
-        <div className="GEN">
-            <div className="targeta">
-                {/* <div className="imgDiv">
-                    <img src={plan._id.planImage === undefined? plan.planImage : plan._id.planImage} className="planImg" alt={plan._id.planImage === undefined? plan.planImage : plan._id.planImage} />
-                </div> */}
-                <div className="details">
-                    <div className="divDetails">
-                        <h5 className="card-title title">{plan._id.title === undefined? plan.title : plan._id.title}</h5>
-                        <p className="card-text">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p>
-                        <p className="statusA">Status: <p className="card-text statusB">{plan.status === undefined? "" : `${plan.status}`}</p></p>
-                    </div>
-                    <div className="viewButton">
-                        <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-primary">View details</Link>
-                    </div>
-                </div>
+        // </Link>}
+        // {plan.status === "declined" && <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndDeclinedV2">
+        // <div className="details">
+        //     <div className="divDetailsA">
+        //         <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+        //         <div className="dateDiv"><p className="dateP">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+        //     </div>
+        //     <div className="divDetailsB">
+        //         <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+        //         <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+        //     </div>
+        // </div>
+        // </Link>}
+        // {plan.status === "pending" && <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndPendingV2">
+        // <div className="details">
+        //     <div className="divDetailsA">
+        //         <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+        //         <div className="dateDiv"><p className="dateP">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+        //     </div>
+        //     <div className="divDetailsB">
+        //         <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+        //         <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+        //     </div>
+        // </div>
+        // </Link>}
+        // {plan.status === "admin" && <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndAdmin">
+        // <div className="details">
+        //     <div className="divDetailsA">
+        //         <div className="titleDiv"><h5 className="title">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+        //         <div className="dateDiv"><p className="dateP">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+        //     </div>
+        //     <div className="divDetailsB">
+        //         <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+        //         <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+        //     </div>
+        // </div>
+        // </Link>}
+        // </>
+
+        <>   
+        {plan.status === "confirmed" && <div to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndAll targetaBgndConfirmedV2">
+        <div className="details">
+            <div className="divDetailsA">
+                <div className="titleDiv"><h5 className="planTitle">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+                <div className="plansDateDiv"><img className="calendarlogo" src={calendarLogo} alt="Calendar Icon"/><p className="planDate">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+            </div>
+            <div className="divDetailsB">
+                <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+                <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
             </div>
         </div>
+        {/* <div className="targetaHover">
+            <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`}><img src={plan._id.planImage} alt="Plan Pic"/></Link>
+        </div> */}
+        </div>}
+        {plan.status === "declined" && <div to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndAll targetaBgndDeclinedV2">
+        <div className="details">
+            <div className="divDetailsA">
+                <div className="titleDiv"><h5 className="planTitle">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+                <div className="plansDateDiv"><img className="calendarlogo" src={calendarLogo} alt="Calendar Icon"/><p className="planDate">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+            </div>
+            <div className="divDetailsB">
+                <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+                <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+            </div>
+        </div>
+        </div>}
+        {plan.status === "pending" && <div to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndAll targetaBgndPendingV2">
+        <div className="details">
+            <div className="divDetailsA">
+                <div className="titleDiv"><h5 className="planTitle">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+                <div className="plansDateDiv"><img className="calendarlogo" src={calendarLogo} alt="Calendar Icon"/><p className="planDate">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+            </div>
+            <div className="divDetailsB">
+                <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+                <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+            </div>
+        </div>
+        </div>}
+        {plan.status === "admin" && <div to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="targeta targetaBgndAll targetaBgndAdmin">
+        <div className="details">
+            <div className="divDetailsA">
+                <div className="titleDiv"><h5 className="planTitle">{plan._id.title === undefined? plan.title : plan._id.title}</h5></div>
+                <div className="plansDateDiv"><img className="calendarlogo" src={calendarLogo} alt="Calendar Icon"/><p className="planDate">{plan._id.date === undefined? plan.date : plan._id.date} at {plan._id.time === undefined? plan.time : plan._id.time}</p></div>
+            </div>
+            <div className="divDetailsB">
+                <div className="statusP"><p className="card-text statusP2">{plan.status === undefined? "" : `${plan.status.toUpperCase()}`}</p></div>
+                <Link to={plan._id._id === undefined? `/plans/${plan._id}` : `/plans/${plan._id._id}`} className="btn btn-light viewButton">View details</Link>
+            </div>
+        </div>
+        </div>}
+        </>
+            
     );
 }

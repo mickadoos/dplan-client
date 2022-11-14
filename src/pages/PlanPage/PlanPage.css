@@ -17,7 +17,20 @@
 .dateInfo{
     font-weight: bold;
     color: rgb(241, 241, 241);
+    padding-left: 15px;
+    margin:0px;
 }
+.calendarlogoPlanDet{
+    width: 14px;
+}
+.planDetDateDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+
+}
+
 .titleBgnd{
     text-align:left;
     padding-top: 9px;
@@ -33,10 +46,13 @@
 }
 .guestsIcon{
     width: 65px;
-    transition: 0.5s all ease-in-out;
+    transition: 0.2s all ease-in-out;
+}
+.guestsIcon:hover {
+    transform: scale(1.05);
 }
 
-.guestsIcon:active{
+.guestsIcon:active {
     transform: scale(0.9);
 }
 
