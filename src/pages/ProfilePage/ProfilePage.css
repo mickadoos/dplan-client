@@ -1,5 +1,5 @@
 .profile{
-    color: rgb(190, 190, 190);
+    color: rgb(234, 234, 234);
     margin: auto
 }
 .divGen{
@@ -20,4 +20,20 @@
     justify-content: center;
     flex-wrap: wrap;
     
+}
+
+
+.friendsIcon{
+width: 55px;
+transition: 0.2s all ease-in-out;
+}
+.guestsIcon:hover {
+transform: scale(1.05);
+}
+
+.guestsIcon:active {
+transform: scale(0.9);
+}
+.editButtonProf{
+    margin-bottom: 25px;
 }

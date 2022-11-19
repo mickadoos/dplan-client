@@ -4,6 +4,7 @@ import PendingFriendComp from "../../components/PendingReq/PendingFriendComp";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service";
 import "./ProfilePage.css";
+import guestsIcon from "../../assets/Guests_icon.png"
 import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
@@ -53,7 +54,7 @@ function ProfilePage() {
       <h1>Profile page</h1>
       <div className="profile" style={{ width: "18rem" }}>
         <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
-        {isUser && (
+        {/* {isUser && (
           <>
             <button
               type="button"
@@ -117,7 +118,7 @@ function ProfilePage() {
               </div>
             </div>
           </>
-        )}
+        )} */}
 
         <div className="card-body">
         <div className="margins">
@@ -142,13 +143,12 @@ function ProfilePage() {
     
           {isUser && (
             <div>
-              <Link to={`/${profile.username}/profile/edit`}  className="btn btn-primary">Edit Profile</Link>
+              <Link to={`/${profile.username}/profile/edit`}  className="btn btn-secondary editButtonProf">Edit Profile</Link>
             </div>
           )}
         </div>
       </div>
-      <Link to={`/${user.username}/profile/friends`} ><h3 className="btn btn-primary margins">Friends</h3></Link>
-    
+      <Link to={`/${user.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
       {isUser && (
         <>
           <h4 className="colorText margins">Friends Request: </h4>
