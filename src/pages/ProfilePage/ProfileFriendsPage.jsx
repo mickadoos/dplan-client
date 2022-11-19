@@ -42,6 +42,7 @@ function ProfileFriendsPage() {
           <input type="search" className="form-control rounded" placeholder="Search friends" />
         </form>
       </div>
+      <p className="totalFriends">Total friends: {friends.length}</p>
       <div className = "contentContainer">
       {friends.length === 0 && <p>You still have no friends</p>}
       {friends.map(friend => {

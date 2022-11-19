@@ -69,17 +69,19 @@ function GuestsPlanPage() {
   return (
     <div>
       <h1>Guests Page</h1>
-      <Link to={"/plans/"+planId+"/invite"} className="btn btn-primary invite">Invite People</Link>
+      {/* <Link to={"/plans/"+planId+"/invite"} className="btn btn-warning invite">Invite People</Link> */}
+      <Link to={"/plans/"+planId+"/invite"} className="btn btn-warning invite">+👤</Link>
       <div className="input-group rounded">
         <form className = "searchBar" onChange={formOnChangeHandle}>
           <input type="search" className="form-control rounded" placeholder="Search users" />
         </form>
       </div>
+      <p className="totalGuests">Guests: {guests.length}</p>
       <section className="buttonsStatus">
           <button className="butGen btn btn-dark" onClick={resetHandler}>All Guests</button>
-          <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
-          <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
-          <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
+          <button className="butGen btn btn-primary" onClick={confirmedHandler}>Confirmed</button>
+          <button className="butGen btn btn-secondary" onClick={declinedHandler}>Declined</button>
+          <button className="butGen btn btn-light" onClick={pendingHandler}>Pending</button>
       </section>
       <div className = "contentContainer">
       {guests?.length === 0 && <p>Still no guests for this plan</p>}

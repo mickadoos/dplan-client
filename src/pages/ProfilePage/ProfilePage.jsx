@@ -53,6 +53,11 @@ function ProfilePage() {
     <div className="divGen">
       <h1>Profile page</h1>
       <div className="profile" style={{ width: "18rem" }}>
+        <div className="margins">
+          <h5 className="card-text colorText">
+            {profile.username}
+          </h5>
+        </div>
         <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
         {/* {isUser && (
           <>
@@ -122,37 +127,34 @@ function ProfilePage() {
 
         <div className="card-body">
         <div className="margins">
-          <h5 className="card-text">
-            {profile.username}
-          </h5>
-          <p className="card-title">{profile.name}</p>
+          <p className="card-title colorText">{profile.name}</p>
         </div>
         <div className="margins">
-          <p className="card-text">
-            <strong>Birthdate: </strong>
+          <p className="card-text colorText">
+            <strong className="colorText">Birthdate: </strong>
             {profile.birthdate?.slice(0, 10)}
           </p>
         </div>
         <div className="margins">
-          <p className="card-text">
-            <strong>Country: </strong>
+          <p className="card-text colorText">
+            <strong className="colorText">Country: </strong>
             {profile.country}
           </p>
         </div>
-        <div className="margins"></div>
-    
           {isUser && (
             <div>
               <Link to={`/${profile.username}/profile/edit`}  className="btn btn-secondary editButtonProf">Edit Profile</Link>
             </div>
           )}
+          <Link to={`/${user.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
         </div>
       </div>
-      <Link to={`/${user.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
+
+      <p className="margins2">________</p>
       {isUser && (
         <>
-          <h4 className="colorText margins">Friends Request: </h4>
-          <div className="requests">
+          <h5 className="colorText margins">Friend Requests: </h5>
+          <div className="contentContainerFriendReqs">
           {profile.friendsToAccept?.length > 0 ? (
             profile.friendsToAccept.map((fri, k) => {
               return <PendingFriendComp fri={fri} updateHandler={updateHandler} key={k} />;
