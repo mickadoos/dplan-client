@@ -17,14 +17,12 @@ function GuestComponent({guest, planId}) {
 
   return (
     
-    <div className="addFriendCard" >
-      <div><Link to={"/"+username+"/profile"}><img className = "imgUserGuests profilePic" src={profileImage} alt={name}/></Link></div>
-      <div className="userInfo">
-        <h5 className="username">{username}</h5>
-        <p className="name">{name}</p>
+    <div className="guestsCard" >
+      <div><Link to={"/"+username+"/profile"}><img className = "imgUserGuests profilePicGuests" src={profileImage} alt={name}/></Link></div>
+      <div className="userInfoGuests">
+        <h5 className="usernameGuests">{username}</h5>
         <p className="status">{planStatus}</p>
       </div>
-      <div><Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link></div>
     </div>  
   );
 }

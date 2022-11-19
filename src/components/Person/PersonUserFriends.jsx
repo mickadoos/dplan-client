@@ -10,13 +10,13 @@ function FriendComponent({friend}) {
 
   return (
     <>
-    <div className="addFriendCard" >
+    <div className="friendCard" >
       <div><Link to={"/"+username+"/profile"}><img className = "imgUserFriends profilePicfriends" src={profileImage} alt={name}/></Link></div>
-      <div className="userInfo">
-        <h5 className="username">{username}</h5>
-        <p className="name">{name}</p>
+      <div className="userInfoFriends">
+        <h5 className="usernameFriends">{username}</h5>
+        {/* <p className="name">{name}</p> */}
       </div>
-      <div><Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link></div>
+      {/* <div><Link to={"/"+username+"/profile"} className="btn btn-primary">View Profile</Link></div> */}
     </div>  
     </>
 

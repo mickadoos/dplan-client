@@ -4,3 +4,55 @@
     margin: 10px;
     padding: 15px
 }
+
+.pendingFriendCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 7px;
+    border-radius: 15px;
+    padding: 3px 20px 3px 20px;
+    min-width: 394px;
+    height: 92px;
+
+    background-image: url("../../assets/plan_bckgnd.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-position:right top;
+}
+.profilePicPending {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px; 
+}
+.RequestButtons{
+    max-width: 114px;
+    display: flex;
+    flex-direction: row;
+}
+.rqButtPending{
+    font-size: 12px;
+    margin: 5px;
+}
+.userInfoPending{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90px;
+    text-align: left;
+}
+.usernamePending{
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.namePending{
+    color: rgb(172, 172, 172);
+    font-size: 11px;
+    font-weight:bold;
+    max-width: 130px;
+    margin: 0px;
+}
+

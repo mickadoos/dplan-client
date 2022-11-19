@@ -16,25 +16,28 @@
     justify-content: center; 
     flex-wrap: wrap;
 }
-.addFriendCard {
+.friendCard {
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.678);
     border-radius: 15px;
     padding: 20px;
-    min-width: 222px;
+    height: 132px;
+    width: 100px;
 }
 /* .imgUserFriends {
     width: 13vw;
     border-radius: 50%;
 } */
-.userInfo{
+.userInfoFriends{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.username{
+.usernameFriends{
     color: white;
     font-weight: bolder;
-    padding-top: 10px;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .name{
     color: white;
@@ -47,8 +50,8 @@
 .profilePicfriends {
     object-fit: cover;
     border-radius: 50%;
-    width: 120px;
-    height: 120px; 
+    width: 60px;
+    height: 60px; 
 }
 
 

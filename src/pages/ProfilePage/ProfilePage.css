@@ -1,23 +1,52 @@
 .profile{
-    color: rgb(190, 190, 190);
-    margin: auto
+    color: rgb(234, 234, 234);
+    margin: auto;
+    background-color: black;
+    border-radius: 15px;
+    padding-top: 10px;
 }
 .divGen{
     margin-bottom: 50px;
 }
 .colorText{
-    color: rgb(199, 199, 199);
+    color: rgb(234, 234, 234);
 }
-.profileImg{
-    margin-bottom: 20px;
-    width: 40vw;
+.profileImgProfile{
+    margin: 15px 15px;
+    width: 35vw;
 }
 .margins{
     margin-top: 20px;
 }
+.margins2{
+    margin-bottom: 40px;
+}
 .requests{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;    
+}
+.friendsIcon{
+width: 50px;
+margin-top: 30px;
+margin-bottom: 30px;
+transition: 0.2s all ease-in-out;
+}
+.guestsIcon:hover {
+transform: scale(1.05);
+}
+
+.guestsIcon:active {
+transform: scale(0.9);
+}
+.editButtonProf{
+    margin-top: 30px;
+}
+.contentContainerFriendReqs{
+    margin: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
     flex-wrap: wrap;
-    
 }

@@ -16,38 +16,37 @@
     justify-content: center; 
     flex-wrap: wrap;
 }
-.addFriendCard {
+.guestsCard {
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.678);
     border-radius: 15px;
     padding: 20px;
-    min-width: 222px;
+    height: 170px;
+    width: 100px;
 }
 /* .imgUserGuests {
     width: 13vw;
     border-radius: 50%;
 } */
-.userInfo{
+.userInfoGuests{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.username{
+.usernameGuests{
     color: white;
     font-weight: bolder;
-    padding-top: 10px;
-}
-.name{
-    color: white;
-    font-weight:lighter
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .status{
     color: white;
     font-weight: bolder;
+    font-size: 12px;
 }
-.profilePic {
+.profilePicGuests {
     object-fit: cover;
     border-radius: 50%;
-    width: 120px;
-    height: 120px; 
+    width: 60px;
+    height: 60px; 
 }
-
