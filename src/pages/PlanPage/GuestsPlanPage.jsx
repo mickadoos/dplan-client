@@ -76,7 +76,7 @@ function GuestsPlanPage() {
           <input type="search" className="form-control rounded" placeholder="Search users" />
         </form>
       </div>
-      <p className="totalGuests">Guests: {guests.length}</p>
+      {guests?.length >= 0 && <p className="totalGuests">Guests: {guests.length}</p>}
       <section className="buttonsStatus">
           <button className="butGen btn btn-dark" onClick={resetHandler}>All Guests</button>
           <button className="butGen btn btn-primary" onClick={confirmedHandler}>Confirmed</button>
