@@ -80,7 +80,7 @@ function PlansPage() {
           <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
         </div>
         <div className="row justify-content-center">
-          {plans.map((plan, k) => (
+          {plans.sort((a,b)=>new Date (a._id.date) - new Date (b._id.date)).map((plan, k) => (
             <Plan plan={plan} key={k} />
           ))}
         </div>
