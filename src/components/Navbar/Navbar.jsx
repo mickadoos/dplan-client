@@ -28,7 +28,7 @@ function Navbar() {
                   <Link to={"/plans"} className="nav-link" aria-current="page"><p>{user.username} Plans</p></Link>
                 </li>
                 <li className="nav-item active">
-                  <Link className="nav-link" to={"/" + user.usename + "/addFriends"}><p>Add Friends</p></Link>
+                  <Link className="nav-link" to={"/" + user.username + "/addFriends"}><p>Add Friends</p></Link>
                 </li>
                 <li className="nav-item active">
                       <Link className="nav-link" to="/plans/newPlan"><p>Create a Plan</p></Link>

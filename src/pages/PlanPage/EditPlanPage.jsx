@@ -196,6 +196,8 @@ const handleEditSubmit = (e) => {
               <input
                 type="date"
                 name="date"
+                
+                min={new Date().toLocaleDateString('en-ca')}
                 value={date}
                 onChange={handleDate}
                 className="date"
