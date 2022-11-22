@@ -76,9 +76,6 @@ function PlansPage() {
       setReset(!reset)
     }
 
-    console.log("Plans Page: ",plans)
-    console.log("Current Time: ",currentTime)
-
     return (
       <div className="plansDiv">
         <h1>{user.username} Plans</h1>   
