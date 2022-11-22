@@ -7,12 +7,14 @@ import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
 
 let allPlans;
+let allPlansUnexpired;
 
 function PlansPage() {
 
   const [plans, setPlans] = useState([]);
   const {isLoggedIn, user} = useContext(AuthContext);
   const [reset, setReset] = useState(false)
+  var currentTime = new Date()
 
     useEffect(()=>{
       if(isLoggedIn) {
@@ -21,7 +23,11 @@ function PlansPage() {
           allPlans = results.data.plans.map(plan => {
             return plan;
           })
-            setPlans(allPlans)
+          allPlansUnexpired = allPlans.filter(plan => {
+            let planDate = new Date (plan._id.date)
+            return planDate >= currentTime
+          })
+            setPlans(allPlansUnexpired)
             if((results.data.plans.length === 0 && user.username === "moderador")){
               planService.getPlans()
               .then(resp => {
@@ -34,31 +40,45 @@ function PlansPage() {
 
     const adminHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "admin"
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "admin" && plaDate > currentTime
       }))
     }
 
     const confirmedHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "confirmed"
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "confirmed" && plaDate > currentTime
       }))
     }
 
     const declinedHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "declined"
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "declined" && plaDate > currentTime
       }))
     }
 
     const pendingHandler = () => {
       setPlans(allPlans.filter(pla => {
-        return pla.status === "pending"
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "pending" && plaDate > currentTime
       }))
     }
+
+    const expiredHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return plaDate < currentTime
+    }))
+  }
 
     const resetHandler = () => {
       setReset(!reset)
     }
+
+    console.log("Plans Page: ",plans)
+    console.log("Current Time: ",currentTime)
 
     return (
       <div className="plansDiv">
@@ -77,6 +97,7 @@ function PlansPage() {
           <button className="butGen btn btn-primary" onClick={confirmedHandler}>Confirmed</button>
           <button className="butGen btn btn-secondary" onClick={declinedHandler}>Declined</button>
           <button className="butGen btn btn-light" onClick={pendingHandler}>Pending</button>
+          <button className="butGen btn btn-danger" onClick={expiredHandler}>Expired</button>
           <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
         </div>
         <div className="row justify-content-center">
