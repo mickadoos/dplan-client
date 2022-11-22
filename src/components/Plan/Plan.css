@@ -10,8 +10,8 @@
 .targetaBgndConfirmed{
     background-image: url("../../assets/planConfirmed.png");
 }
-.targetaBgndDeclined{
-    background-image: url("../../assets/planDeclined.png");
+.targetaBgndExpired{
+    background-image: url("../../assets/planExpired.png");
 }
 .targetaBgndPending{
     background-image: url("../../assets/planPending.png");

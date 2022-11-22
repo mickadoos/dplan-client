@@ -7,69 +7,83 @@ import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
 
 let allPlans;
+let allPlansUnexpired;
 
 function PlansPage() {
   const [plans, setPlans] = useState([]);
-  const { isLoggedIn, user } = useContext(AuthContext);
-  const [reset, setReset] = useState(false);
+  const {isLoggedIn, user} = useContext(AuthContext);
+  const [reset, setReset] = useState(false)
+  var currentTime = new Date()
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      userService.getUserPlans(user.username).then((results) => {
-        allPlans = results.data.plans.map((plan) => {
-          return plan;
-        });
-        setPlans(allPlans);
-        if (results.data.plans.length === 0 && user.username === "moderador") {
-          planService.getPlans().then((resp) => {
-            setPlans(resp.data);
-          });
-        }
-      });
+    useEffect(()=>{
+      if(isLoggedIn) {
+        userService.getUserPlans(user.username)
+        .then(results => {
+          allPlans = results.data.plans.map(plan => {
+            return plan;
+          })
+          allPlansUnexpired = allPlans.filter(plan => {
+            let planDate = new Date (plan._id.date)
+            return planDate >= currentTime
+          })
+            setPlans(allPlansUnexpired)
+            if((results.data.plans.length === 0 && user.username === "moderador")){
+              planService.getPlans()
+              .then(resp => {
+              setPlans(resp.data)
+              })
+            }
+        })
+      }
+    }, [isLoggedIn, reset]);
+
+    const adminHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "admin" && plaDate > currentTime
+      }))
     }
-  }, [isLoggedIn, reset]);
 
-  const adminHandler = () => {
-    setPlans(
-      allPlans.filter((pla) => {
-        return pla.status === "admin";
-      })
-    );
-  };
+    const confirmedHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "confirmed" && plaDate > currentTime
+      }))
+    }
 
-  const confirmedHandler = () => {
-    setPlans(
-      allPlans.filter((pla) => {
-        return pla.status === "confirmed";
-      })
-    );
-  };
+    const declinedHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "declined" && plaDate > currentTime
+      }))
+    }
 
-  const declinedHandler = () => {
-    setPlans(
-      allPlans.filter((pla) => {
-        return pla.status === "declined";
-      })
-    );
-  };
+    const pendingHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return pla.status === "pending" && plaDate > currentTime
+      }))
+    }
 
-  const pendingHandler = () => {
-    setPlans(
-      allPlans.filter((pla) => {
-        return pla.status === "pending";
-      })
-    );
-  };
+    const expiredHandler = () => {
+      setPlans(allPlans.filter(pla => {
+        let plaDate = new Date (pla._id.date)
+        return plaDate < currentTime
+    }))
+  }
 
-  const resetHandler = () => {
-    setReset(!reset);
-  };
+    const resetHandler = () => {
+      setReset(!reset)
+    }
 
-  return (
-    <div className="plansDiv">
-      <h1>{user.username} Plans</h1>
-      {/* Buttons colored */}
-      {/* <div className="buttonsStatus">
+    console.log("Plans Page: ",plans)
+    console.log("Current Time: ",currentTime)
+
+    return (
+      <div className="plansDiv">
+        <h1>{user.username} Plans</h1>   
+        {/* Buttons colored */}
+        {/* <div className="buttonsStatus">
           <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
           <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
           <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
@@ -90,6 +104,7 @@ function PlansPage() {
         <button className="butGen btn btn-light" onClick={pendingHandler}>
           Pending
         </button>
+        <button className="butGen btn btn-danger" onClick={expiredHandler}>Expired</button>
         <button
           className="butGen myPlansBut btn btn-warning"
           onClick={adminHandler}
