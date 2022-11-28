@@ -47,7 +47,7 @@ function PlanPage() {
 const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
 
 const planPhoto = {
-    backgroundImage: `url(${plan.planImage})`,
+    backgroundImage: `url(${plan?.planImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
