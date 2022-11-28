@@ -40,14 +40,15 @@ function PlanPage() {
     planService.getPlan(planId)
     .then(response => {
         setPlan(response.data);
+        console.log(response.data)
     })
 
-}, [isLoggedIn, planId, update])
+}, [isLoggedIn, /*planId,*/ update])
 
 const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
 
 const planPhoto = {
-    backgroundImage: `url(${plan?.planImage})`,
+    backgroundImage: `url(${plan.planImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
