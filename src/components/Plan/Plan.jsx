@@ -1,6 +1,6 @@
 import "./Plan.css"
 import { Link } from "react-router-dom";
-import {React, useState} from "react";
+import {React} from "react";
 import calendarLogo from "../../assets/calendar-icon.png"
 
 
