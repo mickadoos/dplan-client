@@ -2,9 +2,11 @@ import axios from 'axios';
 
 class UserService {
   constructor() {
-    this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}api/users` || "http://localhost:5005/api/users"
-    });
+    // this.api = axios.create({
+    //   baseURL: `${process.env.REACT_APP_SERVER_URL}api/users` || "http://localhost:5005/api/users"
+    // });
+
+    this.api = axios.create({baseURL: "http://localhost:5005/api/users"});
 
     // Automatically set JWT token in the headers for every request
     this.api.interceptors.request.use((config) => {
