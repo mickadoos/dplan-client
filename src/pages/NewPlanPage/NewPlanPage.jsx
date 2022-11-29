@@ -75,7 +75,7 @@ function NewPlanPage() {
           </div>
           <div className="gen dateDiv">
             <p className="dateTitle">Date & Time:</p>
-            <input type="date" className="date" id="datePickerId" onChange={handleDate}/>
+            <input type="date" className="date" min={new Date().toISOString().split("T")[0]} id="datePickerId" onChange={handleDate}/>
           </div>
           <div className="gen time">
             <input type="time" className="date" id="appt" name="time" onChange={handleTime} required/>
