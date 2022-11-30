@@ -51,7 +51,8 @@ const planPhoto = {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
-    height: "60vh"
+    height: "60vh",
+    // borderRadius: "10px"
 };
 
   return (
