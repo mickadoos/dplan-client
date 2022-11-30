@@ -64,31 +64,34 @@ function LoginPage() {
       </form> */}
 
       <form onSubmit={handleLoginSubmit} className="container">
-  {/* <!-- Username input --> */}
-  <div className="form-outline mb-4">
+        {/* <!-- Username input --> */}
+        <div className="form-outline mb-4">
     <input type="text" id="form2Example1" className="form-control col-4" name="username" value={username} onChange={handleUsername} />
     <label className="form-label col-4" for="form2Example1">Username</label>
-  </div>
+        </div>
 
-  {/* <!-- Password input --> */}
-  <div className="form-outline mb-4">
+        {/* <!-- Password input --> */}
+        <div className="form-outline mb-4">
     <input type="password" id="form2Example2" className="form-control" name="password"
-          value={password}
-          onChange={handlePassword} />
-    <label className="form-label" for="form2Example2">Password</label>
-  </div>
+            value={password}
+            onChange={handlePassword}
+          />
+          <label className="form-label" for="form2Example2">
+            Password
+          </label>
+        </div>
 
  
-  {/* <!-- Submit button --> */}
+        {/* <!-- Submit button --> */}
   <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
 
-</form>
+      </form>
 
 
 
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
-        {errorMessage}
+          {errorMessage}
         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
