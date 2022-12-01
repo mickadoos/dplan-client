@@ -106,5 +106,17 @@
     padding-right: 40px;
     padding-top: 20px;
 }
+.linkIcon{
+    width: 5vw;
+    transition: all 0.2s ease-in-out;
+}
+    
+.linkIcon:hover {
+    transform: scale(1.1);
+}
+    
+.linkIcon:active {
+    transform: scale(0.9);
+}
 
 

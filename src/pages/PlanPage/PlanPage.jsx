@@ -3,8 +3,11 @@ import { useEffect, useState, useContext, React} from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
-import guestsIcon from "../../assets/Guests_icon.png"
-import calendarLogo from "../../assets/calendar-icon.png"
+import guestsIcon from "../../assets/Guests_icon.png";
+import calendarLogo from "../../assets/calendar-icon.png";
+import spotifyIcon from "../../assets/spotifyIcon.png";
+import picsIcon from "../../assets/picsIcon.png"
+import linkIcon from "../../assets/linkIcon.png"
 
 function PlanPage() {
   const {isLoggedIn, user } = useContext(AuthContext);
@@ -96,7 +99,13 @@ const planPhoto = {
             <div className="description">
               <h2 className="descriptionTitle">Location</h2>
               <p className="descriptionPlan">{plan.location}</p>
-            </div>              
+            </div>
+            <div className="description">
+              <div className="descriptionTitle"/>
+              {plan.musicList?.length >= 3 && <a href={plan.musicList} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
+              {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
+              {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
+            </div>                
         </div>
 
       </div>
