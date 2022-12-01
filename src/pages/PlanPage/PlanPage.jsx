@@ -9,12 +9,16 @@ import spotifyIcon from "../../assets/spotifyIcon.png";
 import picsIcon from "../../assets/picsIcon.png"
 import linkIcon from "../../assets/linkIcon.png"
 
+let guestsSearch
+
 function PlanPage() {
   const {isLoggedIn, user } = useContext(AuthContext);
   const {planId} = useParams();
   const [plan, setPlan] = useState({});
   const [update, setUpdate] = useState(0)
   const [status, setStatus] = useState(false)
+
+  const [guests, setGuests] = useState();
 
   const navigate = useNavigate();
 
@@ -45,7 +49,29 @@ function PlanPage() {
         setPlan(response.data);
     })
 
-}, [isLoggedIn, planId, update])
+  }, [isLoggedIn, planId, update])
+
+  useEffect (() => {
+    if(isLoggedIn){
+      planService.getGuests(planId)
+      .then (resp => {
+        guestsSearch = []
+        if(resp.data.invited.length > 0){
+          resp.data.invited.map(guest => {
+            return guestsSearch.push(guest)
+          })}
+        if(resp.data.accepted.length > 0){
+          resp.data.accepted.map(guest1 => {
+            return guestsSearch.push(guest1)
+          })}
+        if(resp.data.declined.length > 0){
+          resp.data.declined.map(guest2 => {
+            return guestsSearch.push(guest2)
+          })}
+        setGuests(guestsSearch)
+      })}
+    
+  },[isLoggedIn, planId, update])
 
 const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
 
@@ -61,9 +87,9 @@ const planPhoto = {
   return (
     
       <div className="DIV-GLOBAL">
-        <div className="DIV-IMAGE-INFO headPlan" style = {planPhoto}>
+        <div className="headPlan" style = {planPhoto}>
           <div className="titleBgnd">
-            <h2 className="title">Plan: {plan.title}</h2>
+            <h2 className="title">{plan.title}</h2>
             <div className="planDetDateDiv"><img className="calendarlogoPlanDet" src={calendarLogo} alt="Calendar Icon"/><h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6></div>
             <div className="DIV-BUTTONS buttonsPlan">
           {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
@@ -79,33 +105,38 @@ const planPhoto = {
                   </button>
             </div>}
             { (plan.isAdmin === user.username || user.username === "moderador") &&  <div>
-              <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
+              <button type="button" className="btn btn-secondary editPlanBut" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
                 Edit this plan
               </button>
             </div>}
           </div>
-          <p className="CreatedBy">Created by: <Link to={`/${plan.isAdmin}/profile`}>{plan.isAdmin === user.username? "Me" : plan.isAdmin}</Link></p>
+          <p className="CreatedBy">Created by: <Link className="createdByUser" to={`/${plan.isAdmin}/profile`}>{plan.isAdmin === user.username? "Me" : plan.isAdmin}</Link></p>
           </div>
           <div className="DIV-GUESTSICON guestsPosition">
-          <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link>
+          {guests?.length > 0 && <img className="guestsGlimpse" src={guests[0].profileImage} alt="guest profImg"/>}
+          {guests?.length > 1 && <img className="guestsGlimpse" src={guests[1].profileImage} alt="guest profImg"/>}
+          {guests?.length > 2 && <img className="guestsGlimpse" src={guests[2].profileImage} alt="guest profImg"/>}
+          {/* <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link> */}
+          <Link to={"/plans/"+planId+"/guests"}><button className="btn guestsIcon">Guests<br/>page</button></Link>
           </div>
         </div>
 
         <div className="infoPlan">
             <div className="description">
-              <h2 className="descriptionTitle">Description</h2>
+              <h5 className="descriptionTitle">Description</h5>
               <p className="descriptionPlan">{plan.description}</p>
-            </div>
+              <h6 className="mediaLinksTitle">Media Resources</h6>
+              <div className="linkAnchorDiv">
+              {plan.musicList?.length >= 3 && <a href={plan.musicList} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
+              {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
+              {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
+              </div>                
+            </div>    
+              
             <div className="description">
-              <h2 className="descriptionTitle">Location</h2>
+              <h5 className="locationTitle">Location</h5>
               <p className="descriptionPlan">{plan.location}</p>
-            </div>
-            <div className="description">
-              <div className="descriptionTitle"/>
-              {plan.musicList?.length >= 3 && <a href={plan.musicList} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
-              {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
-              {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="descriptionPlan" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
-            </div>                
+            </div>              
         </div>
 
       </div>
