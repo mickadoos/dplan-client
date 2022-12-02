@@ -1,7 +1,6 @@
 .welcomePage {
     height: 100%;
     background-image: url("../../assets/welcomePage.png");
-    /* background-image: url("../../assets/welcomePageBlue.png"); */
     padding-top: 150px;
     background-size: cover;
     background-position:right bottom;
