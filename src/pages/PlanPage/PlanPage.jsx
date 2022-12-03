@@ -86,7 +86,7 @@ const planPhoto = {
 
   return (
     
-      <div className="DIV-GLOBAL">
+      <div className="planDiv">
         <div className="headPlan" style = {planPhoto}>
           <div className="titleBgnd">
             <h2 className="title">{plan.title}</h2>

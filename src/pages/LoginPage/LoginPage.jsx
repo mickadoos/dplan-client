@@ -48,20 +48,6 @@ function LoginPage() {
     <div className="LoginPage">
       <h1>Login</h1>
 
-      {/* <form onSubmit={handleLoginSubmit}>
-        <label>Username:</label>
-        <input type="text" name="username" value={username} onChange={handleUsername} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
-      </form> */}
 
       <form onSubmit={handleLoginSubmit} className="container">
   {/* <!-- Username input --> */}

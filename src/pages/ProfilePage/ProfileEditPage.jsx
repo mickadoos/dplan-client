@@ -82,7 +82,7 @@ function ProfileEditPage() {
   }
 
   return (
-    <div> 
+    <div className="profileEditDiv"> 
   
     <h1>Edit Profile</h1>
     <div className="card" style={{ width: "18rem" }}>

@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 
 
 function WelcomePage() {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
     <div className="welcomePage">

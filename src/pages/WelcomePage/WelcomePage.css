@@ -1,7 +1,7 @@
 .welcomePage {
     height: 100%;
     background-image: url("../../assets/welcomePage.png");
-    padding-top: 150px;
+    padding-top: 220px;
     background-size: cover;
     background-position:right bottom;
    
@@ -15,7 +15,7 @@
   .DPlanDescription{
     text-align: left;
     padding-left: 80px;
-    width: 30vw;
+    width: 40vw;
     font-size: 20px;
     color: rgb(212, 212, 212);
   }

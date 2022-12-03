@@ -92,7 +92,7 @@ const handleEditSubmit = (e) => {
 
 
   return (
-    <div className="newPlanDiv">
+    <div className="editPlanDiv">
       <h1>Edit Plan</h1>
       <div className="">
         <div className="">

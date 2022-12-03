@@ -30,12 +30,15 @@ function App() {
       <Navbar />
 
       <Routes>
-      <Route path="/" element={
-      // <IsAnon>
-      // <HomePage/>
-      <WelcomePage/>
-      // </IsAnon>
-      }
+
+      <Route 
+          path="/" 
+          element={
+          // <IsAnon>
+          // <HomePage/>
+          <WelcomePage/>
+          // </IsAnon>
+          }
       />
       
       <Route
