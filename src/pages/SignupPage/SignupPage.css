@@ -9,3 +9,19 @@
 .SignupPage{
     padding-top: 100px;
 }
+
+@media screen and (max-width:480px){
+    .DPlanLogoSU{
+        width: 25vw;
+        margin-bottom: 20px;
+    }
+    form {
+        justify-content: center;
+    }
+    .SignupPage{
+        margin: auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 70vw;
+    }
+}

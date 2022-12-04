@@ -2,6 +2,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import logo from "../../assets/DPlan Logo.png"
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -71,6 +72,7 @@ function SignupPage() {
 
   return (
     <div className="SignupPage">
+     <img className="DPlanLogoSU" src={logo} alt="DPlan logo"></img>
       <h1>Sign Up</h1>
 
       <form className="container" onSubmit={handleSignupSubmit} encType="multipart/form-data">

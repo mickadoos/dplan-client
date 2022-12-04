@@ -15,3 +15,18 @@ form {
 .LoginPage{
     padding-top: 100px;
 }
+
+@media screen and (max-width:480px){
+    .DPlanLogo{
+        width: 40vw;
+        margin-bottom: 20px;
+    }
+    form {
+        justify-content: center;
+    }
+    .LoginPage{
+        margin: auto;
+        padding-top: 40px;
+        width: 70vw;
+    }
+}
