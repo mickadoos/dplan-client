@@ -8,6 +8,7 @@ import calendarLogo from "../../assets/calendar-icon.png";
 import spotifyIcon from "../../assets/spotifyIcon.png";
 import picsIcon from "../../assets/picsIcon.png"
 import linkIcon from "../../assets/linkIcon.png"
+import locationIcon from "../../assets/location-marker-icon.png"
 
 let guestsSearch
 
@@ -135,7 +136,7 @@ const planPhoto = {
               
             <div className="description">
               <h5 className="locationTitle">Location</h5>
-              <p className="descriptionPlan">{plan.location}</p>
+              <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><img className="locationIconPlan" src={locationIcon} alt="Location Icon"/> {plan.location}</a></p>
             </div>              
         </div>
 

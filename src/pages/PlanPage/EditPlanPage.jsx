@@ -2,6 +2,12 @@ import "./EditPlanPage.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import planService from "../../services/plan.service";
+// Google Maps Places Autcomplete import
+import React from 'react';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 function EditPlanPage() {
@@ -91,6 +97,23 @@ const handleEditSubmit = (e) => {
 }
 
 
+//GOOGLE MAPS
+    
+const [address, setAddress] = useState("");
+const [coordinates, setCoordinates] = useState({
+lat: null,
+lng: null
+})
+
+const handleSelect = async value => {
+const results = await geocodeByAddress(value);
+
+const latLng = await getLatLng(results[0])
+console.log(latLng)
+setAddress(value)
+setCoordinates(latLng)
+}
+
   return (
     <div className="newPlanDiv">
       <h1>Edit Plan</h1>
@@ -162,7 +185,7 @@ const handleEditSubmit = (e) => {
           </div>
           <form onSubmit={handleEditSubmit}>
             <div className="gen titleDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
+              <label htmlFor="titleLabel" className="titlePlan">
                 Title:{" "}
               </label>
               <input
@@ -171,12 +194,12 @@ const handleEditSubmit = (e) => {
                 value={title}
                 onChange={handleTitle}
                 className="planDescription"
-                id="formGroupExampleInput"
+                id="titleLabel"
                 placeholder={plan.title}
               />
             </div>
             <div className="gen descriptionDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
+              <label htmlFor="descriptionLabel" className="titlePlan">
                 Description:{" "}
               </label>
               <input
@@ -185,12 +208,12 @@ const handleEditSubmit = (e) => {
                 value={description}
                 onChange={handleDescription}
                 className="planDescription"
-                id="formGroupExampleInput"
+                id="descriptionLabel"
                 placeholder={plan.description}
               />
             </div>
             <div className="gen dateDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
+              <label htmlFor="dateLabel" className="titlePlan">
                 Date & Time:{" "}
               </label><br/>
               <input
@@ -201,7 +224,7 @@ const handleEditSubmit = (e) => {
                 value={date}
                 onChange={handleDate}
                 className="date"
-                id="formGroupExampleInput"
+                id="dateLabel"
                 placeholder={plan.date}
                 required
               />
@@ -216,16 +239,15 @@ const handleEditSubmit = (e) => {
                 value={time}
                 onChange={handleTime}
                 className="date"
-                id="formGroupExampleInput"
                 placeholder={plan.time}
                 required
               />
             </div>
             <div className="gen locationDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
+              <label htmlFor="locationLabel" className="titlePlan">
                 Location:{" "}
               </label>
-              <input
+              {/* <input
                 type="text"
                 name="location"
                 value={location}
@@ -233,8 +255,50 @@ const handleEditSubmit = (e) => {
                 className="location"
                 id="formGroupExampleInput"
                 placeholder={plan.location}
-              />
+              /> */}
+
+<PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div 
+          key={suggestions.description}
+          >
+            <input
+              {...getInputProps({
+                className: 'location-search-input',
+              })}
+              className='location' placeholder={plan.location} name="location" onSelect={handleLocation} id="locationLabel"
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => {
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: 'grey', cursor: 'pointer' }
+                  : { backgroundColor: 'white', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
+                );
+              })}
             </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+            </div>
+
             <button className="btn btn-success" type="submit">Edit Plan</button>
             <br/>
             <button

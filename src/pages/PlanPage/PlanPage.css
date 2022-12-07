@@ -18,6 +18,9 @@
 .calendarlogoPlanDet{
     width: 15px;
 }
+.locationIconPlan{
+    width: 20px;
+}
 .planDetDateDiv{
     display: flex;
     flex-direction: row;
