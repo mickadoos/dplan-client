@@ -146,7 +146,7 @@ function ProfilePage() {
               <Link to={`/${profile.username}/profile/edit`}  className="btn btn-secondary editButtonProf">Edit Profile</Link>
             </div>
           )}
-          <Link to={`/${user.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
+          <Link to={`/${profile.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
         </div>
       </div>
 
