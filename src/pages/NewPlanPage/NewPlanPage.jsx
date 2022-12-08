@@ -9,6 +9,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import NewPlanMap from "../../components/Maps/NewPlanMap";
 
 function NewPlanPage() {
 
@@ -159,6 +160,7 @@ function NewPlanPage() {
       </PlacesAutocomplete>
 
       </div>
+      {/* <NewPlanMap></NewPlanMap> */} 
           {/* <div>
             <label>Plan Image:</label>
             <input type="file" name="planImage" onChange={handleImage}/>
