@@ -136,11 +136,11 @@ function NewPlanPage() {
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
+                  ? 'suggestion-item--active w-50 m-auto'
+                  : 'suggestion-item w-50 m-auto';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: 'grey', cursor: 'pointer' }
+                  ? { backgroundColor: 'lightblue', cursor: 'pointer' }
                   : { backgroundColor: 'white', cursor: 'pointer' };
                 return (
                   <div
