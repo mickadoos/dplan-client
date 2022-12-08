@@ -100,7 +100,7 @@ function NewPlanPage() {
           <br></br>
           <div className="planImage">
             <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
-            <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} />
+            <input type="file" className="form-control planImageIn" name="planImage" id="planImage" onChange={handleImage} />
             <br></br>
           </div>
           <div className="gen locationDiv">
@@ -123,6 +123,7 @@ function NewPlanPage() {
         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
+
     </div>
   );
 }

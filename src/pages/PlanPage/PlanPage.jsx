@@ -85,7 +85,7 @@ const planPhoto = {
 };
 
   return (
-    
+      <div className="planGenDiv">
       <div className="planDiv">
         <div className="headPlan" style = {planPhoto}>
           <div className="titleBgnd">
@@ -139,6 +139,7 @@ const planPhoto = {
             </div>              
         </div>
 
+      </div>
       </div>
     
   );
