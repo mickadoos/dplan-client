@@ -100,23 +100,24 @@ function SignupPage() {
         <br></br>
 
          
-      {/* <label htmlFor="gender"> Select you gender: </label>
+      <label htmlFor="gender"> Select you gender: </label>
       <select name="gender" onChange={handleGender}>
         <option value="">Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="other">Other</option>
       </select>
-      <br></br> */}
+      <br></br>
+      <br></br>
 
       <label>Country:</label>
       <input className="form-control col-4" type="text" name="country" value={country} onChange={handleCountry} />
     <br></br>
 
-{/*        
+       
       <label>Phone Number:</label>
       <input className="form-control col-4" type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
-      <br></br> */}
+      <br></br>
 
       <label>Birthdate:</label>
       <input  className="form-control col-4" type="date" id="datePickerId" onChange={handleBirthdate}/>

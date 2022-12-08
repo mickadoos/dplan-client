@@ -153,10 +153,11 @@
     .linkAnchorDiv{
         display: flex;
         flex-direction: row;
-        padding-left: 35px;
+        /* padding-left: 35px; */
     }
     .linkAnchor{
         margin-right: 10px;
+        padding-left: 35px;
     }
     .linkIcon{
         width: 12vw;
@@ -347,10 +348,11 @@
     .linkAnchorDiv{
         display: flex;
         flex-direction: row;
-        padding-left: 35px;
+        /* padding-left: 35px; */
     }
     .linkAnchor{
         margin-right: 10px;
+        padding-left: 35px;
     }
     .linkIcon{
         width: 7vw;
