@@ -13,6 +13,9 @@ function NewPlanPage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [musicList, setMusicList] = useState("");
+  const [photoCloud, setPhotoCloud] = useState("");
+  const [interestingLinks, setInterestingLinks] = useState("");
   // const [tags, setTags] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
@@ -25,6 +28,9 @@ function NewPlanPage() {
   const handleDate = (e) => setDate(e.target.value);
   const handleTime = (e) => setTime(e.target.value);
   const handleLocation = (e) => setLocation(e.target.value);
+  const handleMusicList = (e) => setMusicList(e.target.value);
+  const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
+  const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
   // const handleTags = (e) => setTags(e.target.value);
 
   const handleNewPlamSubmit = (e) => {
@@ -39,6 +45,9 @@ function NewPlanPage() {
     uploadData.append('date', date)
     uploadData.append('time', time)
     uploadData.append('location', location)
+    uploadData.append('musicList', musicList)
+    uploadData.append('photoCloud', photoCloud)
+    uploadData.append('interestingLinks', interestingLinks)
 
     // Or using a service
     planService
@@ -93,6 +102,15 @@ function NewPlanPage() {
             <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
             <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} />
             <br></br>
+          </div>
+          <div className="gen locationDiv">
+            <input type="text" className="location" name="musicList" placeholder="Spotify List" onChange={handleMusicList}/>
+          </div>
+          <div className="gen locationDiv">
+            <input type="text" className="location" name="photoCloud" placeholder="Photos Cloud" onChange={handlePhotoCloud}/>
+          </div>
+          <div className="gen locationDiv">
+            <input type="text" className="location" name="interestingLinks" placeholder="Link of interest" onChange={handleInterestingLinks}/>
           </div>
           <br></br>
           <div className="gen button">
