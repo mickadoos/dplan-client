@@ -40,6 +40,20 @@
     }
     .locationDiv{
         margin-top: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .linksDiv{
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .iconPng{
+        width: 40px;
+        height: 40px;
+        margin-right: 6px;
     }
     .location{
         padding: 8px;
@@ -101,6 +115,20 @@
     }
     .locationDiv{
         margin-top: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .linksDiv{
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .iconPng{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
     }
     .location{
         padding: 8px;
