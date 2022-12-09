@@ -67,7 +67,7 @@ function LoginPage() {
   {/* <!-- Username input --> */}
   <div className="form-outline mb-4">
     <input type="text" id="form2Example1" className="form-control col-4" name="username" value={username} onChange={handleUsername} />
-    <label className="form-label col-4" for="form2Example1">Username</label>
+    <label className="form-label col-4" htmlFor="form2Example1">Username</label>
   </div>
 
   {/* <!-- Password input --> */}
@@ -75,7 +75,7 @@ function LoginPage() {
     <input type="password" id="form2Example2" className="form-control" name="password"
           value={password}
           onChange={handlePassword} />
-    <label className="form-label" for="form2Example2">Password</label>
+    <label className="form-label" htmlFor="form2Example2">Password</label>
   </div>
 
  
