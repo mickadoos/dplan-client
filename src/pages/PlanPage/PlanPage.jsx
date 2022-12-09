@@ -9,6 +9,12 @@ import spotifyIcon from "../../assets/spotifyIcon.png";
 import picsIcon from "../../assets/picsIcon.png"
 import linkIcon from "../../assets/linkIcon.png"
 import locationIcon from "../../assets/location-marker-icon.png"
+// Google Maps Places Autcomplete import
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+import NewPlanMap from "../../components/Maps/NewPlanMap";
 
 let guestsSearch
 
@@ -48,8 +54,22 @@ function PlanPage() {
     planService.getPlan(planId)
     .then(response => {
         setPlan(response.data);
+    //     return getCoordinatesMaps(plan.location)
+    // })
+    // .then(response => {
+    //   console.log('RTESPNOEN', response)
     })
+    // const getPlan = planService.getPlan(planId)
+    // .then(response => {
+    //     setPlan(response.data);
+    // })
+  //   const coordinatesAddress = getCoordinatesMaps(plan.location)
+  // const results = geocodeByAddress(plan.location);
 
+    // Promise.all([getPlan, coordinatesAddress, results])
+    // .then(results => {
+    //   console.log('promise all', results)
+    // })
   }, [isLoggedIn, planId, update])
 
   useEffect (() => {
@@ -84,6 +104,20 @@ const planPhoto = {
     height: "60vh",
     // borderRadius: "10px"
 };
+
+// DISPLAY MAP
+const getCoordinatesMaps = async (value) => {
+  console.log('HELLO')
+  const results = await geocodeByAddress(value);
+console.log('RESUL;TS', results)
+  const latLng = await getLatLng(results[0])
+  console.log('lat and long address',latLng)
+  // setAddress(value)
+  // setCoordinates(latLng)
+  return latLng;
+}
+
+// let coordinatesAddress = getCoordinatesMaps(plan.location)
 
   return (
     
@@ -137,7 +171,10 @@ const planPhoto = {
             <div className="description">
               <h5 className="locationTitle">Location</h5>
               <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><img className="locationIconPlan" src={locationIcon} alt="Location Icon"/> {plan.location}</a></p>
-            </div>              
+              <p>{plan.coordinates}</p>
+            </div>    
+            <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>
+                     
         </div>
 
       </div>

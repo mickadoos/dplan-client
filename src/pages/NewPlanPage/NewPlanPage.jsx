@@ -20,10 +20,13 @@ function NewPlanPage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [latitud, setLatitud] = useState(null);
+  const [longitud, setLongitud] = useState(null);
+  // const [coordinates, setCoordinates] = useState({lat: null, lng: null});
   const [musicList, setMusicList] = useState("");
   const [photoCloud, setPhotoCloud] = useState("");
   const [interestingLinks, setInterestingLinks] = useState("");
-  // const [tags, setTags] = useState([]);
+  const [privacy, setPrivacy] = useState("public");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
@@ -34,11 +37,11 @@ function NewPlanPage() {
   const handleImage = (e) => setPlanImage(e.target.files[0]);
   const handleDate = (e) => setDate(e.target.value);
   const handleTime = (e) => setTime(e.target.value);
-  const handleLocation = (e) => setLocation(e.target.value);
+  const handleLocation = (e) =>  setLocation(e.target.value);
   const handleMusicList = (e) => setMusicList(e.target.value);
   const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
   const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
-  // const handleTags = (e) => setTags(e.target.value);
+  const handlePrivacy = (e) => setPrivacy(e.target.value);
 
   const handleNewPlamSubmit = (e) => {
     e.preventDefault();
@@ -52,9 +55,13 @@ function NewPlanPage() {
     uploadData.append('date', date)
     uploadData.append('time', time)
     uploadData.append('location', location)
+    uploadData.append('latitud', latitud)
+    uploadData.append('longitud', longitud)
+    // uploadData.append('coordinates', coordinates)
     uploadData.append('musicList', musicList)
     uploadData.append('photoCloud', photoCloud)
     uploadData.append('interestingLinks', interestingLinks)
+    uploadData.append('privacy', privacy)
 
     // Or using a service
     planService
@@ -73,7 +80,7 @@ function NewPlanPage() {
   //GOOGLE MAPS
     
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({
+  const [coords, setCoords] = useState({
   lat: null,
   lng: null
 })
@@ -84,7 +91,13 @@ function NewPlanPage() {
   const latLng = await getLatLng(results[0])
   console.log(latLng)
   setAddress(value)
-  setCoordinates(latLng)
+  setCoords(latLng)
+  console.log('LAT', latLng.lat)
+  console.log('LNG', latLng.lng)
+  setLatitud(latLng.lat)
+  setLongitud(latLng.lng)
+  // setCoordinates(latLng)
+  // console.log('COORDINATES', coordinates)
 }
 
   
@@ -182,6 +195,15 @@ function NewPlanPage() {
             <input type="text" className="location" name="interestingLinks" placeholder="Link of interest" onChange={handleInterestingLinks}/>
           </div>
           <br></br>
+
+          <div>
+          <input type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+          <label htmlFor="public">public</label>
+          <input type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+          <label htmlFor="private">private</label>
+          <p>{privacy}</p>
+          </div>
+
           <div className="gen button">
             <button type="submit" className="btn btn-primary">Create Plan</button>
           </div>
