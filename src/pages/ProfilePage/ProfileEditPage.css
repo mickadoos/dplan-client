@@ -1,0 +1,36 @@
+.profileEditDiv{
+    padding-top: 120px;
+}
+.editDiv{
+    background-color: black;
+    padding: 40px;
+    width: 80vw;
+    max-width: 600px;
+    margin: auto;
+}
+.editPageImg{
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px; 
+    margin-bottom: 20px;
+}
+.label{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.textEnter{
+    padding: 8px;
+    width: 50vw;
+    max-width: 280px;
+    margin: auto;
+}
+.last{
+    margin-bottom: 40px;
+}
+.butEdit{
+    margin: 10px;
+}

@@ -2,6 +2,10 @@ import "./EditPlanPage.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import planService from "../../services/plan.service";
+import spotifyIcon from "../../assets/spotifyIcon.png";
+import picsIcon from "../../assets/picsIcon.png"
+import linkIcon from "../../assets/linkIcon.png"
+import locationIcon from "../../assets/locationIcon.webp"
 
 
 function EditPlanPage() {
@@ -14,6 +18,9 @@ function EditPlanPage() {
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
   const [planImage, setPlanImage] = useState("");
+  const [musicList, setMusicList] = useState("");
+  const [photoCloud, setPhotoCloud] = useState("");
+  const [interestingLinks, setInterestingLinks] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
@@ -28,6 +35,9 @@ function EditPlanPage() {
         setDate(response.data.date)
         setTime(response.data.time)
         setLocation(response.data.location)
+        setMusicList(response.data.musicList);
+        setPhotoCloud(response.data.photoCloud);
+        setInterestingLinks(response.data.interestingLinks);
     })
 
 }, [planId])
@@ -38,6 +48,9 @@ const handleDate = (e) => setDate(e.target.value);
 const handleTime = (e) => setTime(e.target.value);
 const handleLocation = (e) => setLocation(e.target.value);
 const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
+const handleMusicList = (e) => setMusicList(e.target.value);
+const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
+const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
 
 const cancelEdit = () => {navigate("/plans/" + planId)};
 const deletePlan = () => {
@@ -75,7 +88,10 @@ const handleEditSubmit = (e) => {
     description, 
     date,
     time,
-    location
+    location,
+    musicList,
+    photoCloud,
+    interestingLinks
   }
   
   planService
@@ -92,7 +108,7 @@ const handleEditSubmit = (e) => {
 
 
   return (
-    <div className="newPlanDiv">
+    <div className="editPlanDiv">
       <h1>Edit Plan</h1>
       <div className="">
         <div className="">
@@ -100,11 +116,11 @@ const handleEditSubmit = (e) => {
           {/* <!-- Button trigger modal --> */}
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-secondary"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
-            Edit photo
+            Edit wallpaper
           </button>
 
           {/* <!-- Modal --> */}
@@ -161,7 +177,7 @@ const handleEditSubmit = (e) => {
             </div>
           </div>
           <form onSubmit={handleEditSubmit}>
-            <div className="gen titleDiv">
+            <div className="gen titleDivEdit">
               <label htmlFor="formGroupExampleInput" className="titlePlan">
                 Title:{" "}
               </label>
@@ -170,16 +186,16 @@ const handleEditSubmit = (e) => {
                 name="title"
                 value={title}
                 onChange={handleTitle}
-                className="planDescription"
+                className="titlePlan"
                 id="formGroupExampleInput"
                 placeholder={plan.title}
               />
             </div>
-            <div className="gen descriptionDiv">
+            <div className="gen descriptionDivEdit">
               <label htmlFor="formGroupExampleInput" className="titlePlan">
                 Description:{" "}
               </label>
-              <input
+              <textarea
                 type="textArea"
                 name="description"
                 value={description}
@@ -222,9 +238,7 @@ const handleEditSubmit = (e) => {
               />
             </div>
             <div className="gen locationDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
-                Location:{" "}
-              </label>
+              <img src={locationIcon} alt="location icon" className="iconPng"/>
               <input
                 type="text"
                 name="location"
@@ -235,15 +249,30 @@ const handleEditSubmit = (e) => {
                 placeholder={plan.location}
               />
             </div>
-            <button className="btn btn-success" type="submit">Edit Plan</button>
-            <br/>
-            <button
-              className="btn btn-secondary"
-              type="button"
-              onClick={cancelEdit}
-            >
-              Cancel changes
-            </button><br/><br/><br/>
+            <br></br>
+            <div className="gen linksDiv">
+              <img src={spotifyIcon} alt="music icon" className="iconPng"/>
+              <input type="text" className="location" name="musicList" placeholder={plan.musicList} onChange={handleMusicList}/>
+            </div>
+            <div className="gen linksDiv">
+              <img src={picsIcon} alt="pics icon" className="iconPng"/>
+              <input type="text" className="location" name="photoCloud" placeholder={plan.photoCloud} onChange={handlePhotoCloud}/>
+            </div>
+            <div className="gen linksDiv">
+              <img src={linkIcon} alt="link icon" className="iconPng"/>
+              <input type="text" className="location" name="interestingLinks" placeholder={plan.interestingLinks} onChange={handleInterestingLinks}/>
+            </div>
+            <div className="twoButs">
+              <button className="btn btn-primary but" type="submit">Edit Plan</button>
+              <br/>
+              <button
+                className="btn btn-secondary but"
+                type="button"
+                onClick={cancelEdit}
+              >
+                Cancel changes
+              </button>
+            </div>
             <button
               className="btn btn-danger"
               type="button"
