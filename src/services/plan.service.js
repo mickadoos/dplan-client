@@ -3,8 +3,8 @@ import axios from 'axios';
 class PlanService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}api/plans` || "http://localhost:5005/api/plans"
-      // baseURL: "http://localhost:5005/api/plans"
+      // baseURL: `${process.env.REACT_APP_SERVER_URL}api/plans` || "http://localhost:5005/api/plans"
+      baseURL: "http://localhost:5005/api/plans"
     });
 
     // Automatically set JWT token in the headers for every request
@@ -64,6 +64,14 @@ class PlanService {
 
   inviteGuestsFriends(planId, idPerson){
     return this.api.post('/' + planId + '/' + idPerson +'/invite')
+  }
+
+  addPoll(planId, poll){
+    return this.api.post('/' + planId + '/addPoll', poll)
+  }
+
+  addVote(planId, poll){
+    return this.api.post('/' + planId + '/addVote', poll)
   }
 }
 
