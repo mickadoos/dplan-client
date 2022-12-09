@@ -1,10 +1,18 @@
-.App {
+/* .App {
   text-align: center;
   background-color: rgb(23, 23, 23);
   padding-top: 100px;
   /* padding: 80px; */
   /* height: 100vh; */
+/*} */
+.App {
+  text-align: center;
+  background-image: url("./assets/DPlanBackground.png");
+  /* background-image: url("./assets/DPlanBackgroundBlue.png"); */
+  /* padding-top: 100px; */
+  background-size: cover;
 }
+
 
 .carousel {
   width:640px;

@@ -4,6 +4,7 @@ import PendingFriendComp from "../../components/PendingReq/PendingFriendComp";
 import { AuthContext } from "../../context/auth.context";
 import userService from "../../services/user.service";
 import "./ProfilePage.css";
+import editIcon from "../../assets/edit_icon.png";
 import guestsIcon from "../../assets/Guests_icon.png"
 import { useNavigate } from "react-router-dom";
 
@@ -52,89 +53,46 @@ function ProfilePage() {
   return (
     <div className="divGen">
       <h1>Profile page</h1>
-      <div className="profile" style={{ width: "18rem" }}>
-        <div className="margins">
-          <h5 className="card-text colorText">
-            {profile.username}
-          </h5>
-        </div>
-        <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
-        {/* {isUser && (
-          <>
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Edit Profile Picture
-            </button>
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabIndex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="exampleModalLabel">
-                      Edit Profile Picture
-                    </h1>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <form
-                    onSubmit={handleImgSubmit}
-                    encType="multipart/form-data"
-                  >
-                    <div className="modal-body">
-                      <label>New Profile Image: </label>
-                      <br />
-                      <input
-                        type="file"
-                        name="profileImage"
-                        onChange={handleProfileImage}
-                      />
-                    </div>
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        data-bs-dismiss="modal"
-                      >
-                        Save changes
-                      </button>
-                    </div>
-                  </form>
-                </div>
+      <div className="profile" >
+      <div className="usernameEdit">
+      <div className="emptyDiv"></div>
+      <div>
+      <h4 className="card-text usernameInfo">
+          {profile.username}
+        </h4>
+      </div>
+        {isUser && (
+              <div>
+                <Link to={`/${profile.username}/profile/edit`}  className=""><img src={editIcon} alt="edit icon" className="editIcon"/></Link>
               </div>
-            </div>
-          </>
-        )} */}
-
-        <div className="card-body">
+            )}
+        {!isUser && (
+          <div className="emptyDiv"></div>
+            )}
+      </div>
+        <div className="rowInfo">
         <div className="margins">
-          <p className="card-title colorText">{profile.name}</p>
+          <img src={profile.profileImage} className="card-img-top profileImgProfile" alt="..." />
         </div>
-        <div className="margins">
-          <p className="card-text colorText">
-            <strong className="colorText">Birthdate: </strong>
-            {profile.birthdate?.slice(0, 10)}
-          </p>
+        <div className="card-body infoProfile">
+          <div className="margins">
+            <p className="card-title colorText">{profile.name}</p>
+          </div>
+          <div className="margins">
+            <p className="card-text colorText">
+              <strong className="colorText">Birthdate: </strong>
+              {profile.birthdate?.slice(0, 10)}
+            </p>
+          </div>
+          <div className="margins">
+            <p className="card-text colorText">
+              <strong className="colorText">Country: </strong>
+              {profile.country}
+            </p>
+          </div>
+          <Link to={`/${profile.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
         </div>
+<<<<<<< HEAD
         <div className="margins">
           <p className="card-text colorText">
             <strong className="colorText">Country: </strong>
@@ -147,20 +105,27 @@ function ProfilePage() {
             </div>
           )}
           <Link to={`/${profile.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
+=======
+>>>>>>> a44204c3dc8f185f79e35b9e08fa970d77122694
         </div>
+        {/* {isUser && (
+              <div>
+                <Link to={`/${profile.username}/profile/edit`}  className="btn btn-secondary editButtonProf">Edit Profile</Link>
+              </div>
+            )} */}
       </div>
 
-      <p className="margins2">________</p>
+      <p className="margins2"/>
       {isUser && (
         <>
-          <h5 className="colorText margins">Friend Requests: </h5>
+          <h5 className="colorText margins">Friend Requests ({profile.friendsToAccept?.length}): </h5>
           <div className="contentContainerFriendReqs">
           {profile.friendsToAccept?.length > 0 ? (
             profile.friendsToAccept.map((fri, k) => {
               return <PendingFriendComp fri={fri} updateHandler={updateHandler} key={k} />;
             })
           ) : (
-            <p className="colorText">You don't have requests</p>
+            <p className="colorText"></p>
           )}
           </div>
           </>

@@ -67,7 +67,7 @@ function GuestsPlanPage() {
   }
 
   return (
-    <div>
+    <div className="guestsPageDiv">
       <h1>Guests Page</h1>
       {/* <Link to={"/plans/"+planId+"/invite"} className="btn btn-warning invite">Invite People</Link> */}
       <Link to={"/plans/"+planId+"/invite"} className="btn btn-warning invite">+👤</Link>

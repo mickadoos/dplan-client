@@ -1,55 +1,148 @@
-.newPlanDiv{
-    padding: 30px;
-    margin: 20px 60px 20px 60px;
-    background-color: rgba(0, 0, 0, 0.601);
-    border-radius: 10px;
+@media screen and (max-width:720px){
+    .newPlanDiv{
+        padding: 100px 10px 30px 10px;
+        margin: 20px 40px 20px 40px;
+        background-color: rgba(0, 0, 0, 0.601);
+        border-radius: 10px;
+    }
+    .gen{
+        margin: auto;
+    }
+    
+    h1{
+        color: rgb(218, 218, 218);
+    }
+    .planImage{
+        width: 242px;
+    }
+    .gen{
+        margin: 15px;
+    }
+    form{
+        margin-top: 25px;
+    }
+    .titlePlan{
+        padding: 8px;
+        width: 65vw;
+    }
+    .planDescription{
+        width: 65vw;
+        padding: 8px;
+        min-height: 100px;
+    }
+    .dateTitle{
+        color: rgb(218, 218, 218);
+    }
+    .date{
+        padding: 8px;
+        margin-top: 0px;
+        width: 50vw;
+    }
+    .locationDiv{
+        margin-top: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .linksDiv{
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .iconPng{
+        width: 40px;
+        height: 40px;
+        margin-right: 6px;
+    }
+    .location{
+        padding: 8px;
+        width: 65vw;
+    }
+    .planImageTitle{
+        color: rgb(218, 218, 218);
+        margin-bottom: 12px;
+    }
+    .planImage{
+        margin: auto;
+        width: 60vw;
+    }
 }
-.gen{
-    margin: auto;
-}
-
-h1{
-    color: rgb(218, 218, 218);
-}
-.planImage{
-    width: 242px;
-}
-.gen{
-    margin: 15px;
-}
-form{
-    margin-top: 25px;
-}
-.titlePlan{
-    padding: 8px;
-    width: 50vw;
-}
-.planDescription{
-    width: 50vw;
-    padding: 8px;
-    min-height: 100px;
-}
-.dateTitle{
-    color: rgb(218, 218, 218);
-}
-.date{
-    padding: 8px;
-    margin-top: 0px;
-    width: 40vw;
-}
-.locationDiv{
-    margin-top: 35px;
-}
-.location{
-    padding: 8px;
-    width: 50vw;
-}
-.planImageTitle{
-    color: rgb(218, 218, 218);
-    margin-bottom: 12px;
-}
-.planImage{
-    margin: auto;
-    width: 50vw;
+@media screen and (min-width:721px){
+    .newPlanDiv{
+        padding: 120px 10px 30px 10px;
+        margin: 20px 330px 20px 30px;
+        background-color: rgba(0, 0, 0, 0.601);
+        border-radius: 10px;
+        width: 700px;
+        margin: auto;
+    }
+    .gen{
+        margin: auto;
+    }
+    
+    h1{
+        color: rgb(218, 218, 218);
+    }
+    .planImage{
+        width: 242px;
+    }
+    .gen{
+        margin: 15px;
+    }
+    form{
+        margin-top: 25px;
+    }
+    .titlePlan{
+        padding: 8px;
+        width: 50vw;
+        max-width: 450px;
+    }
+    .planDescription{
+        width: 50vw;
+        max-width: 450px;
+        padding: 8px;
+        min-height: 100px;
+    }
+    .dateTitle{
+        color: rgb(218, 218, 218);
+    }
+    .date{
+        padding: 8px;
+        margin-top: 0px;
+        width: 40vw;
+        max-width: 350px;
+    }
+    .locationDiv{
+        margin-top: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .linksDiv{
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .iconPng{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .location{
+        padding: 8px;
+        width: 50vw;
+        max-width: 450px;
+    }
+    .planImageTitle{
+        color: rgb(218, 218, 218);
+        margin-bottom: 12px;
+    }
+    .planImage{
+        margin: auto;
+        width: 50vw;
+        max-width: 450px;
+    }
 }
 

@@ -40,7 +40,7 @@ function AddFriendsPage() {
 
   return (
 
-    <div>
+    <div className="addFriendsDiv">
       <h1 className = "title">Add Friends</h1>
       <div className="input-group rounded">
         <form className = "searchBar" onChange={formOnChangeHandle}>

@@ -82,16 +82,15 @@ function ProfileEditPage() {
   }
 
   return (
-    <div> 
+    <div className="profileEditDiv"> 
   
     <h1>Edit Profile</h1>
-    <div className="card" style={{ width: "18rem" }}>
-        <img src={user.profileImage} className="card-img-top" alt={user.username} />
-        
-          <>
+    <div className="card editDiv">
+      <div>
+            <img src={user.profileImage} className="card-img-top editPageImg" alt={user.username} />
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-secondary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
@@ -150,19 +149,19 @@ function ProfileEditPage() {
                 </div>
               </div>
             </div>
-          </>
+      </div>
         
     <form onSubmit={handleSignupSubmit} encType="multipart/form-data">
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+        <label className="label">Email:</label>
+        <input type="email" name="email" value={email} onChange={handleEmail} className="textEnter" />
 
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
+        <label className="label">Name:</label>
+        <input type="text" name="name" value={name} onChange={handleName} className="textEnter"/>
 
-        <label>Username:</label>
-        <input type="text" name="username" value={username} onChange={handleUsername} />
+        <label className="label">Username:</label>
+        <input type="text" name="username" value={username} onChange={handleUsername} className="textEnter"/>
         
-      <label htmlFor="gender"> Select you gender: </label>
+      <label className="label" htmlFor="gender"> Select you gender: </label>
       <select name="gender" onChange={handleGender}>
         <option value="">Gender</option>
         <option value="male">Male</option>
@@ -171,19 +170,18 @@ function ProfileEditPage() {
       </select>
       <br></br>
 
-      <label>Country:</label>
-      <input type="text" name="country" value={country} onChange={handleCountry} />
+      <label className="label">Country:</label>
+      <input type="text" name="country" value={country} onChange={handleCountry} className="textEnter"/>
        
-      <label>Phone Number:</label>
-      <input type="tel" name="phoneNumber" pattern="[0-9]{9}" value={phoneNumber} onChange={handlePhoneNumber}></input>
+      <label className="label">Phone Number:</label>
+      <input className="textEnter" type="tel" name="phoneNumber" pattern="[0-9]{9}" value={phoneNumber} onChange={handlePhoneNumber}></input>
 
-      <label>Birthdate:</label>
-      <input type="date" id="datePickerId" onChange={handleBirthdate}/>
+      <label className="label">Birthdate:</label>
+      <input type="date" id="datePickerId" onChange={handleBirthdate} className="textEnter last"/>
       
       <br></br>
-      <button className="btn btn-secondary" type="button" onClick={cancelEdit}>Cancel</button>
-
-        <button type="submit">Confirm changes</button>
+      <button className="btn btn-primary butEdit" type="submit">Confirm changes</button>
+      <button className="btn btn-secondary butEdit" type="button" onClick={cancelEdit}>Cancel</button>
       </form>
     </div>
     </div>

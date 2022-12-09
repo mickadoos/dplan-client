@@ -3,6 +3,8 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
+import logo from "../../assets/DPlan Logo.png"
+
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -46,36 +48,31 @@ function LoginPage() {
 
   return (
     <div className="LoginPage">
+    <img className="DPlanLogo" src={logo} alt="DPlan logo"></img>
       <h1>Login</h1>
 
-      {/* <form onSubmit={handleLoginSubmit}>
-        <label>Username:</label>
-        <input type="text" name="username" value={username} onChange={handleUsername} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
-      </form> */}
 
       <form onSubmit={handleLoginSubmit} className="container">
   {/* <!-- Username input --> */}
   <div className="form-outline mb-4">
+  <label className="form-label col-4" htmlFor="form2Example1">Username</label>
     <input type="text" id="form2Example1" className="form-control col-4" name="username" value={username} onChange={handleUsername} />
+<<<<<<< HEAD
     <label className="form-label col-4" htmlFor="form2Example1">Username</label>
+=======
+>>>>>>> a44204c3dc8f185f79e35b9e08fa970d77122694
   </div>
 
   {/* <!-- Password input --> */}
   <div className="form-outline mb-4">
+  <label className="form-label" htmlFor="form2Example2">Password</label>
     <input type="password" id="form2Example2" className="form-control" name="password"
           value={password}
           onChange={handlePassword} />
+<<<<<<< HEAD
     <label className="form-label" htmlFor="form2Example2">Password</label>
+=======
+>>>>>>> a44204c3dc8f185f79e35b9e08fa970d77122694
   </div>
 
  

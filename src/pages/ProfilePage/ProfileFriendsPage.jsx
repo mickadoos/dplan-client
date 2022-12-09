@@ -35,7 +35,7 @@ function ProfileFriendsPage() {
 
 
   return (
-    <div>
+    <div className="userFriendsDiv">
       <h1>{username} Friends page</h1>
       <div className="input-group rounded">
         <form className = "searchBar" onChange={formOnChangeHandle}>
