@@ -92,21 +92,6 @@ function ProfilePage() {
           </div>
           <Link to={`/${profile.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
         </div>
-<<<<<<< HEAD
-        <div className="margins">
-          <p className="card-text colorText">
-            <strong className="colorText">Country: </strong>
-            {profile.country}
-          </p>
-        </div>
-          {isUser && (
-            <div>
-              <Link to={`/${profile.username}/profile/edit`}  className="btn btn-secondary editButtonProf">Edit Profile</Link>
-            </div>
-          )}
-          <Link to={`/${profile.username}/profile/friends`} ><img className="friendsIcon" src={guestsIcon} alt="User Friends icon"/></Link>
-=======
->>>>>>> a44204c3dc8f185f79e35b9e08fa970d77122694
         </div>
         {/* {isUser && (
               <div>
