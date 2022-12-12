@@ -11,7 +11,7 @@ function PersonAddFriends({person, updatePeople}) {
     const friendRequestHandle = ()=>{
         userService.sendFriendRequest(user.username, _id)
         .then (resp => {
-          updatePeople (Math.random()*1000)
+          updatePeople (Math.random()*1000, username)
         })
     }
 

@@ -1,6 +1,6 @@
 import "./PlanPage.css";
 import { useEffect, useState, useContext, React } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
 import guestsIcon from "../../assets/Guests_icon.png";
@@ -11,6 +11,7 @@ import linkIcon from "../../assets/linkIcon.png";
 
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
+import AlertModal from "../../components/Alerts/AlertModal";
 
 let guestsSearch;
 
@@ -29,15 +30,25 @@ function PlanPage() {
 
   const [guests, setGuests] = useState();
 
+  const [alertMsg, setAlertMsg] = useState(null);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const updatePlan = (num) => {
     setUpdate(num);
   };
 
+  let titleFromEvent = location.state?.title
+  let messageFromEvent = location.state?.message
+
   const acceptHandle = () => {
     planService.acceptPlan(planId, user.username).then((resp) => {
       setStatus(true);
+      setAlertMsg({
+        title: "Accepted!",
+        message: "You have accepted the plan!",
+      })
       updatePlan(Math.random() * 1000);
     });
   };
@@ -45,6 +56,10 @@ function PlanPage() {
   const declineHandle = () => {
     planService.declinePlan(planId, user.username).then((resp) => {
       setStatus(true);
+      setAlertMsg({
+        title: "Declined!",
+        message: "You have declined the plan!",
+      })
       updatePlan(Math.random() * 1000);
     });
   };
@@ -53,7 +68,7 @@ function PlanPage() {
     planService.getPlan(planId).then((response) => {
       setPlan(response.data);
       setPolls(response.data.polls)
-      console.log(response.data.polls);
+      // console.log(response.data.polls);
     });
   }, [isLoggedIn, planId, update]);
 
@@ -81,29 +96,38 @@ function PlanPage() {
     }
   }, [isLoggedIn, planId, update]);
 
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     planService.getGuests(planId).then((resp) => {
+  //       guestsSearch = [];
+  //       if (resp.data.invited.length > 0) {
+  //         resp.data.invited.map((guest) => {
+  //           return guestsSearch.push(guest);
+  //         });
+  //       }
+  //       if (resp.data.accepted.length > 0) {
+  //         resp.data.accepted.map((guest1) => {
+  //           return guestsSearch.push(guest1);
+  //         });
+  //       }
+  //       if (resp.data.declined.length > 0) {
+  //         resp.data.declined.map((guest2) => {
+  //           return guestsSearch.push(guest2);
+  //         });
+  //       }
+  //       setGuests(guestsSearch);
+  //     });
+  //   }
+  // }, [isLoggedIn, planId, update]);
+
   useEffect(() => {
-    if (isLoggedIn) {
-      planService.getGuests(planId).then((resp) => {
-        guestsSearch = [];
-        if (resp.data.invited.length > 0) {
-          resp.data.invited.map((guest) => {
-            return guestsSearch.push(guest);
-          });
-        }
-        if (resp.data.accepted.length > 0) {
-          resp.data.accepted.map((guest1) => {
-            return guestsSearch.push(guest1);
-          });
-        }
-        if (resp.data.declined.length > 0) {
-          resp.data.declined.map((guest2) => {
-            return guestsSearch.push(guest2);
-          });
-        }
-        setGuests(guestsSearch);
-      });
+    if (titleFromEvent){
+      setAlertMsg({
+        title: titleFromEvent,
+        message: messageFromEvent
+      })
     }
-  }, [isLoggedIn, planId, update]);
+  }, [])
 
   const handleEdit = (e) => navigate("/plans/" + planId + "/edit");
 
@@ -155,7 +179,7 @@ function PlanPage() {
       ]);
     }
 
-    console.log(pollAnswers);
+    // console.log(pollAnswers);
   };
 
   const addPollHandler = (e) => {
@@ -165,19 +189,19 @@ function PlanPage() {
       pollQuestion,
       pollAnswers,
     };
-    console.log("pollInfo", pollInfo);
+    // console.log("pollInfo", pollInfo);
 
     planService
       .addPoll(planId, pollInfo)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         setPollQuestion("");
         setPollAnswers([]);
         setShowPoll(false);
         setUpdate(Math.random())
       })
       .catch((err) => {
-        console.log("Error addPoll service: ", err);
+        // console.log("Error addPoll service: ", err);
       });
   };
 
@@ -197,11 +221,22 @@ function PlanPage() {
 
   const vote = (item: Result, results: Result[]) => {
     planService.addVote(planId, item)
-    console.log('voted', item, results)
+    // console.log('voted', item, results)
   }
+
+  const errorHandler = () => {
+    setAlertMsg(null);
+  };
 
   return (
     <div className="DIV-GLOBAL">
+    {alertMsg && (
+        <AlertModal
+          title={alertMsg.title}
+          message={alertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
       <div className="headPlan" style={planPhoto}>
         <div className="titleBgnd">
           <h2 className="title">{plan.title}</h2>
@@ -345,6 +380,7 @@ function PlanPage() {
             return <LeafPoll
             key={poll._id}
             type="binary"
+            // className="poll"
             question={poll.pollQuestion}
             results={poll.pollAnswers}
             theme={themeData}

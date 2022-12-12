@@ -172,4 +172,6 @@
     padding-left: 35px;
 }
 
-
+article > div {
+    width: 50vw !important;
+}

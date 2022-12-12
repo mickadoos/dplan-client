@@ -44,6 +44,10 @@ function LoginPage() {
       });
   };
 
+  const errorMessageClick = () => {
+    setErrorMessage(null)
+  }
+  
   return (
     <div className="LoginPage">
       <h1>Login</h1>
@@ -89,7 +93,7 @@ function LoginPage() {
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
           {errorMessage}
-        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" onClick={errorMessageClick} className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
       <p>Don't have an account yet?</p>

@@ -54,7 +54,12 @@ function NewPlanPage() {
       .addPlan(user.username, uploadData)
       .then((response) => {
         // If the POST request is successful redirect to the login page
-        navigate("/plans");
+        navigate("/plans", {
+          state: {
+            title: "Plan created successfully!",
+            message: `The plan: ${title} has been created!`
+          }
+        });
       })
       .catch((error) => {
         // If the request resolves with an error, set the error message in the state
@@ -70,7 +75,7 @@ function NewPlanPage() {
       <h1>Create Plan</h1>
         <form onSubmit={handleNewPlamSubmit} encType="multipart/form-data">
           <div className="gen titleDiv">
-            <input type="title" className="titlePlan" name="title" placeholder="Title" value={title} onChange={handleTitle} />
+            <input type="title" className="titlePlan" name="title" placeholder="Title" value={title} onChange={handleTitle} required/>
           </div>
           <div className="gen descriptionDiv">
             <textarea
@@ -80,17 +85,18 @@ function NewPlanPage() {
               name="description"
               value={description}
               onChange={handleDescription}
+              required
             />
           </div>
           <div className="gen dateDiv">
             <p className="dateTitle">Date & Time:</p>
-            <input type="date" className="date" min={new Date().toISOString().split("T")[0]} id="datePickerId" onChange={handleDate}/>
+            <input type="date" className="date" min={new Date().toISOString().split("T")[0]} id="datePickerId" onChange={handleDate} required/>
           </div>
           <div className="gen time">
             <input type="time" className="date" id="appt" name="time" onChange={handleTime} required/>
           </div>
           <div className="gen locationDiv">
-            <input type="text" className="location" name="location" placeholder="Location" onChange={handleLocation}/>
+            <input type="text" className="location" name="location" placeholder="Location" onChange={handleLocation} required/>
           </div>
           {/* <div>
             <label>Plan Image:</label>
@@ -99,8 +105,8 @@ function NewPlanPage() {
           </div> */}
           <br></br>
           <div className="planImage">
-            <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
-            <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} />
+            <label className="form-label planImageTitle" htmlFor="customFile">Plan Image (valid formats: jpg, png, jpeg)</label>
+            <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} required/>
             <br></br>
           </div>
           <div className="gen locationDiv">

@@ -1,10 +1,12 @@
 import "./PlansPage.css";
 import { useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import userService from "../../services/user.service";
 import Plan from "../../components/Plan/Plan";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
+import AlertModal from "../../components/Alerts/AlertModal";
 
 let allPlans;
 let allPlansUnexpired;
@@ -14,6 +16,13 @@ function PlansPage() {
   const { isLoggedIn, user } = useContext(AuthContext);
   const [reset, setReset] = useState(false);
   var currentTime = new Date();
+
+  const [AlertMsg, setAlertMsg] = useState(null);
+  const location = useLocation();
+
+  let titleFromEvent = location.state?.title
+  let messageFromEvent = location.state?.message
+  console.log("titleFromEvent: ", titleFromEvent)
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -34,6 +43,15 @@ function PlansPage() {
       });
     }
   }, [isLoggedIn, reset]);
+
+  useEffect(() => {
+    if (titleFromEvent){
+      setAlertMsg({
+        title: titleFromEvent,
+        message: messageFromEvent
+      })
+    }
+  }, [])
 
   const adminHandler = () => {
     setPlans(
@@ -82,6 +100,10 @@ function PlansPage() {
 
   const resetHandler = () => {
     setReset(!reset);
+  };
+
+  const errorHandler = () => {
+    setAlertMsg(null);
   };
 
   return (
@@ -162,6 +184,13 @@ function PlansPage() {
           ))}
       </div>
       {plans.length <= 0 && <h5 className="noPlans">You don't have plans</h5>}
+      {AlertMsg && (
+        <AlertModal
+          title={AlertMsg.title}
+          message={AlertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
     </div>
   );
 }
