@@ -1,43 +1,80 @@
-# DPlan-front
-Developed by the Olympus Team.
-## About
-Simplify the way you plan your plans with your friends.
-## Deployment
-You can check the app fully deployed [here]. If you wish to view the API deployment instead, check [here].
+Developed as the final project of our web development bootcamp at Ironhack Barcelona, this is Yabel, Eloi and Josep’s MERN Stack application. Check the backend repository [here](https://github.com/PmplCode/DPlan-back).
 
-## Work structure
-I developed this project alone and used Trello to organize my workflow.
+## About
+
+DPlan is a Full Stack application meant to help users plannify their private events such as parties or social meetings in a simple way. 
+Create, share, experience and organize events quickly, easily and fun.
+
+![Project banner.](/public/DPlan_Banner.png "Project banner.")
+
+## Deployment
+
+You can check the app fully deployed [here]( https://famous-brioche-240d75.netlify.app).
+
+
 ## Installation guide
+
 - Fork this repo
-- Clone this repo 
+- Clone this repo
 
 ```shell
-$ cd portfolio-front
+$ cd DPlan-Front
 $ npm install
 $ npm start
 ```
+
 ## Routes
-| Route                | Privacy         | Renders                  |
-| -------------------- | :-------------: | ------------------------ |
-|/signup|	Public|	SignupPage|
-|/login	|Public	|LoginPage|
-|/plans |Private (user)|	PlansPage |
-|/plans/newPlan  |Private(user)|	NewPlanPage |
-|/plans/:planId |Private (user)	|PlanPage|
-|/plans/:planId/edit |	Private (user)	|EditPlanPage|
-|/plans/:planId/invite |	Private (user)	|InvitePeoplePage|
-|/plans/:planId/guests|	Private (user)|	GuestsPlanPage |
-|/:username/profile |Private (user)|	ProfilePage|
-|/:username/profile/edit |	Private(user)|	ProfileEditPage|
-|/:username/profile/friends |	Private (user)|	ProfileFriendsPage|
-|/:username/addFriends |Private (user|)	AddFriendsPage|
+
+| Route                          |      Privacy       | Renders            |
+| ------------------------------ | :----------------: | ------------------ |
+| /                              |     public         | WelcomePage        |
+| /signup                        | public (anonymous) | SignupPage         |
+| /login                         | public (anonymous) | LoginPage          |
+| /plans                         | public             | PlansPage          |
+| /plans/newPlan                 | public             | NewPlanPage        |
+| /plans/:planId                 | public             | PlanPage           |
+| /plans/:planId/edit            | private            | EditPlanPage       |
+| /plans/:planId/guests          | private            | GuestsPlanPage     |
+| /plans/:planId/invite          | private            | InviteFriendsPage  |
+| /:username/profile             | public             | ProfilePage        |
+| /:username/profile/friends     | public             | ProfileFriendsPage |
+| /:username/profile/edit        | private            | ProfileEditPage    |
+| /:username/profile/addFriends  | public             | AddFriendsPage     |
 
 
 ## Components
+
 - Navbar
+- Loading
+- IsAnon
+- IsPrivate
+- PendingReq
+- Person
 - Plan
-- Friend
-- Guests
 
-Welcome to the Olympus.
+## Pages
 
+- WelcomePage
+- SignupPage
+- LoginPage
+- NewPlanPage
+- PlansPage
+- PlanPage
+- EditPlanPage
+- GuestsPlanPage
+- InviteFriendsPage
+- ProfilePage
+- ProfileEditPage
+- ProfileFriendsPage
+- AddFriendsPage
+- NotFoundPage
+
+---
+
+Any doubts? Contact us!
+<br>
+<img width="20px" src="https://simpleicons.now.sh/linkedin/495f7e" alt="LinkedIn" />
+</br>
+<a href="https://www.linkedin.com/in/josepbp/">Josep</a>
+<a href="https://www.linkedin.com/in/eloipampliegajose/">Eloi</a>
+<a href="https://www.linkedin.com/in//">Yabel</a>
