@@ -35,7 +35,7 @@ function InviteFriendsPage() {
   },[isLoggedIn, update])
 
   return (
-    <div>
+    <div className="inviteFriendsDiv">
       <h1>Invite People</h1>
       <div className = "contentContainer">
       {friends.length === 0 && <p>You have no more friends to invite</p>}

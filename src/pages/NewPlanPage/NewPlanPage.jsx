@@ -3,6 +3,10 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import planService from  '../../services/plan.service'
 import { AuthContext } from "../../context/auth.context";
+import spotifyIcon from "../../assets/spotifyIcon.png";
+import picsIcon from "../../assets/picsIcon.png"
+import linkIcon from "../../assets/linkIcon.png"
+import locationIcon from "../../assets/locationIcon.webp"
 
 function NewPlanPage() {
 
@@ -82,6 +86,11 @@ function NewPlanPage() {
               onChange={handleDescription}
             />
           </div>
+          <div className="planImage">
+            <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
+            <input type="file" className="form-control planImageIn" name="planImage" id="planImage" onChange={handleImage} />
+            <br></br>
+          </div>
           <div className="gen dateDiv">
             <p className="dateTitle">Date & Time:</p>
             <input type="date" className="date" min={new Date().toISOString().split("T")[0]} id="datePickerId" onChange={handleDate}/>
@@ -90,26 +99,20 @@ function NewPlanPage() {
             <input type="time" className="date" id="appt" name="time" onChange={handleTime} required/>
           </div>
           <div className="gen locationDiv">
+            <img src={locationIcon} alt="location icon" className="iconPng"/>
             <input type="text" className="location" name="location" placeholder="Location" onChange={handleLocation}/>
           </div>
-          {/* <div>
-            <label>Plan Image:</label>
-            <input type="file" name="planImage" onChange={handleImage}/>
-            <br></br>
-          </div> */}
           <br></br>
-          <div className="planImage">
-            <label className="form-label planImageTitle" htmlFor="customFile">Plan Image</label>
-            <input type="file" className="form-control" name="planImage" id="planImage" onChange={handleImage} />
-            <br></br>
-          </div>
-          <div className="gen locationDiv">
+          <div className="gen linksDiv">
+            <img src={spotifyIcon} alt="music icon" className="iconPng"/>
             <input type="text" className="location" name="musicList" placeholder="Spotify List" onChange={handleMusicList}/>
           </div>
-          <div className="gen locationDiv">
+          <div className="gen linksDiv">
+            <img src={picsIcon} alt="media icon" className="iconPng"/>
             <input type="text" className="location" name="photoCloud" placeholder="Photos Cloud" onChange={handlePhotoCloud}/>
           </div>
-          <div className="gen locationDiv">
+          <div className="gen linksDiv">
+            <img src={linkIcon} alt="link icon" className="iconPng"/>
             <input type="text" className="location" name="interestingLinks" placeholder="Link of interest" onChange={handleInterestingLinks}/>
           </div>
           <br></br>
@@ -123,6 +126,7 @@ function NewPlanPage() {
         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
+
     </div>
   );
 }

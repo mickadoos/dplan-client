@@ -1,52 +1,176 @@
-.profile{
-    color: rgb(234, 234, 234);
-    margin: auto;
-    background-color: black;
-    border-radius: 15px;
-    padding-top: 10px;
-}
-.divGen{
-    margin-bottom: 50px;
-}
-.colorText{
-    color: rgb(234, 234, 234);
-}
-.profileImgProfile{
-    margin: 15px 15px;
-    width: 35vw;
-}
-.margins{
-    margin-top: 20px;
-}
-.margins2{
-    margin-bottom: 40px;
-}
-.requests{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;    
-}
-.friendsIcon{
-width: 50px;
-margin-top: 30px;
-margin-bottom: 30px;
-transition: 0.2s all ease-in-out;
-}
-.guestsIcon:hover {
-transform: scale(1.05);
-}
-
-.guestsIcon:active {
-transform: scale(0.9);
-}
-.editButtonProf{
+@media screen and (max-width:720px){
+    .profile{
+        color: rgb(234, 234, 234);
+        margin: auto;
+        background-color: black;
+        border-radius: 15px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        width: 80vw;
+        margin-bottom: 30px;
+    }
+    .divGen{
+        margin-bottom: 50px;
+        padding-top: 120px;
+    }
+    .colorText{
+        color: rgb(234, 234, 234);
+        padding-top: 8px;
+    }
+    .usernameInfo{
+        color: rgb(234, 234, 234);
+    }
+    .usernameEdit{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 10px;  
+    }
+    .emptyDiv{
+        margin-left: 15px;
+        width: 30px;
+    }
+    .editIcon{
+        width: 30px;
+        margin-right: 15px;
+    }
+    .profileImgProfile{
+        margin: 15px 8px;
+        /* width: 35vw;
+        max-width: 220px; */
+        object-fit: cover;
+        border-radius: 50%;
+        width: 170px;
+        height: 170px; 
+    }
+    .margins{
+        margin-top: 0px;
+    }
+    .margins2{
+        margin-bottom: 10px;
+    }
+    .requests{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;    
+    }
+    .friendsIcon{
+    width: 50px;
     margin-top: 30px;
+    margin-bottom: 10px;
+    transition: 0.2s all ease-in-out;
+    }
+    .guestsIcon:hover {
+    transform: scale(1.05);
+    }
+    
+    .guestsIcon:active {
+    transform: scale(0.9);
+    }
+    .editButtonProf{
+        margin-top: 20px;
+    }
+    .contentContainerFriendReqs{
+        margin: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: center;
+        flex-wrap: wrap;
+    }
 }
-.contentContainerFriendReqs{
-    margin: 25px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-    align-items: center;
-    flex-wrap: wrap;
+@media screen and (min-width:721px){
+    .profile{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: rgb(234, 234, 234);
+        margin: auto;
+        background-color: black;
+        border-radius: 15px;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        width: 80vw;
+        max-width: 620px;
+    }
+    .rowInfo{
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+    }
+    .divGen{
+        margin-bottom: 50px;
+        padding-top: 120px;
+    }
+    .colorText{
+        padding-top: 10px;
+        color: rgb(234, 234, 234);
+    }
+    .usernameInfo{
+        color: rgb(234, 234, 234);
+    }
+    .usernameEdit{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .emptyDiv{
+        margin-left: 15px;
+        width: 30px;
+    }
+    .editIcon{
+        width: 30px;
+        margin-right: 15px;
+    }
+    .profileImgProfile{
+        margin: 15px 20px 15px 0px;
+        object-fit: cover;
+        border-radius: 15px;
+        width: 200px;
+        height: 200px; 
+    }
+    .infoProfile{
+        text-align: left;
+        margin-left: 20px;
+        padding-top: 30px;
+    }
+    /* .margins{
+        margin-top: 0px;
+    } */
+    .margins2{
+        margin-bottom: 40px;
+    }
+    .requests{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;    
+    }
+    .friendsIcon{
+    width: 50px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: 0.2s all ease-in-out;
+    }
+    .guestsIcon:hover {
+    transform: scale(1.05);
+    }
+    
+    .guestsIcon:active {
+    transform: scale(0.9);
+    }
+    .editButtonProf{
+        margin-top: 15px;
+        align-self: flex-end;
+
+    }
+    .contentContainerFriendReqs{
+        margin: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: center;
+        flex-wrap: wrap;
+    }
 }

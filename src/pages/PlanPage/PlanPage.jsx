@@ -3,7 +3,6 @@ import { useEffect, useState, useContext, React} from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
-import guestsIcon from "../../assets/Guests_icon.png";
 import calendarLogo from "../../assets/calendar-icon.png";
 import spotifyIcon from "../../assets/spotifyIcon.png";
 import picsIcon from "../../assets/picsIcon.png"
@@ -103,13 +102,13 @@ const planPhoto = {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
-    height: "60vh",
+    height: "50vh",
     // borderRadius: "10px"
 };
 
   return (
-    
-      <div className="DIV-GLOBAL">
+      <div className="planGenDiv">
+      <div className="planDiv">
         <div className="headPlan" style = {planPhoto}>
           <div className="titleBgnd">
             <h2 className="title">{plan.title}</h2>
@@ -153,6 +152,7 @@ const planPhoto = {
               {plan.musicList?.length >= 3 && <a href={plan.musicList} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
               {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
               {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
+              {plan.musicList?.length === 0 && plan.photoCloud?.length === 0 && plan.interestingLinks?.length === 0 && <p className="descriptionPlan">No media resources.</p>}
               </div>                
             </div>    
               
@@ -162,6 +162,7 @@ const planPhoto = {
             </div>              
         </div>
 
+      </div>
       </div>
     
   );

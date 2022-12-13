@@ -13,6 +13,7 @@ import ProfileFriendsPage from './pages/ProfilePage/ProfileFriendsPage'
 import ProfileEditPage from './pages/ProfilePage/ProfileEditPage'
 import AddFriendsPage from './pages/AddFriendsPage/AddFriendsPage'
 import InviteFriendsPage from './pages/InviteFriendsPage/InviteFriendsPage'
+import WelcomePage from "./pages/WelcomePage/WelcomePage"
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -29,11 +30,15 @@ function App() {
       <Navbar />
 
       <Routes>
-      <Route path="/" element={
-      <IsAnon>
-      <HomePage/>
-      </IsAnon>
-      }
+
+      <Route 
+          path="/" 
+          element={
+          // <IsAnon>
+          // <HomePage/>
+          <WelcomePage/>
+          // </IsAnon>
+          }
       />
       
       <Route

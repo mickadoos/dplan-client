@@ -1,175 +1,380 @@
-.headPlan{
-    padding-top: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-    color: white;
-}
-.title{
-    font-weight: bold;
-    font-size: 22px;
-}
-.dateInfo{
-    font-weight: bold;
-    font-size: 15px;
-    color: rgb(241, 241, 241);
-    padding-left: 15px;
-    margin:0px;
-}
-.calendarlogoPlanDet{
-    width: 15px;
-}
-.planDetDateDiv{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 4px;
-
-}
-.editPlanBut{
-    font-size: 13px;
-}
-
-.titleBgnd{
-    text-align:left;
-    padding-top: 9px;
-    padding-bottom: 1px;
-    padding-right: 3px;
-    padding-left: 20px;
-    background-color: rgba(0, 0, 0, 0.630);
-    border-radius: 10px; 
-}
-.guestsPosition{
-    text-align:left;
-    margin-top: 10px;
-    padding: 10px 10px 10px 20px;
-    background-color: rgba(0, 0, 0, 0.630);
-    border-radius: 10px; 
+@media screen and (max-width:720px){
+    .planGenDiv{
+        padding-bottom: 20px;
+    }
+    .planDiv{
+        padding-top: 100px;
+    }
+    .headPlan{
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        color: white;
+    }
+    .title{
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .dateInfo{
+        font-weight: bold;
+        font-size: 15px;
+        color: rgb(241, 241, 241);
+        padding-left: 15px;
+        margin:0px;
+    }
+    .calendarlogoPlanDet{
+        width: 15px;
+    }
+    .planDetDateDiv{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 4px;
     
-}
-.guestsGlimpse{
-    object-fit: cover;
-    border-radius: 50%;
-    width: 53px;
-    height: 53px; 
-    margin-right: 5px;
-}
-/* .guestsIcon{
-    width: 45px;
-    margin-left: 5px;
-    transition: 0.2s all ease-in-out;
-} */
-.guestsIcon{
-    background-color: rgb(57, 56, 73);
-    color: rgb(241, 241, 241);
-    width: 90px;
-    height: 50px;
-    padding: 0px;
-    margin-left: 5px;
-    margin-bottom: 8px;
-    font-size: 12px;
-    font-weight: bold;
-    transition: 0.2s all ease-in-out;
-}
-.guestsIcon:hover {
-    transform: scale(1.05);
-}
-
-.guestsIcon:active {
-    transform: scale(0.9);
-}
-
-.declineButton {
-    margin-left: 20px;
-}
-.buttonsPlan{
-    margin-top: 40px;
-    padding-bottom: 10px;
-    display: flex;
-    align-content: flex-end;
-    justify-content: space-between;
-}
-.CreatedBy{
-    font-size: 13px;
-    color: white;
+    }
+    .editPlanBut{
+        font-size: 13px;
+    }
     
-}
-.createdByUser{
-    text-decoration: none;
-    background-color: white;
-    border-radius: 4px;
-    padding: 3px 10px 3px 10px;
-    font-weight: bold;
-    color: black;
-}
-.infoPlan{
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.603);
-    border-radius: 8px;
-    margin-left: 30px;
-    margin-right: 30px;
-    min-height: 15vh;
-    padding-bottom: 30px;
-}
-/* .description{
-    background-color: rgba(0, 0, 0, 0.603);
-    border-radius: 8px;
-    margin-left: 30px;
-    margin-right: 30px;
-    min-height: 15vh;
-} */
-.descriptionTitle{
-    color: rgba(236, 236, 236, 0.512);
-    text-align: left;
-    margin-top: 30px;
-    margin-bottom: 1px;
-    font-weight: bold;
-    padding-top: 30px;
-    padding-left: 35px;
-}
-.descriptionPlan{
-    color: rgb(219, 219, 219);
-    text-align: left;
-    font-size: 14px;
-    padding-bottom: 8px;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 10px;
-}
-.mediaLinksTitle{
-    color: rgba(236, 236, 236, 0.512);
-    text-align: left;
-    font-weight: bold;
-    font-size: 14px;
-    padding-left: 35px;
-    margin-bottom: 10px;
-}
-.linkAnchorDiv{
-    display: flex;
-    flex-direction: row;
-    padding-left: 35px;
-}
-.linkAnchor{
-    margin-right: 10px;
-}
-.linkIcon{
-    width: 12vw;
-    transition: all 0.2s ease-in-out;
-}
+    .titleBgnd{
+        text-align:left;
+        padding-top: 9px;
+        padding-bottom: 1px;
+        padding-right: 3px;
+        padding-left: 20px;
+        background-color: rgba(0, 0, 0, 0.630);
+        border-radius: 10px; 
+    }
+    .guestsPosition{
+        text-align:left;
+        margin-top: 10px;
+        padding: 10px 10px 10px 20px;
+        background-color: rgba(0, 0, 0, 0.630);
+        border-radius: 10px; 
+        
+    }
+    .guestsGlimpse{
+        object-fit: cover;
+        border-radius: 50%;
+        width: 53px;
+        height: 53px; 
+        margin-right: 5px;
+    }
+    /* .guestsIcon{
+        width: 45px;
+        margin-left: 5px;
+        transition: 0.2s all ease-in-out;
+    } */
+    .guestsIcon{
+        background-color: rgb(57, 56, 73);
+        color: rgb(241, 241, 241);
+        width: 90px;
+        height: 50px;
+        padding: 0px;
+        margin-left: 5px;
+        margin-bottom: 0px;
+        font-size: 12px;
+        font-weight: bold;
+        transition: 0.2s all ease-in-out;
+    }
+    .guestsIcon:hover {
+        transform: scale(1.05);
+    }
     
-.linkIcon:hover {
-    transform: scale(1.1);
-}
+    .guestsIcon:active {
+        transform: scale(0.9);
+    }
     
-.linkIcon:active {
-    transform: scale(0.9);
+    .declineButton {
+        margin-left: 20px;
+    }
+    .buttonsPlan{
+        margin-top: 40px;
+        padding-bottom: 10px;
+        display: flex;
+        align-content: flex-end;
+        justify-content: space-between;
+    }
+    .CreatedBy{
+        font-size: 13px;
+        color: white;
+        
+    }
+    .createdByUser{
+        text-decoration: none;
+        background-color: white;
+        border-radius: 4px;
+        padding: 3px 10px 3px 10px;
+        font-weight: bold;
+        color: black;
+    }
+    .infoPlan{
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0.603);
+        border-radius: 8px;
+        margin-left: 30px;
+        margin-right: 30px;
+        min-height: 15vh;
+        padding-bottom: 30px;
+    }
+    /* .description{
+        background-color: rgba(0, 0, 0, 0.603);
+        border-radius: 8px;
+        margin-left: 30px;
+        margin-right: 30px;
+        min-height: 15vh;
+    } */
+    .descriptionTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 1px;
+        font-weight: bold;
+        padding-top: 30px;
+        padding-left: 35px;
+    }
+    .descriptionPlan{
+        color: rgb(219, 219, 219);
+        text-align: left;
+        font-size: 14px;
+        padding-bottom: 8px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 10px;
+    }
+    .mediaLinksTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px;
+        padding-left: 35px;
+        margin-bottom: 10px;
+    }
+    .linkAnchorDiv{
+        display: flex;
+        flex-direction: row;
+        /* padding-left: 35px; */
+    }
+    .linkAnchor{
+        margin-right: 10px;
+        padding-left: 35px;
+    }
+    .linkIcon{
+        width: 12vw;
+        transition: all 0.2s ease-in-out;
+    }
+        
+    .linkIcon:hover {
+        transform: scale(1.1);
+    }
+        
+    .linkIcon:active {
+        transform: scale(0.9);
+    }
+    
+    .locationTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
+        padding-top: 35px;
+        padding-left: 35px;
+    }
 }
-
-.locationTitle{
-    color: rgba(236, 236, 236, 0.512);
-    text-align: left;
-    font-weight: bold;
-    padding-top: 35px;
-    padding-left: 35px;
+@media screen and (min-width:721px){
+    .planGenDiv{
+        padding-top: 99px;
+        padding-bottom: 40px;
+    }
+    .planDiv{
+        margin: auto;
+        /* background-color: brown; */
+        padding-bottom: 40px;
+        border-radius: 20px;
+        /* width: 60vw; */
+    }
+    .headPlan{
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        color: white;
+    }
+    .title{
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .dateInfo{
+        font-weight: bold;
+        font-size: 15px;
+        color: rgb(241, 241, 241);
+        padding-left: 15px;
+        margin:0px;
+    }
+    .calendarlogoPlanDet{
+        width: 15px;
+    }
+    .planDetDateDiv{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 4px;
+    
+    }
+    .editPlanBut{
+        font-size: 13px;
+    }
+    
+    .titleBgnd{
+        text-align:left;
+        padding-top: 9px;
+        padding-bottom: 1px;
+        padding-right: 3px;
+        padding-left: 20px;
+        background-color: rgba(0, 0, 0, 0.630);
+        border-radius: 10px; 
+        width: 60vw;
+        margin: auto;
+        max-width: 600px;
+    }
+    .guestsPosition{
+        text-align:left;
+        padding: 10px 10px 10px 20px;
+        background-color: rgba(0, 0, 0, 0.630);
+        border-radius: 10px; 
+        width: 60vw;
+        margin: auto;
+        margin-top: 10px;
+        max-width: 600px;
+        
+    }
+    .guestsGlimpse{
+        object-fit: cover;
+        border-radius: 50%;
+        width: 53px;
+        height: 53px; 
+        margin-right: 5px;
+    }
+    /* .guestsIcon{
+        width: 45px;
+        margin-left: 5px;
+        transition: 0.2s all ease-in-out;
+    } */
+    .guestsIcon{
+        background-color: rgb(57, 56, 73);
+        color: rgb(241, 241, 241);
+        width: 90px;
+        height: 50px;
+        padding: 0px;
+        margin-left: 5px;
+        margin-bottom: 0px;
+        font-size: 12px;
+        font-weight: bold;
+        transition: 0.2s all ease-in-out;
+    }
+    .guestsIcon:hover {
+        transform: scale(1.05);
+    }
+    
+    .guestsIcon:active {
+        transform: scale(0.9);
+    }
+    
+    .declineButton {
+        margin-left: 20px;
+    }
+    .buttonsPlan{
+        margin-top: 40px;
+        padding-bottom: 10px;
+        display: flex;
+        align-content: flex-end;
+        justify-content: space-between;
+    }
+    .CreatedBy{
+        font-size: 13px;
+        color: white;
+        
+    }
+    .createdByUser{
+        text-decoration: none;
+        background-color: white;
+        border-radius: 4px;
+        padding: 3px 10px 3px 10px;
+        font-weight: bold;
+        color: black;
+    }
+    .infoPlan{
+        width: 60vw;
+        max-width: 600px;
+        background-color: rgba(0, 0, 0, 0.603);
+        border-radius: 8px;
+        margin-left: 30px;
+        margin-right: 30px;
+        min-height: 15vh;
+        padding-bottom: 30px;
+        margin: auto;
+    }
+    /* .description{
+        background-color: rgba(0, 0, 0, 0.603);
+        border-radius: 8px;
+        margin-left: 30px;
+        margin-right: 30px;
+        min-height: 15vh;
+    } */
+    .descriptionTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 1px;
+        font-weight: bold;
+        padding-top: 30px;
+        padding-left: 35px;
+    }
+    .descriptionPlan{
+        color: rgb(219, 219, 219);
+        text-align: left;
+        font-size: 14px;
+        padding-bottom: 8px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 10px;
+    }
+    .mediaLinksTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px;
+        padding-left: 35px;
+        margin-bottom: 10px;
+    }
+    .linkAnchorDiv{
+        display: flex;
+        flex-direction: row;
+        /* padding-left: 35px; */
+    }
+    .linkAnchor{
+        margin-right: 10px;
+        padding-left: 35px;
+    }
+    .linkIcon{
+        width: 7vw;
+        max-width: 72px;
+        transition: all 0.2s ease-in-out;
+    }
+        
+    .linkIcon:hover {
+        transform: scale(1.1);
+    }
+        
+    .linkIcon:active {
+        transform: scale(0.9);
+    }
+    
+    .locationTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
+        padding-top: 35px;
+        padding-left: 35px;
+    }
 }
 
 
