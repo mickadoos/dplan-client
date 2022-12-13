@@ -19,7 +19,10 @@ function EditPlanPage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [latitud, setLatitud] = useState(null);
+  const [longitud, setLongitud] = useState(null);
   const [planImage, setPlanImage] = useState("");
+  const [privacy, setPrivacy] = useState("public");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
@@ -44,6 +47,8 @@ const handleDate = (e) => setDate(e.target.value);
 const handleTime = (e) => setTime(e.target.value);
 const handleLocation = (e) => setLocation(e.target.value);
 const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
+const handlePrivacy = (e) => setPrivacy(e.target.value);
+
 
 const cancelEdit = () => {navigate("/plans/" + planId)};
 const deletePlan = () => {
@@ -81,7 +86,10 @@ const handleEditSubmit = (e) => {
     description, 
     date,
     time,
-    location
+    location,
+    latitud,
+    longitud,
+    privacy
   }
   
   planService
@@ -99,19 +107,27 @@ const handleEditSubmit = (e) => {
 
 //GOOGLE MAPS
     
-const [address, setAddress] = useState("");
-const [coordinates, setCoordinates] = useState({
-lat: null,
-lng: null
+//GOOGLE MAPS
+    
+  const [address, setAddress] = useState("");
+  const [coords, setCoords] = useState({
+  lat: null,
+  lng: null
 })
 
-const handleSelect = async value => {
-const results = await geocodeByAddress(value);
+  const handleSelect = async value => {
+  const results = await geocodeByAddress(value);
 
-const latLng = await getLatLng(results[0])
-console.log(latLng)
-setAddress(value)
-setCoordinates(latLng)
+  const latLng = await getLatLng(results[0])
+  console.log(latLng)
+  setAddress(value)
+  setCoords(latLng)
+  console.log('LAT', latLng.lat)
+  console.log('LNG', latLng.lng)
+  setLatitud(latLng.lat)
+  setLongitud(latLng.lng)
+  // setCoordinates(latLng)
+  // console.log('COORDINATES', coordinates)
 }
 
   return (
@@ -298,6 +314,14 @@ setCoordinates(latLng)
         )}
       </PlacesAutocomplete>
             </div>
+
+            <div>
+          <input type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+          <label htmlFor="public">public</label>
+          <input type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+          <label htmlFor="private">private</label>
+          <p>{plan.privacy}</p>
+          </div>
 
             <button className="btn btn-success" type="submit">Edit Plan</button>
             <br/>

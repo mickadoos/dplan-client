@@ -70,6 +70,13 @@ function PlanPage() {
     // .then(results => {
     //   console.log('promise all', results)
     // })
+
+console.log('HELLO PLAN', plan.accepted)
+
+/*
+
+ */
+
   }, [isLoggedIn, planId, update])
 
   useEffect (() => {
@@ -118,6 +125,7 @@ console.log('RESUL;TS', results)
 }
 
 // let coordinatesAddress = getCoordinatesMaps(plan.location)
+console.log('user', user)
 
   return (
     
@@ -127,7 +135,8 @@ console.log('RESUL;TS', results)
             <h2 className="title">{plan.title}</h2>
             <div className="planDetDateDiv"><img className="calendarlogoPlanDet" src={calendarLogo} alt="Calendar Icon"/><h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6></div>
             <div className="DIV-BUTTONS buttonsPlan">
-          {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
+          {plan.isAdmin !== user.username && !status && (plan.invited?.includes(user._id) || plan.privacy === 'public') && !plan.accepted.includes(user._id) && !plan.declined.includes(user._id) &&
+          <div className="">
                   <button
                     onClick={acceptHandle} type="button"
                     className="btn btn-primary btn-success">

@@ -8,12 +8,14 @@ import planService from "../../services/plan.service";
 
 let allPlans;
 let allPlansUnexpired;
+// let loaded = false;
 
 function PlansPage() {
   const [plans, setPlans] = useState([]);
   const { isLoggedIn, user } = useContext(AuthContext);
   const [reset, setReset] = useState(false);
   var currentTime = new Date();
+
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -92,17 +94,23 @@ function PlansPage() {
         // const updatePlans = async()=> {
         //   const plansUpdated = await setPlans(allPlansUnexpired);
         // }
-        
-        setPlans(allPlansUnexpired);
+         setPlans(allPlansUnexpired);
+        //  loaded = true;
         console.log('** PLANS USE STATE', plans)
+        console.log('** PLANS USE STATE', plans)
+
         // if (results.data.plans.length === 0 && user.username === "moderador") {
         //   planService.getPlans().then((resp) => {
         //     setPlans(resp.data);
         //   });
         // }
   })
+
     }
+
   }, [isLoggedIn, reset]);
+
+  
 
   const adminHandler = () => {
     setPlans(
