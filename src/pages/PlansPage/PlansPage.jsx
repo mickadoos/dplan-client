@@ -8,7 +8,6 @@ import planService from "../../services/plan.service";
 
 let allPlans;
 let allPlansUnexpired;
-// let loaded = false;
 
 function PlansPage() {
   const [plans, setPlans] = useState([]);
@@ -19,91 +18,39 @@ function PlansPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // userService.getUserPlans(user.username)
-      // .then((results) => {
-      //   allPlans = results.data.plans.map((plan) => {
-      //     return plan;
-      //   });
-      //   allPlansUnexpired = allPlans.filter((plan) => {
-      //     let planDate = new Date(plan._id.date);
-      //     return planDate >= currentTime;
-      //   });
-      //   setPlans(allPlansUnexpired);
-      //   if (results.data.plans.length === 0 && user.username === "moderador") {
-      //     planService.getPlans().then((resp) => {
-      //       setPlans(resp.data);
-      //     });
-      //   }
-      // });
-      // planService.getPublicPlans()
-      // .then(results => {
-      //   // console.log('SERVICE GETPUBLIC PLANS DATA :',results.data)
-      // })
-
 
       //PUBLIC PLANS DEV
       const userPlans = userService.getUserPlans(user.username);
       const publicPlans = planService.getPublicPlans();
       Promise.all([userPlans, publicPlans])
       .then(results => {
-    // resp[1].plans.push({"_id": resp[0]._id.toString(), "status":"admin"})
-    // User.findByIdAndUpdate(resp[1]._id, resp[1], {new: true})
-    // .then(results => {
-
-    // })
-
-    // console.log('PROMISE ALL PLANS PAGE', results[0].data)
-        // console.log('PROMISE ALL PLANS PAGE 1', results[1].data)
-
         allPlans = results[0].data.plans.map((plan) => {
-          // console.log('PLAN._ID???', plan._id)
           return plan;
         });
-        console.log('USERS PLANS', allPlans)
-        // let publicPlanObj = {
-        //   _id: "",
-        //   status: "public"
-        // }
+   
         const dbPublicPlans = results[1].data.map(element => {
-          // publicPlanObj._id = element;
-          // console.log('*PUBLIC PLAN OBJ', publicPlanObj)
+     
           return {_id: element, status: "public"};
         });
 
-        console.log('DB PUBLIC PLANS', dbPublicPlans)
 
         const publicPlans = dbPublicPlans.filter(publicPlan => {
           let planExists = false;
           for(let x in allPlans){
-            // console.log('X:', x)
             if(allPlans[x]._id._id === publicPlan._id._id){
-              // console.log('plan exists:', x)
               planExists = true;
             }
           }
           return !planExists;
         });
-        console.log('PUBLIC PLANS', publicPlans)
         allPlans = allPlans.concat(publicPlans);
-        console.log('all plans PROMISE ALL LAST', allPlans)
         allPlansUnexpired = allPlans.filter((plan) => {
           let planDate = new Date(plan._id.date);
           return planDate >= currentTime;
         });
-        console.log('**ALL PLANS UNEXPIRED', allPlansUnexpired)
-        // const updatePlans = async()=> {
-        //   const plansUpdated = await setPlans(allPlansUnexpired);
-        // }
+   
          setPlans(allPlansUnexpired);
-        //  loaded = true;
-        console.log('** PLANS USE STATE', plans)
-        console.log('** PLANS USE STATE', plans)
-
-        // if (results.data.plans.length === 0 && user.username === "moderador") {
-        //   planService.getPlans().then((resp) => {
-        //     setPlans(resp.data);
-        //   });
-        // }
+ 
   })
 
     }

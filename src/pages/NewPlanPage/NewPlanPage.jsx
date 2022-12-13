@@ -22,7 +22,6 @@ function NewPlanPage() {
   const [location, setLocation] = useState("");
   const [latitud, setLatitud] = useState(null);
   const [longitud, setLongitud] = useState(null);
-  // const [coordinates, setCoordinates] = useState({lat: null, lng: null});
   const [musicList, setMusicList] = useState("");
   const [photoCloud, setPhotoCloud] = useState("");
   const [interestingLinks, setInterestingLinks] = useState("");
@@ -57,7 +56,6 @@ function NewPlanPage() {
     uploadData.append('location', location)
     uploadData.append('latitud', latitud)
     uploadData.append('longitud', longitud)
-    // uploadData.append('coordinates', coordinates)
     uploadData.append('musicList', musicList)
     uploadData.append('photoCloud', photoCloud)
     uploadData.append('interestingLinks', interestingLinks)
@@ -89,15 +87,10 @@ function NewPlanPage() {
   const results = await geocodeByAddress(value);
 
   const latLng = await getLatLng(results[0])
-  console.log(latLng)
   setAddress(value)
   setCoords(latLng)
-  console.log('LAT', latLng.lat)
-  console.log('LNG', latLng.lng)
   setLatitud(latLng.lat)
   setLongitud(latLng.lng)
-  // setCoordinates(latLng)
-  // console.log('COORDINATES', coordinates)
 }
 
   

@@ -54,28 +54,7 @@ function PlanPage() {
     planService.getPlan(planId)
     .then(response => {
         setPlan(response.data);
-    //     return getCoordinatesMaps(plan.location)
-    // })
-    // .then(response => {
-    //   console.log('RTESPNOEN', response)
     })
-    // const getPlan = planService.getPlan(planId)
-    // .then(response => {
-    //     setPlan(response.data);
-    // })
-  //   const coordinatesAddress = getCoordinatesMaps(plan.location)
-  // const results = geocodeByAddress(plan.location);
-
-    // Promise.all([getPlan, coordinatesAddress, results])
-    // .then(results => {
-    //   console.log('promise all', results)
-    // })
-
-console.log('HELLO PLAN', plan.accepted)
-
-/*
-
- */
 
   }, [isLoggedIn, planId, update])
 
@@ -114,18 +93,12 @@ const planPhoto = {
 
 // DISPLAY MAP
 const getCoordinatesMaps = async (value) => {
-  console.log('HELLO')
   const results = await geocodeByAddress(value);
-console.log('RESUL;TS', results)
   const latLng = await getLatLng(results[0])
-  console.log('lat and long address',latLng)
-  // setAddress(value)
-  // setCoordinates(latLng)
+
   return latLng;
 }
 
-// let coordinatesAddress = getCoordinatesMaps(plan.location)
-console.log('user', user)
 
   return (
     

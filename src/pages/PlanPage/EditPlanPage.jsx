@@ -104,8 +104,6 @@ const handleEditSubmit = (e) => {
 
 }
 
-
-//GOOGLE MAPS
     
 //GOOGLE MAPS
     
@@ -119,15 +117,11 @@ const handleEditSubmit = (e) => {
   const results = await geocodeByAddress(value);
 
   const latLng = await getLatLng(results[0])
-  console.log(latLng)
   setAddress(value)
   setCoords(latLng)
-  console.log('LAT', latLng.lat)
-  console.log('LNG', latLng.lng)
   setLatitud(latLng.lat)
   setLongitud(latLng.lng)
-  // setCoordinates(latLng)
-  // console.log('COORDINATES', coordinates)
+
 }
 
   return (
@@ -263,15 +257,6 @@ const handleEditSubmit = (e) => {
               <label htmlFor="locationLabel" className="titlePlan">
                 Location:{" "}
               </label>
-              {/* <input
-                type="text"
-                name="location"
-                value={location}
-                onChange={handleLocation}
-                className="location"
-                id="formGroupExampleInput"
-                placeholder={plan.location}
-              /> */}
 
 <PlacesAutocomplete
         value={address}
@@ -341,10 +326,6 @@ const handleEditSubmit = (e) => {
             </button>
           </form>
         </div>
-
-        {/* <div className="card-footer text-muted">
-                {plan.pricePerDay} €/day
-            </div> */}
 
         {/* modal */}
       </div>
