@@ -27,7 +27,13 @@ class PlanService {
 
   //GET PLANS
   getPlans() {
+
     return this.api.get('/')
+  }
+
+  //GET PUBLIC PLANS
+  getPublicPlans() {
+    return this.api.get('/plans')
   }
 
   // GET PLAN BY ID

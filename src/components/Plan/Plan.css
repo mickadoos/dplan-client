@@ -19,6 +19,9 @@
 .targetaBgndAdmin{
     background-image: url("../../assets/planAdmin.png");
 }
+.targetaBgndPublic{
+    background-image: url("../../assets/planPublic.png");
+}
 
 /* Background colors V2 */
 .targetaBgndConfirmedV2{

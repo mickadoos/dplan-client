@@ -26,22 +26,43 @@ function PlansPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      userService.getUserPlans(user.username).then((results) => {
-        allPlans = results.data.plans.map((plan) => {
+
+      //PUBLIC PLANS DEV
+      const userPlans = userService.getUserPlans(user.username);
+      const publicPlans = planService.getPublicPlans();
+      Promise.all([userPlans, publicPlans])
+      .then(results => {
+        allPlans = results[0].data.plans.map((plan) => {
           return plan;
         });
+   
+        const dbPublicPlans = results[1].data.map(element => {
+     
+          return {_id: element, status: "public"};
+        });
+
+
+        const publicPlans = dbPublicPlans.filter(publicPlan => {
+          let planExists = false;
+          for(let x in allPlans){
+            if(allPlans[x]._id._id === publicPlan._id._id){
+              planExists = true;
+            }
+          }
+          return !planExists;
+        });
+        allPlans = allPlans.concat(publicPlans);
         allPlansUnexpired = allPlans.filter((plan) => {
           let planDate = new Date(plan._id.date);
           return planDate >= currentTime;
         });
-        setPlans(allPlansUnexpired);
-        if (results.data.plans.length === 0 && user.username === "moderador") {
-          planService.getPlans().then((resp) => {
-            setPlans(resp.data);
-          });
-        }
-      });
+   
+         setPlans(allPlansUnexpired);
+ 
+  })
+
     }
+
   }, [isLoggedIn, reset]);
 
   useEffect(() => {

@@ -11,6 +11,13 @@ import linkIcon from "../../assets/linkIcon.png";
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
 import AlertModal from "../../components/Alerts/AlertModal";
+import locationIcon from "../../assets/location-marker-icon.png"
+// Google Maps Places Autcomplete import
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
+import NewPlanMap from "../../components/Maps/NewPlanMap";
 
 let guestsSearch;
 
@@ -227,6 +234,15 @@ function PlanPage() {
     setAlertMsg(null);
   };
 
+// DISPLAY MAP
+const getCoordinatesMaps = async (value) => {
+  const results = await geocodeByAddress(value);
+  const latLng = await getLatLng(results[0])
+
+  return latLng;
+}
+
+
   return (
       <div className="planGenDiv">
       {alertMsg && (
@@ -242,7 +258,8 @@ function PlanPage() {
             <h2 className="title">{plan.title}</h2>
             <div className="planDetDateDiv"><img className="calendarlogoPlanDet" src={calendarLogo} alt="Calendar Icon"/><h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6></div>
             <div className="DIV-BUTTONS buttonsPlan">
-          {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
+          {plan.isAdmin !== user.username && !status && (plan.invited?.includes(user._id) || plan.privacy === 'public') && !plan.accepted.includes(user._id) && !plan.declined.includes(user._id) &&
+          <div className="">
                   <button
                     onClick={acceptHandle}
                     type="button"
@@ -346,11 +363,16 @@ function PlanPage() {
           />
           })}
           
-        </div>              
+        </div>   
+        <div>      
+              <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><img className="locationIconPlan" src={locationIcon} alt="Location Icon"/> {plan.location}</a></p>
+              <p>{plan.coordinates}</p>
+            </div>    
+            <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>
+                     
         </div>
 
       </div>
-      {/* </div> */}
 
       {!showPoll && plan.isAdmin === user.username &&  <button onClick={showPollHandler}>Add Poll</button>}
 
