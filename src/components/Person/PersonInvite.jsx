@@ -9,7 +9,7 @@ function PersonInvite({friend, updatePeople}) {
     const inviteHandle = ()=>{
         planService.inviteGuestsFriends(planId, _id)
         .then (resp => {
-            updatePeople (Math.random()*1000)
+            updatePeople (Math.random()*1000, username)
           })
     }
 

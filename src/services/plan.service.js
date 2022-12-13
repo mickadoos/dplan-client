@@ -27,7 +27,13 @@ class PlanService {
 
   //GET PLANS
   getPlans() {
+
     return this.api.get('/')
+  }
+
+  //GET PUBLIC PLANS
+  getPublicPlans() {
+    return this.api.get('/plans')
   }
 
   // GET PLAN BY ID
@@ -64,6 +70,14 @@ class PlanService {
 
   inviteGuestsFriends(planId, idPerson){
     return this.api.post('/' + planId + '/' + idPerson +'/invite')
+  }
+
+  addPoll(planId, poll){
+    return this.api.post('/' + planId + '/addPoll', poll)
+  }
+
+  addVote(planId, poll){
+    return this.api.post('/' + planId + '/addVote', poll)
   }
 }
 

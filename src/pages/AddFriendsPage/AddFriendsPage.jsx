@@ -5,6 +5,7 @@ import userService from "../../services/user.service.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PersonAddFriends from "../../components/Person/PersonAddFriends";
+import AlertModal from "../../components/Alerts/AlertModal";
 
 let friendsSearch;
 
@@ -14,7 +15,14 @@ function AddFriendsPage() {
   const [addFriends, setAddFriends] = useState([])
   const [update, setUpdate] = useState(0)
 
-    const updatePeople = (num) => {
+  const [AlertMsg, setAlertMsg] = useState(null);
+
+
+    const updatePeople = (num, username) => {
+      setAlertMsg({
+        title: `Friend request successfully sent!`,
+        message: `${username} will now receive your friend request!`,
+      })
       setUpdate(num)
     }
 
@@ -37,7 +45,10 @@ function AddFriendsPage() {
       }))
     }
 
-
+    const errorHandler = () => {
+      setAlertMsg(null);
+    };
+    
   return (
 
     <div className="addFriendsDiv">
@@ -55,6 +66,13 @@ function AddFriendsPage() {
   }
             })}  
       </div>
+      {AlertMsg && (
+        <AlertModal
+          title={AlertMsg.title}
+          message={AlertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
     </div>
   );
 }

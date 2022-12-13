@@ -1,5 +1,5 @@
 import "./SignupPage.css";
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
@@ -70,6 +70,10 @@ function SignupPage() {
         setErrorMessage(errorDescription);
       });
   };
+
+  const errorMessageClick = () => {
+    setErrorMessage(null)
+  }
 
   return (
     <div className="SignupPage">
@@ -142,7 +146,7 @@ function SignupPage() {
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
         {errorMessage}
-        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" onClick={errorMessageClick} className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
 

@@ -6,6 +6,12 @@ import spotifyIcon from "../../assets/spotifyIcon.png";
 import picsIcon from "../../assets/picsIcon.png"
 import linkIcon from "../../assets/linkIcon.png"
 import locationIcon from "../../assets/locationIcon.webp"
+// Google Maps Places Autcomplete import
+import React from 'react';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 function EditPlanPage() {
@@ -17,10 +23,13 @@ function EditPlanPage() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [latitud, setLatitud] = useState(null);
+  const [longitud, setLongitud] = useState(null);
   const [planImage, setPlanImage] = useState("");
   const [musicList, setMusicList] = useState("");
   const [photoCloud, setPhotoCloud] = useState("");
   const [interestingLinks, setInterestingLinks] = useState("");
+  const [privacy, setPrivacy] = useState("public");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
@@ -35,6 +44,8 @@ function EditPlanPage() {
         setDate(response.data.date)
         setTime(response.data.time)
         setLocation(response.data.location)
+        setLatitud(response.data.latitud)
+        setLongitud(response.data.longitud)
         setMusicList(response.data.musicList);
         setPhotoCloud(response.data.photoCloud);
         setInterestingLinks(response.data.interestingLinks);
@@ -51,6 +62,8 @@ const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
 const handleMusicList = (e) => setMusicList(e.target.value);
 const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
 const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
+const handlePrivacy = (e) => setPrivacy(e.target.value);
+
 
 const cancelEdit = () => {navigate("/plans/" + planId)};
 const deletePlan = () => {
@@ -91,13 +104,21 @@ const handleEditSubmit = (e) => {
     location,
     musicList,
     photoCloud,
-    interestingLinks
+    interestingLinks,
+    latitud,
+    longitud,
+    privacy
   }
   
   planService
   .editPlan(planId, planBody)
   .then((response) => {
-    navigate("/plans/" + planId)
+    navigate("/plans/" + planId, {
+      state: {
+        title: "Plan edited successfully!",
+        message: `The plan: ${title} has been edited!`
+      }
+    })
   })
   .catch((error) => {
     const errorDescription = error.response.data.message;
@@ -106,6 +127,25 @@ const handleEditSubmit = (e) => {
 
 }
 
+    
+//GOOGLE MAPS
+    
+  const [address, setAddress] = useState("");
+  const [coords, setCoords] = useState({
+  lat: null,
+  lng: null
+})
+
+  const handleSelect = async value => {
+  const results = await geocodeByAddress(value);
+
+  const latLng = await getLatLng(results[0])
+  setAddress(value)
+  setCoords(latLng)
+  setLatitud(latLng.lat)
+  setLongitud(latLng.lng)
+
+}
 
   return (
     <div className="editPlanDiv">
@@ -201,12 +241,12 @@ const handleEditSubmit = (e) => {
                 value={description}
                 onChange={handleDescription}
                 className="planDescription"
-                id="formGroupExampleInput"
+                id="descriptionLabel"
                 placeholder={plan.description}
               />
             </div>
             <div className="gen dateDiv">
-              <label htmlFor="formGroupExampleInput" className="titlePlan">
+              <label htmlFor="dateLabel" className="titlePlan">
                 Date & Time:{" "}
               </label><br/>
               <input
@@ -217,7 +257,7 @@ const handleEditSubmit = (e) => {
                 value={date}
                 onChange={handleDate}
                 className="date"
-                id="formGroupExampleInput"
+                id="dateLabel"
                 placeholder={plan.date}
                 required
               />
@@ -232,23 +272,56 @@ const handleEditSubmit = (e) => {
                 value={time}
                 onChange={handleTime}
                 className="date"
-                id="formGroupExampleInput"
                 placeholder={plan.time}
                 required
               />
             </div>
             <div className="gen locationDiv">
-              <img src={locationIcon} alt="location icon" className="iconPng"/>
-              <input
-                type="text"
-                name="location"
-                value={location}
-                onChange={handleLocation}
-                className="location"
-                id="formGroupExampleInput"
-                placeholder={plan.location}
-              />
+            <img src={locationIcon} alt="location icon" className="iconPng"/>
+
+<PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div 
+          key={suggestions.description}
+          >
+            <input
+              {...getInputProps({
+                className: 'location-search-input',
+              })}
+              className='location' placeholder={plan.location} name="location" onSelect={handleLocation} id="locationLabel"
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => {
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: 'lightblue', cursor: 'pointer' }
+                  : { backgroundColor: 'white', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
+                );
+              })}
             </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+            </div>
+
+          
             <br></br>
             <div className="gen linksDiv">
               <img src={spotifyIcon} alt="music icon" className="iconPng"/>
@@ -262,6 +335,14 @@ const handleEditSubmit = (e) => {
               <img src={linkIcon} alt="link icon" className="iconPng"/>
               <input type="text" className="location" name="interestingLinks" placeholder={plan.interestingLinks} onChange={handleInterestingLinks}/>
             </div>
+            <div>
+          <input type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+          <label htmlFor="public">public</label>
+          <input type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+          <label htmlFor="private">private</label>
+          <p>{plan.privacy}</p>
+          </div>
+
             <div className="twoButs">
               <button className="btn btn-primary but" type="submit">Edit Plan</button>
               <br/>
@@ -282,10 +363,6 @@ const handleEditSubmit = (e) => {
             </button>
           </form>
         </div>
-
-        {/* <div className="card-footer text-muted">
-                {plan.pricePerDay} €/day
-            </div> */}
 
         {/* modal */}
       </div>

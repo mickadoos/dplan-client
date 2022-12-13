@@ -1,10 +1,12 @@
 import "./PlansPage.css";
 import { useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import userService from "../../services/user.service";
 import Plan from "../../components/Plan/Plan";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
+import AlertModal from "../../components/Alerts/AlertModal";
 
 let allPlans;
 let allPlansUnexpired;
@@ -15,25 +17,62 @@ function PlansPage() {
   const [reset, setReset] = useState(false);
   var currentTime = new Date();
 
+  const [AlertMsg, setAlertMsg] = useState(null);
+  const location = useLocation();
+
+  let titleFromEvent = location.state?.title
+  let messageFromEvent = location.state?.message
+  console.log("titleFromEvent: ", titleFromEvent)
+
   useEffect(() => {
     if (isLoggedIn) {
-      userService.getUserPlans(user.username).then((results) => {
-        allPlans = results.data.plans.map((plan) => {
+
+      //PUBLIC PLANS DEV
+      const userPlans = userService.getUserPlans(user.username);
+      const publicPlans = planService.getPublicPlans();
+      Promise.all([userPlans, publicPlans])
+      .then(results => {
+        allPlans = results[0].data.plans.map((plan) => {
           return plan;
         });
+   
+        const dbPublicPlans = results[1].data.map(element => {
+     
+          return {_id: element, status: "public"};
+        });
+
+
+        const publicPlans = dbPublicPlans.filter(publicPlan => {
+          let planExists = false;
+          for(let x in allPlans){
+            if(allPlans[x]._id._id === publicPlan._id._id){
+              planExists = true;
+            }
+          }
+          return !planExists;
+        });
+        allPlans = allPlans.concat(publicPlans);
         allPlansUnexpired = allPlans.filter((plan) => {
           let planDate = new Date(plan._id.date);
           return planDate >= currentTime;
         });
-        setPlans(allPlansUnexpired);
-        if (results.data.plans.length === 0 && user.username === "moderador") {
-          planService.getPlans().then((resp) => {
-            setPlans(resp.data);
-          });
-        }
-      });
+   
+         setPlans(allPlansUnexpired);
+ 
+  })
+
     }
+
   }, [isLoggedIn, reset]);
+
+  useEffect(() => {
+    if (titleFromEvent){
+      setAlertMsg({
+        title: titleFromEvent,
+        message: messageFromEvent
+      })
+    }
+  }, [])
 
   const adminHandler = () => {
     setPlans(
@@ -84,6 +123,10 @@ function PlansPage() {
     setReset(!reset);
   };
 
+  const errorHandler = () => {
+    setAlertMsg(null);
+  };
+
   return (
     <div className="plansDiv">
       <h1>{user.username} Plans</h1>
@@ -101,22 +144,57 @@ function PlansPage() {
           All Plans
         </button>
         <button className="butGen btn btn-primary" onClick={confirmedHandler}>
-          Confirmed
+          Confirmed (
+          {
+            allPlans?.filter((pla) => {
+              let plaDate = new Date(pla._id.date);
+              return pla.status === "confirmed" && plaDate > currentTime;
+            }).length
+          }
+          )
         </button>
         <button className="butGen btn btn-secondary" onClick={declinedHandler}>
-          Declined
+          Declined (
+          {
+            allPlans?.filter((pla) => {
+              let plaDate = new Date(pla._id.date);
+              return pla.status === "declined" && plaDate > currentTime;
+            }).length
+          }
+          )
         </button>
         <button className="butGen btn btn-light" onClick={pendingHandler}>
-          Pending
+          Pending (
+          {
+            allPlans?.filter((pla) => {
+              let plaDate = new Date(pla._id.date);
+              return pla.status === "pending" && plaDate > currentTime;
+            }).length
+          }
+          )
         </button>
         <button className="butGen btn btn-danger" onClick={expiredHandler}>
-          Expired
+          Expired (
+          {
+            allPlans?.filter((pla) => {
+              let plaDate = new Date(pla._id.date);
+              return plaDate < currentTime;
+            }).length
+          }
+          )
         </button>
         <button
           className="butGen myPlansBut btn btn-warning"
           onClick={adminHandler}
         >
-          My Plans
+          My Plans (
+          {
+            allPlans?.filter((pla) => {
+              let plaDate = new Date(pla._id.date);
+              return pla.status === "admin" && plaDate > currentTime;
+            }).length
+          }
+          )
         </button>
       </div>
       <div className="row justify-content-center">
@@ -127,6 +205,13 @@ function PlansPage() {
           ))}
       </div>
       {plans.length <= 0 && <h5 className="noPlans">You don't have plans</h5>}
+      {AlertMsg && (
+        <AlertModal
+          title={AlertMsg.title}
+          message={AlertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
     </div>
   );
 }

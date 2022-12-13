@@ -79,6 +79,6 @@ Any doubts? Contact us!
 </br>
 <a href="https://www.linkedin.com/in/josepbp/">Josep</a>
 <a href="https://www.linkedin.com/in/eloipampliegajose/">Eloi</a>
-<a href="https://www.linkedin.com/in//">Yabel</a>
+<a href=" http://www.linkedin.com/in/yabel-rodriguez">Yabel</a>
 
 

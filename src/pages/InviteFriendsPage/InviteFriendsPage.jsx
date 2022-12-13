@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/auth.context";
 import { useParams } from "react-router-dom";
 import userService from "../../services/user.service.js"
 import PersonInvite from "../../components/Person/PersonInvite";
+import AlertModal from "../../components/Alerts/AlertModal";
 
 function InviteFriendsPage() {
 
@@ -12,7 +13,13 @@ function InviteFriendsPage() {
   const [friends, setFriends] = useState([]);
   const [update, setUpdate] = useState(0)
 
-  const updatePeople = (num) => {
+  const [AlertMsg, setAlertMsg] = useState(null);
+
+  const updatePeople = (num, username) => {
+    setAlertMsg({
+      title: `Invitation successfully sent to ${username}`,
+      message: `${username} will now have an invitation to this plan!`,
+    })
     setUpdate(num)
   }
 
@@ -34,6 +41,10 @@ function InviteFriendsPage() {
     }   
   },[isLoggedIn, update])
 
+  const errorHandler = () => {
+    setAlertMsg(null);
+  };
+
   return (
     <div className="inviteFriendsDiv">
       <h1>Invite People</h1>
@@ -43,7 +54,13 @@ function InviteFriendsPage() {
                 return <PersonInvite friend={friend} updatePeople={updatePeople} key={friend._id}/>
             })} 
       </div>
-       
+      {AlertMsg && (
+        <AlertModal
+          title={AlertMsg.title}
+          message={AlertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
     </div>
   );
 }
