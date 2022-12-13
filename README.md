@@ -75,10 +75,10 @@ $ npm start
 
 Any doubts? Contact us!
 <br>
-<img width="20px" src="https://simpleicons.now.sh/linkedin/495f7e" alt="LinkedIn" />
+<img width="20px" src="https://simpleicons.now.sh/linkedin/495f7e" alt="LinkedIn" /> <a href="https://www.linkedin.com/in/josepbp/">Josep</a>
 </br>
-<a href="https://www.linkedin.com/in/josepbp/">Josep</a>
-<a href="https://www.linkedin.com/in/eloipampliegajose/">Eloi</a>
-<a href=" http://www.linkedin.com/in/yabel-rodriguez">Yabel</a>
+<img width="20px" src="https://simpleicons.now.sh/linkedin/495f7e" alt="LinkedIn" /> <a href="https://www.linkedin.com/in/eloipampliegajose/">Eloi</a>
+</br>
+<img width="20px" src="https://simpleicons.now.sh/linkedin/495f7e" alt="LinkedIn" /> <a href="http://www.linkedin.com/in/yabel-rodriguez">Yabel</a>
 
 
