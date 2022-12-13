@@ -336,7 +336,7 @@ function PlanPage() {
           {polls && polls.map(poll => {
             return <LeafPoll
             key={poll._id}
-            type="binary"
+            type="multiple"
             // className="poll"
             question={poll.pollQuestion}
             results={poll.pollAnswers}
