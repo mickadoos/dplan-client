@@ -8,6 +8,7 @@ import picsIcon from "../../assets/picsIcon.png"
 import linkIcon from "../../assets/linkIcon.png"
 import locationIcon from "../../assets/locationIcon.webp"
 
+
 function NewPlanPage() {
 
   const { user } = useContext(AuthContext);
@@ -20,7 +21,6 @@ function NewPlanPage() {
   const [musicList, setMusicList] = useState("");
   const [photoCloud, setPhotoCloud] = useState("");
   const [interestingLinks, setInterestingLinks] = useState("");
-  // const [tags, setTags] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
