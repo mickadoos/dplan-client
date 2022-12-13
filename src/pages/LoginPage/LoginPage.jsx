@@ -46,6 +46,10 @@ function LoginPage() {
       });
   };
 
+  const errorMessageClick = () => {
+    setErrorMessage(null)
+  }
+  
   return (
     <div className="LoginPage">
     <img className="DPlanLogo" src={logo} alt="DPlan logo"></img>
@@ -68,17 +72,17 @@ function LoginPage() {
   </div>
 
  
-  {/* <!-- Submit button --> */}
+        {/* <!-- Submit button --> */}
   <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
 
-</form>
+      </form>
 
 
 
       {errorMessage && 
         <div className="alert alert-danger alert-dismissible fade show" role="alert">
-        {errorMessage}
-        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          {errorMessage}
+        <button type="button" onClick={errorMessageClick} className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       }
       <p>Don't have an account yet?</p>

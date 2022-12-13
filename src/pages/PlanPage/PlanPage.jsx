@@ -1,113 +1,241 @@
 import "./PlanPage.css";
-import { useEffect, useState, useContext, React} from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useEffect, useState, useContext, React } from "react";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import planService from "../../services/plan.service";
 import calendarLogo from "../../assets/calendar-icon.png";
 import spotifyIcon from "../../assets/spotifyIcon.png";
-import picsIcon from "../../assets/picsIcon.png"
-import linkIcon from "../../assets/linkIcon.png"
+import picsIcon from "../../assets/picsIcon.png";
+import linkIcon from "../../assets/linkIcon.png";
 
-let guestsSearch
+import { LeafPoll, Result } from "react-leaf-polls";
+import "react-leaf-polls/dist/index.css";
+import AlertModal from "../../components/Alerts/AlertModal";
+
+let guestsSearch;
 
 function PlanPage() {
-  const {isLoggedIn, user } = useContext(AuthContext);
-  const {planId} = useParams();
+  const { isLoggedIn, user } = useContext(AuthContext);
+  const { planId } = useParams();
   const [plan, setPlan] = useState({});
-  const [update, setUpdate] = useState(0)
-  const [status, setStatus] = useState(false)
+  const [update, setUpdate] = useState(0);
+  const [status, setStatus] = useState(false);
+
+  const [showPoll, setShowPoll] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState("");
+  const [pollAnswers, setPollAnswers] = useState([]);
+
+  const [polls, setPolls] = useState([])
 
   const [guests, setGuests] = useState();
 
+  const [alertMsg, setAlertMsg] = useState(null);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const updatePlan = (num) => {
-    setUpdate(num)
-  }
+    setUpdate(num);
+  };
+
+  let titleFromEvent = location.state?.title
+  let messageFromEvent = location.state?.message
 
   const acceptHandle = () => {
-    planService.acceptPlan(planId, user.username)
-    .then(resp => {
-        setStatus (true)
-        updatePlan(Math.random()*1000)  
-    })
-  }
+    planService.acceptPlan(planId, user.username).then((resp) => {
+      setStatus(true);
+      setAlertMsg({
+        title: "Accepted!",
+        message: "You have accepted the plan!",
+      })
+      updatePlan(Math.random() * 1000);
+    });
+  };
 
   const declineHandle = () => {
-    planService.declinePlan(planId, user.username)
-    .then(resp => {
-        setStatus (true)
-        updatePlan(Math.random()*1000)
-    })
-  }
+    planService.declinePlan(planId, user.username).then((resp) => {
+      setStatus(true);
+      setAlertMsg({
+        title: "Declined!",
+        message: "You have declined the plan!",
+      })
+      updatePlan(Math.random() * 1000);
+    });
+  };
 
+  useEffect(() => {
+    planService.getPlan(planId).then((response) => {
+      setPlan(response.data);
+      setPolls(response.data.polls)
+      // console.log(response.data.polls);
+    });
+  }, [isLoggedIn, planId, update]);
 
-  useEffect(()=>{
-    planService.getPlan(planId)
-    .then(response => {
-        setPlan(response.data);
-        console.log(response.data)
-    })
+  useEffect(() => {
+    if (isLoggedIn) {
+      planService.getGuests(planId).then((resp) => {
+        guestsSearch = [];
+        if (resp.data.invited.length > 0) {
+          resp.data.invited.map((guest) => {
+            return guestsSearch.push(guest);
+          });
+        }
+        if (resp.data.accepted.length > 0) {
+          resp.data.accepted.map((guest1) => {
+            return guestsSearch.push(guest1);
+          });
+        }
+        if (resp.data.declined.length > 0) {
+          resp.data.declined.map((guest2) => {
+            return guestsSearch.push(guest2);
+          });
+        }
+        setGuests(guestsSearch);
+      });
+    }
+  }, [isLoggedIn, planId, update]);
 
-}, [isLoggedIn, planId, update])
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     planService.getGuests(planId).then((resp) => {
+  //       guestsSearch = [];
+  //       if (resp.data.invited.length > 0) {
+  //         resp.data.invited.map((guest) => {
+  //           return guestsSearch.push(guest);
+  //         });
+  //       }
+  //       if (resp.data.accepted.length > 0) {
+  //         resp.data.accepted.map((guest1) => {
+  //           return guestsSearch.push(guest1);
+  //         });
+  //       }
+  //       if (resp.data.declined.length > 0) {
+  //         resp.data.declined.map((guest2) => {
+  //           return guestsSearch.push(guest2);
+  //         });
+  //       }
+  //       setGuests(guestsSearch);
+  //     });
+  //   }
+  // }, [isLoggedIn, planId, update]);
 
-  useEffect (() => {
-    if(isLoggedIn){
-      planService.getGuests(planId)
-      .then (resp => {
-        guestsSearch = []
-        if(resp.data.invited.length > 0){
-          resp.data.invited.map(guest => {
-            return guestsSearch.push(guest)
-          })}
-        if(resp.data.accepted.length > 0){
-          resp.data.accepted.map(guest1 => {
-            return guestsSearch.push(guest1)
-          })}
-        if(resp.data.declined.length > 0){
-          resp.data.declined.map(guest2 => {
-            return guestsSearch.push(guest2)
-          })}
-        setGuests(guestsSearch)
-      })}
-    
-  },[isLoggedIn, planId, update])
+  useEffect(() => {
+    if (titleFromEvent){
+      setAlertMsg({
+        title: titleFromEvent,
+        message: messageFromEvent
+      })
+    }
+  }, [])
 
-  useEffect (() => {
-    if(isLoggedIn){
-      planService.getGuests(planId)
-      .then (resp => {
-        guestsSearch = []
-        if(resp.data.invited.length > 0){
-          resp.data.invited.map(guest => {
-            return guestsSearch.push(guest)
-          })}
-        if(resp.data.accepted.length > 0){
-          resp.data.accepted.map(guest1 => {
-            return guestsSearch.push(guest1)
-          })}
-        if(resp.data.declined.length > 0){
-          resp.data.declined.map(guest2 => {
-            return guestsSearch.push(guest2)
-          })}
-        setGuests(guestsSearch)
-      })}
-    
-  },[isLoggedIn, planId, update])
+  const handleEdit = (e) => navigate("/plans/" + planId + "/edit");
 
-const handleEdit = (e) => navigate('/plans/' + planId + '/edit');
-
-const planPhoto = {
+  const planPhoto = {
     backgroundImage: `url(${plan.planImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     height: "50vh",
     // borderRadius: "10px"
-};
+  };
+
+  const showPollHandler = () => {
+    setShowPoll(true);
+  };
+  const cancelPollHandler = () => {
+    setPollQuestion("");
+    setShowPoll(false);
+  };
+
+  const handlePollQuestion = (e) => {
+    if (e.target.value.trim().length !== 0) {
+      setPollQuestion(e.target.value);
+    }
+  };
+
+  const handlePollAnswers = (e) => {
+    if (e.target.value.trim().length !== 0) {
+      // if (
+      //   pollAnswers.some(
+      //     (obj) =>
+      //       obj.pollAnswer1 === e.target.value &&
+      //       obj.pollAnswer2 !== e.target.value
+      //   )
+      // ) {
+      //     setPollAnswers([
+      //       {
+      //         [e.target.name]: e.target.value,
+      //         votes: 0,
+      //       },
+      //     ]);
+      //   } else {
+      setPollAnswers([
+        ...pollAnswers,
+        {
+          text: e.target.value,
+          votes: 0,
+        },
+      ]);
+    }
+
+    // console.log(pollAnswers);
+  };
+
+  const addPollHandler = (e) => {
+    e.preventDefault();
+
+    const pollInfo = {
+      pollQuestion,
+      pollAnswers,
+    };
+    // console.log("pollInfo", pollInfo);
+
+    planService
+      .addPoll(planId, pollInfo)
+      .then((resp) => {
+        // console.log(resp.data);
+        setPollQuestion("");
+        setPollAnswers([]);
+        setShowPoll(false);
+        setUpdate(Math.random())
+      })
+      .catch((err) => {
+        // console.log("Error addPoll service: ", err);
+      });
+  };
+
+  //MANAGE POLL:
+  // Persistent data array (typically fetched from the server)
+  //data from polls
+
+  // Object keys may vary on the poll type (see the 'Theme options' table below)
+  const themeData = {
+    textColor: '#19181f',
+    mainColor: '#00B87B',
+    backgroundColor: 'white',
+    alignment: 'center',
+    leftColor: '#00B87B',
+    rightColor: '#FF2E00'
+  }
+
+  const vote = (item: Result, results: Result[]) => {
+    planService.addVote(planId, item)
+    // console.log('voted', item, results)
+  }
+
+  const errorHandler = () => {
+    setAlertMsg(null);
+  };
 
   return (
       <div className="planGenDiv">
+      {alertMsg && (
+        <AlertModal
+          title={alertMsg.title}
+          message={alertMsg.message}
+          onErrorClick={errorHandler}
+        />
+      )}
       <div className="planDiv">
         <div className="headPlan" style = {planPhoto}>
           <div className="titleBgnd">
@@ -116,32 +244,75 @@ const planPhoto = {
             <div className="DIV-BUTTONS buttonsPlan">
           {plan.isAdmin !== user.username && !status && plan.invited?.includes(user._id) && <div className="">
                   <button
-                    onClick={acceptHandle} type="button"
-                    className="btn btn-primary btn-success">
+                    onClick={acceptHandle}
+                    type="button"
+                    className="btn btn-primary btn-success"
+                  >
                     Confirm
                   </button>
                   <button
-                    onClick={declineHandle} type="button"
-                    className="btn btn-primary btn-danger declineButton">
+                    onClick={declineHandle}
+                    type="button"
+                    className="btn btn-primary btn-danger declineButton"
+                  >
                     Decline
                   </button>
-            </div>}
-            { (plan.isAdmin === user.username || user.username === "moderador") &&  <div>
-              <button type="button" className="btn btn-secondary editPlanBut" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleEdit}>
-                Edit this plan
-              </button>
-            </div>}
+                </div>
+              }
+            {(plan.isAdmin === user.username ||
+              user.username === "moderador") && (
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-secondary editPlanBut"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={handleEdit}
+                >
+                  Edit this plan
+                </button>
+              </div>
+            )}
           </div>
-          <p className="CreatedBy">Created by: <Link className="createdByUser" to={`/${plan.isAdmin}/profile`}>{plan.isAdmin === user.username? "Me" : plan.isAdmin}</Link></p>
-          </div>
-          <div className="DIV-GUESTSICON guestsPosition">
-          {guests?.length > 0 && <img className="guestsGlimpse" src={guests[0].profileImage} alt="guest profImg"/>}
-          {guests?.length > 1 && <img className="guestsGlimpse" src={guests[1].profileImage} alt="guest profImg"/>}
-          {guests?.length > 2 && <img className="guestsGlimpse" src={guests[2].profileImage} alt="guest profImg"/>}
-          {/* <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link> */}
-          <Link to={"/plans/"+planId+"/guests"}><button className="btn guestsIcon">Guests<br/>page</button></Link>
-          </div>
+          <p className="CreatedBy">
+            Created by:{" "}
+            <Link className="createdByUser" to={`/${plan.isAdmin}/profile`}>
+              {plan.isAdmin === user.username ? "Me" : plan.isAdmin}
+            </Link>
+          </p>
         </div>
+        <div className="DIV-GUESTSICON guestsPosition">
+          {guests?.length > 0 && (
+            <img
+              className="guestsGlimpse"
+              src={guests[0].profileImage}
+              alt="guest profImg"
+            />
+          )}
+          {guests?.length > 1 && (
+            <img
+              className="guestsGlimpse"
+              src={guests[1].profileImage}
+              alt="guest profImg"
+            />
+          )}
+          {guests?.length > 2 && (
+            <img
+              className="guestsGlimpse"
+              src={guests[2].profileImage}
+              alt="guest profImg"
+            />
+          )}
+          {/* <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link> */}
+          <Link to={"/plans/" + planId + "/guests"}>
+            <button className="btn guestsIcon">
+              Guests
+              <br />
+              page
+            </button>
+          </Link>
+        </div>
+      </div>
 
         <div className="infoPlan">
             <div className="description">
@@ -159,12 +330,67 @@ const planPhoto = {
             <div className="description">
               <h5 className="locationTitle">Location</h5>
               <p className="descriptionPlan">{plan.location}</p>
-            </div>              
+            </div>
+            <div className="description">
+          <h5 className="locationTitle">{polls.length?"Polls":null}</h5>
+          {polls && polls.map(poll => {
+            return <LeafPoll
+            key={poll._id}
+            type="binary"
+            // className="poll"
+            question={poll.pollQuestion}
+            results={poll.pollAnswers}
+            theme={themeData}
+            onVote={vote}
+            isVoted={false}
+          />
+          })}
+          
+        </div>              
         </div>
 
       </div>
-      </div>
-    
+      {/* </div> */}
+
+      {!showPoll && plan.isAdmin === user.username &&  <button onClick={showPollHandler}>Add Poll</button>}
+
+      {showPoll && (
+        <form onSubmit={addPollHandler}>
+          <label>Question</label>
+          <br />
+          <input
+            type="text"
+            name="pollQuestion"
+            autoComplete="off"
+            required
+            onChange={handlePollQuestion}
+          ></input>
+          <br />
+          <label>Answers</label>
+          <br />
+          <input
+            type="text"
+            name="pollAnswer1"
+            autoComplete="off"
+            required
+            onBlur={handlePollAnswers}
+            // onFocus={handlePollFocus}
+          ></input>
+          <br />
+          <input
+            type="text"
+            name="pollAnswer2"
+            autoComplete="off"
+            required
+            onBlur={handlePollAnswers}
+            // onFocus={handlePollFocus}
+          ></input>
+          <br />
+          <button type="submit">Save</button>
+          <button onClick={cancelPollHandler}>Cancel</button>
+        </form>
+      )}
+    </div>
   );
 }
 
