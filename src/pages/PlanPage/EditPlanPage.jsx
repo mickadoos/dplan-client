@@ -44,6 +44,8 @@ function EditPlanPage() {
         setDate(response.data.date)
         setTime(response.data.time)
         setLocation(response.data.location)
+        setLatitud(response.data.latitud)
+        setLongitud(response.data.longitud)
         setMusicList(response.data.musicList);
         setPhotoCloud(response.data.photoCloud);
         setInterestingLinks(response.data.interestingLinks);
