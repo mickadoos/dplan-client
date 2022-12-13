@@ -377,4 +377,6 @@
     }
 }
 
-
+article > div {
+    width: 50vw !important;
+}

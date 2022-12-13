@@ -65,6 +65,14 @@ class PlanService {
   inviteGuestsFriends(planId, idPerson){
     return this.api.post('/' + planId + '/' + idPerson +'/invite')
   }
+
+  addPoll(planId, poll){
+    return this.api.post('/' + planId + '/addPoll', poll)
+  }
+
+  addVote(planId, poll){
+    return this.api.post('/' + planId + '/addVote', poll)
+  }
 }
 
 // Create one instance of the service

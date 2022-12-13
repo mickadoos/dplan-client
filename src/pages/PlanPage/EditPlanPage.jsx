@@ -97,7 +97,12 @@ const handleEditSubmit = (e) => {
   planService
   .editPlan(planId, planBody)
   .then((response) => {
-    navigate("/plans/" + planId)
+    navigate("/plans/" + planId, {
+      state: {
+        title: "Plan edited successfully!",
+        message: `The plan: ${title} has been edited!`
+      }
+    })
   })
   .catch((error) => {
     const errorDescription = error.response.data.message;

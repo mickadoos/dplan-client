@@ -10,7 +10,7 @@ function AuthProviderWrapper(props) {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
-  
+
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
   };
@@ -64,7 +64,7 @@ function AuthProviderWrapper(props) {
     // Upon logout, remove the token from the localStorage
     removeToken();
     authenticateUser();
-    navigate('/login')
+    navigate('/')
   };
 
   useEffect(() => {
