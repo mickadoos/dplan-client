@@ -335,21 +335,23 @@ const getCoordinatesMaps = async (value) => {
             <div className="description">
               <h5 className="descriptionTitle">Description</h5>
               <p className="descriptionPlan">{plan.description}</p>
-              <h6 className="mediaLinksTitle">Media Resources</h6>
+              {(plan.musicList?.length !== 0 || plan.photoCloud?.length !== 0 || plan.interestingLinks?.length !== 0) && <h6 className="mediaLinksTitle">Media Resources</h6>}
               <div className="linkAnchorDiv">
               {plan.musicList?.length >= 3 && <a href={plan.musicList} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
               {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
               {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
-              {plan.musicList?.length === 0 && plan.photoCloud?.length === 0 && plan.interestingLinks?.length === 0 && <p className="descriptionPlan">No media resources.</p>}
               </div>                
             </div>    
               
-            <div className="description">
-              <h5 className="locationTitle">Location</h5>
-              <p className="descriptionPlan">{plan.location}</p>
-            </div>
-            <div className="description">
-          <h5 className="locationTitle">{polls.length?"Polls":null}</h5>
+            <div className="description">  
+              <h5 className="locationTitle">Location</h5>    
+              <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer">{plan.location}</a></p>
+              <p>{plan.coordinates}</p>
+            </div>    
+            <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>        
+        
+      <div className="description">
+          <h5 className="pollsTitle">{polls.length?"Polls":null}</h5>
           {polls && polls.map(poll => {
             return <LeafPoll
             key={poll._id}
@@ -363,18 +365,9 @@ const getCoordinatesMaps = async (value) => {
           />
           })}
           
-        </div>   
-        <div>      
-              <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><img className="locationIconPlan" src={locationIcon} alt="Location Icon"/> {plan.location}</a></p>
-              <p>{plan.coordinates}</p>
-            </div>    
-            <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>
-                     
-        </div>
+        </div> 
 
-      </div>
-
-      {!showPoll && plan.isAdmin === user.username &&  <button onClick={showPollHandler}>Add Poll</button>}
+      {!showPoll && plan.isAdmin === user.username &&  <button className="btn btn-light pollBut" onClick={showPollHandler}>Add Poll</button>}
 
       {showPoll && (
         <form onSubmit={addPollHandler}>
@@ -384,16 +377,18 @@ const getCoordinatesMaps = async (value) => {
             type="text"
             name="pollQuestion"
             autoComplete="off"
+            className="pollInput"
             required
             onChange={handlePollQuestion}
           ></input>
           <br />
-          <label>Answers</label>
+          <label className="">Answers</label>
           <br />
           <input
             type="text"
             name="pollAnswer1"
             autoComplete="off"
+            className="pollInput"
             required
             onBlur={handlePollAnswers}
             // onFocus={handlePollFocus}
@@ -403,15 +398,19 @@ const getCoordinatesMaps = async (value) => {
             type="text"
             name="pollAnswer2"
             autoComplete="off"
+            className="pollInput"
             required
             onBlur={handlePollAnswers}
             // onFocus={handlePollFocus}
           ></input>
           <br />
-          <button type="submit">Save</button>
-          <button onClick={cancelPollHandler}>Cancel</button>
+          <button className="pollBut2 btn btn-primary" type="submit">Save</button>
+          <button className="pollBut2 btn btn-secondary" onClick={cancelPollHandler}>Cancel</button>
         </form>
       )}
+      </div>
+
+      </div>
     </div>
   );
 }

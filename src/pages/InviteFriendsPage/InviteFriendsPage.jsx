@@ -48,7 +48,7 @@ function InviteFriendsPage() {
   return (
     <div className="inviteFriendsDiv">
       <h1>Invite People</h1>
-      <div className = "contentContainer">
+      <div className = "contentContainerInvite">
       {friends.length === 0 && <p>You have no more friends to invite</p>}
       {friends.map(friend => {
                 return <PersonInvite friend={friend} updatePeople={updatePeople} key={friend._id}/>

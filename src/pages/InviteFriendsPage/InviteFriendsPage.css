@@ -1,3 +1,7 @@
 .inviteFriendsDiv{
     padding-top: 100px;
 }
+.contentContainerInvite{
+    max-width: 800px;
+    margin: auto;
+}

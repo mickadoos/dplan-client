@@ -150,6 +150,9 @@
         padding-left: 35px;
         margin-bottom: 10px;
     }
+    .locationIconPlan{
+        width: 12vw;
+    }
     .linkAnchorDiv{
         display: flex;
         flex-direction: row;
@@ -176,8 +179,30 @@
         color: rgba(236, 236, 236, 0.512);
         text-align: left;
         font-weight: bold;
+        padding-top: 10px;
+        padding-left: 35px;
+    }
+    .pollsTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
         padding-top: 35px;
         padding-left: 35px;
+    }
+    .pollInput{
+        font-size: 14px;
+        width: 60vw;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+    .pollBut{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .pollBut2{
+        margin-top: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 @media screen and (min-width:721px){
@@ -303,7 +328,8 @@
     }
     .infoPlan{
         width: 60vw;
-        max-width: 600px;
+        width: 639px;
+        min-width: ;
         background-color: rgba(0, 0, 0, 0.603);
         border-radius: 8px;
         margin-left: 30px;
@@ -372,11 +398,51 @@
         color: rgba(236, 236, 236, 0.512);
         text-align: left;
         font-weight: bold;
+        padding-top: 10px;
+        padding-left: 35px;
+    }
+    .pollsTitle{
+        color: rgba(236, 236, 236, 0.512);
+        text-align: left;
+        font-weight: bold;
         padding-top: 35px;
         padding-left: 35px;
     }
+    .pollInput{
+        font-size: 14px;
+        width: 60vw;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+    .pollBut{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .pollBut2{
+        margin-top: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
 
+article > h1 {
+    color:rgb(219, 219, 219) !important;
+    margin-bottom: 10px;
+    font-size: 15px;
+    /* height: 50px !important; */
+}
 article > div {
-    width: 50vw !important;
+    width: 75vw !important;
+    height: 45px;
+    padding: 0px;
+    max-width: 400px !important;
+    /* height: 50px !important; */
+}
+article > p{
+    font-size: 20px !important;
+    padding: 0px;
+    /* height: 50px !important; */
+}
+article{
+    margin-bottom: 20px !important;
 }

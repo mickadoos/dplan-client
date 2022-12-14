@@ -15,11 +15,10 @@ function PersonInvite({friend, updatePeople}) {
 
   return (
     
-    <div className="addFriendCard" >
+    <div className="inviteCard" >
       <div><Link to={"/"+username+"/profile"}><img className = "imgUserInvite profilePicInvite " src={profileImage} alt={name}/></Link></div>
-      <div className="userInfo">
-        <h5 className="username">{username}</h5>
-        <p className="name">{name}</p>
+      <div className="userInfoInvite">
+        <h5 className="usernameInvite">{username}</h5>
         <button href="#" className="btn btn-primary" onClick={inviteHandle}>Invite</button>
       </div>
     </div>  

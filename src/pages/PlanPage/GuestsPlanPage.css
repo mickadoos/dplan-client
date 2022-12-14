@@ -25,3 +25,7 @@
     margin-top: 10px;
     font-size: 15px;
 }
+.contentContainer{
+    max-width: 800px;
+    margin: auto;
+}
