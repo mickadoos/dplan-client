@@ -22,7 +22,6 @@ function PlansPage() {
 
   let titleFromEvent = location.state?.title
   let messageFromEvent = location.state?.message
-  console.log("titleFromEvent: ", titleFromEvent)
 
   useEffect(() => {
     if (isLoggedIn) {
