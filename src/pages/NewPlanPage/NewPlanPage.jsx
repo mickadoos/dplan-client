@@ -109,6 +109,16 @@ function NewPlanPage() {
     <div className="newPlanDiv">
       <h1>Create Plan</h1>
         <form onSubmit={handleNewPlamSubmit} encType="multipart/form-data">
+        <div className="ppDiv">
+          <div className="pubPri">
+            <input className="pubPriIn" type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+            <label className="pubPriLab" htmlFor="public">Public</label>
+          </div>
+          <div className="pubPri">
+            <input className="pubPriIn" type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+            <label className="pubPriLab" htmlFor="private">Private</label>
+          </div>
+          </div>
           <div className="gen titleDiv">
             <input type="title" className="titlePlan" name="title" placeholder="Title" value={title} onChange={handleTitle} required/>
           </div>
@@ -204,16 +214,7 @@ function NewPlanPage() {
             <img src={linkIcon} alt="link icon" className="iconPng"/>
             <input type="text" className="location" name="interestingLinks" placeholder="Link of interest" onChange={handleInterestingLinks}/>
           </div>
-          <br></br>
-
-          <div>
-          <input type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
-          <label htmlFor="public">public</label>
-          <input type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
-          <label htmlFor="private">private</label>
-          <p>{privacy}</p>
-          </div>
-
+          
           <div className="gen button">
             <button type="submit" className="btn btn-primary">Create Plan</button>
           </div>

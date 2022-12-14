@@ -125,7 +125,7 @@
         min-height: 15vh;
     } */
     .descriptionTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         margin-top: 30px;
         margin-bottom: 1px;
@@ -143,7 +143,7 @@
         padding-top: 10px;
     }
     .mediaLinksTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         font-size: 14px;
@@ -156,6 +156,7 @@
     .linkAnchorDiv{
         display: flex;
         flex-direction: row;
+        margin-bottom: 15px;
         /* padding-left: 35px; */
     }
     .linkAnchor{
@@ -176,14 +177,14 @@
     }
     
     .locationTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         padding-top: 10px;
         padding-left: 35px;
     }
     .pollsTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         padding-top: 35px;
@@ -346,7 +347,7 @@
         min-height: 15vh;
     } */
     .descriptionTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         margin-top: 30px;
         margin-bottom: 1px;
@@ -364,7 +365,7 @@
         padding-top: 10px;
     }
     .mediaLinksTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         font-size: 14px;
@@ -374,6 +375,7 @@
     .linkAnchorDiv{
         display: flex;
         flex-direction: row;
+        margin-bottom: 15px;
         /* padding-left: 35px; */
     }
     .linkAnchor{
@@ -395,14 +397,14 @@
     }
     
     .locationTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         padding-top: 10px;
         padding-left: 35px;
     }
     .pollsTitle{
-        color: rgba(236, 236, 236, 0.512);
+        color: rgb(173, 173, 173);
         text-align: left;
         font-weight: bold;
         padding-top: 35px;
@@ -446,3 +448,4 @@ article > p{
 article{
     margin-bottom: 20px !important;
 }
+

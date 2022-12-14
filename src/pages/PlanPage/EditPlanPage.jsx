@@ -156,7 +156,7 @@ const handleEditSubmit = (e) => {
           {/* <!-- Button trigger modal --> */}
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary editWall"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
@@ -217,6 +217,17 @@ const handleEditSubmit = (e) => {
             </div>
           </div>
           <form onSubmit={handleEditSubmit}>
+          
+          <div className="ppDivEdit">
+          <div className="pubPri">
+            <input className="pubPriIn" type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+            <label className="pubPriLab" htmlFor="public">Public</label>
+          </div>
+          <div className="pubPri">
+            <input className="pubPriIn" type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+            <label className="pubPriLab" htmlFor="private">Private</label>
+          </div>
+          </div>
             <div className="gen titleDivEdit">
               <label htmlFor="formGroupExampleInput" className="titlePlan">
                 Title:{" "}
@@ -335,19 +346,12 @@ const handleEditSubmit = (e) => {
               <img src={linkIcon} alt="link icon" className="iconPng"/>
               <input type="text" className="location" name="interestingLinks" placeholder={plan.interestingLinks} onChange={handleInterestingLinks}/>
             </div>
-            <div>
-          <input type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
-          <label htmlFor="public">public</label>
-          <input type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
-          <label htmlFor="private">private</label>
-          <p>{plan.privacy}</p>
-          </div>
 
-            <div className="twoButs">
-              <button className="btn btn-primary but" type="submit">Edit Plan</button>
+            <div className="twoButsEdit">
+              <button className="btn btn-primary butEdit" type="submit">Edit Plan</button>
               <br/>
               <button
-                className="btn btn-secondary but"
+                className="btn btn-secondary butEdit"
                 type="button"
                 onClick={cancelEdit}
               >

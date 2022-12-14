@@ -138,7 +138,7 @@ function PlansPage() {
           <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
         </div> */}
       {/* Buttons colors Simple */}
-      <div className="buttonsStatus">
+      <div className="buttonsStatusPlans">
         <button className="butGen btn btn-dark" onClick={resetHandler}>
           All Plans
         </button>

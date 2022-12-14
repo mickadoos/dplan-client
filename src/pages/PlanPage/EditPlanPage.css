@@ -1,5 +1,5 @@
 @media screen and (max-width:720px){
-    .newPlanDiv{
+    .editPlanDiv{
         padding: 100px 10px 30px 10px;
         margin: 20px 40px 20px 40px;
         background-color: rgba(0, 0, 0, 0.601);
@@ -66,6 +66,16 @@
     .planImage{
         margin: auto;
         width: 60vw;
+    }
+    .twoButsEdit{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 50px 0px 10px 0px;
+    }
+    .butEdit{
+        margin-right: 5px;
+        margin-left: 5px;
     }
 }
 @media screen and (min-width:721px){
@@ -156,7 +166,7 @@
         max-width: 450px;
         margin-bottom: 10px;
     }
-    .twoButs{
+    .twoButsEdit{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -164,4 +174,10 @@
     .but{
         margin: 30px 10px;
     }
+}
+.editWall{
+    margin-top: 15px;
+}
+.ppDivEdit{
+    margin: 50px 0px 40px 0px;
 }

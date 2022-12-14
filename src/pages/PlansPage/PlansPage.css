@@ -13,12 +13,12 @@
     font-size: 14px;
     margin: 5px;
 }
-.buttonsStatus{
+.buttonsStatusPlans{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content:center;
-    margin-bottom: 18px;
+    margin: 0px 0px 18px 0px;
     /* min-width: 242px; */
 
 }

@@ -333,7 +333,7 @@ const getCoordinatesMaps = async (value) => {
 
         <div className="infoPlan">
             <div className="description">
-              <h5 className="descriptionTitle">Description</h5>
+              <h5 className="descriptionTitle">ℹ️ Description</h5>
               <p className="descriptionPlan">{plan.description}</p>
               {(plan.musicList?.length !== 0 || plan.photoCloud?.length !== 0 || plan.interestingLinks?.length !== 0) && <h6 className="mediaLinksTitle">Media Resources</h6>}
               <div className="linkAnchorDiv">
@@ -341,17 +341,17 @@ const getCoordinatesMaps = async (value) => {
               {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
               {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
               </div>                
-            </div>    
+            </div>  
               
             <div className="description">  
-              <h5 className="locationTitle">Location</h5>    
+              <h5 className="locationTitle">📍 Location</h5>    
               <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer">{plan.location}</a></p>
               <p>{plan.coordinates}</p>
             </div>    
             <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>        
         
       <div className="description">
-          <h5 className="pollsTitle">{polls.length?"Polls":null}</h5>
+          <h5 className="pollsTitle">{polls.length?"📨 Polls":null}</h5>
           {polls && polls.map(poll => {
             return <LeafPoll
             key={poll._id}
