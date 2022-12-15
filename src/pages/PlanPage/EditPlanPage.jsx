@@ -50,7 +50,6 @@ function EditPlanPage() {
         setPhotoCloud(response.data.photoCloud);
         setPrivacy(response.data.privacy);
         setInterestingLinks(response.data.interestingLinks);
-        console.log(privacy)
     })
 
 }, [planId])
