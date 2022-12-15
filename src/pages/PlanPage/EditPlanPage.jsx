@@ -29,7 +29,7 @@ function EditPlanPage() {
   const [musicList, setMusicList] = useState("");
   const [photoCloud, setPhotoCloud] = useState("");
   const [interestingLinks, setInterestingLinks] = useState("");
-  const [privacy, setPrivacy] = useState("public");
+  const [privacy, setPrivacy] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
 
@@ -48,7 +48,9 @@ function EditPlanPage() {
         setLongitud(response.data.longitud)
         setMusicList(response.data.musicList);
         setPhotoCloud(response.data.photoCloud);
+        setPrivacy(response.data.privacy);
         setInterestingLinks(response.data.interestingLinks);
+        console.log(privacy)
     })
 
 }, [planId])
@@ -220,11 +222,11 @@ const handleEditSubmit = (e) => {
           
           <div className="ppDivEdit">
           <div className="pubPri">
-            <input className="pubPriIn" type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy}/>
+            <input className="pubPriIn" type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy} checked={privacy === 'public'}/>
             <label className="pubPriLab" htmlFor="public">Public</label>
           </div>
           <div className="pubPri">
-            <input className="pubPriIn" type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy}/>
+            <input className="pubPriIn" type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy} checked={privacy === 'private'}/>
             <label className="pubPriLab" htmlFor="private">Private</label>
           </div>
           </div>
