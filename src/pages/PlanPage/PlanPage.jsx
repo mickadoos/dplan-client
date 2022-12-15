@@ -11,12 +11,12 @@ import linkIcon from "../../assets/linkIcon.png";
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
 import AlertModal from "../../components/Alerts/AlertModal";
-import locationIcon from "../../assets/location-marker-icon.png"
+import locationIcon from "../../assets/location-marker-icon.png";
 // Google Maps Places Autcomplete import
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from 'react-places-autocomplete';
+} from "react-places-autocomplete";
 import NewPlanMap from "../../components/Maps/NewPlanMap";
 
 let guestsSearch;
@@ -32,7 +32,7 @@ function PlanPage() {
   const [pollQuestion, setPollQuestion] = useState("");
   const [pollAnswers, setPollAnswers] = useState([]);
 
-  const [polls, setPolls] = useState([])
+  const [polls, setPolls] = useState([]);
 
   const [guests, setGuests] = useState();
 
@@ -45,8 +45,8 @@ function PlanPage() {
     setUpdate(num);
   };
 
-  let titleFromEvent = location.state?.title
-  let messageFromEvent = location.state?.message
+  let titleFromEvent = location.state?.title;
+  let messageFromEvent = location.state?.message;
 
   const acceptHandle = () => {
     planService.acceptPlan(planId, user.username).then((resp) => {
@@ -54,7 +54,7 @@ function PlanPage() {
       setAlertMsg({
         title: "Accepted!",
         message: "You have accepted the plan!",
-      })
+      });
       updatePlan(Math.random() * 1000);
     });
   };
@@ -65,7 +65,7 @@ function PlanPage() {
       setAlertMsg({
         title: "Declined!",
         message: "You have declined the plan!",
-      })
+      });
       updatePlan(Math.random() * 1000);
     });
   };
@@ -73,8 +73,7 @@ function PlanPage() {
   useEffect(() => {
     planService.getPlan(planId).then((response) => {
       setPlan(response.data);
-      setPolls(response.data.polls)
-      // console.log(response.data.polls);
+      setPolls(response.data.polls);
     });
   }, [isLoggedIn, planId, update]);
 
@@ -102,38 +101,14 @@ function PlanPage() {
     }
   }, [isLoggedIn, planId, update]);
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     planService.getGuests(planId).then((resp) => {
-  //       guestsSearch = [];
-  //       if (resp.data.invited.length > 0) {
-  //         resp.data.invited.map((guest) => {
-  //           return guestsSearch.push(guest);
-  //         });
-  //       }
-  //       if (resp.data.accepted.length > 0) {
-  //         resp.data.accepted.map((guest1) => {
-  //           return guestsSearch.push(guest1);
-  //         });
-  //       }
-  //       if (resp.data.declined.length > 0) {
-  //         resp.data.declined.map((guest2) => {
-  //           return guestsSearch.push(guest2);
-  //         });
-  //       }
-  //       setGuests(guestsSearch);
-  //     });
-  //   }
-  // }, [isLoggedIn, planId, update]);
-
   useEffect(() => {
-    if (titleFromEvent){
+    if (titleFromEvent) {
       setAlertMsg({
         title: titleFromEvent,
-        message: messageFromEvent
-      })
+        message: messageFromEvent,
+      });
     }
-  }, [])
+  }, []);
 
   const handleEdit = (e) => navigate("/plans/" + planId + "/edit");
 
@@ -162,20 +137,6 @@ function PlanPage() {
 
   const handlePollAnswers = (e) => {
     if (e.target.value.trim().length !== 0) {
-      // if (
-      //   pollAnswers.some(
-      //     (obj) =>
-      //       obj.pollAnswer1 === e.target.value &&
-      //       obj.pollAnswer2 !== e.target.value
-      //   )
-      // ) {
-      //     setPollAnswers([
-      //       {
-      //         [e.target.name]: e.target.value,
-      //         votes: 0,
-      //       },
-      //     ]);
-      //   } else {
       setPollAnswers([
         ...pollAnswers,
         {
@@ -184,8 +145,6 @@ function PlanPage() {
         },
       ]);
     }
-
-    // console.log(pollAnswers);
   };
 
   const addPollHandler = (e) => {
@@ -195,20 +154,16 @@ function PlanPage() {
       pollQuestion,
       pollAnswers,
     };
-    // console.log("pollInfo", pollInfo);
 
     planService
       .addPoll(planId, pollInfo)
       .then((resp) => {
-        // console.log(resp.data);
         setPollQuestion("");
         setPollAnswers([]);
         setShowPoll(false);
-        setUpdate(Math.random())
+        setUpdate(Math.random());
       })
-      .catch((err) => {
-        // console.log("Error addPoll service: ", err);
-      });
+      .catch((err) => {});
   };
 
   //MANAGE POLL:
@@ -217,34 +172,32 @@ function PlanPage() {
 
   // Object keys may vary on the poll type (see the 'Theme options' table below)
   const themeData = {
-    textColor: '#19181f',
-    mainColor: '#00B87B',
-    backgroundColor: 'white',
-    alignment: 'center',
-    leftColor: '#00B87B',
-    rightColor: '#FF2E00'
-  }
+    textColor: "#19181f",
+    mainColor: "#00B87B",
+    backgroundColor: "white",
+    alignment: "center",
+    leftColor: "#00B87B",
+    rightColor: "#FF2E00",
+  };
 
   const vote = (item: Result, results: Result[]) => {
-    planService.addVote(planId, item)
-    // console.log('voted', item, results)
-  }
+    planService.addVote(planId, item);
+  };
 
   const errorHandler = () => {
     setAlertMsg(null);
   };
 
-// DISPLAY MAP
-const getCoordinatesMaps = async (value) => {
-  const results = await geocodeByAddress(value);
-  const latLng = await getLatLng(results[0])
+  // DISPLAY MAP
+  const getCoordinatesMaps = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
 
-  return latLng;
-}
-
+    return latLng;
+  };
 
   return (
-      <div className="planGenDiv">
+    <div className="planGenDiv">
       {alertMsg && (
         <AlertModal
           title={alertMsg.title}
@@ -253,163 +206,242 @@ const getCoordinatesMaps = async (value) => {
         />
       )}
       <div className="planDiv">
-        <div className="headPlan" style = {planPhoto}>
+        <div className="headPlan" style={planPhoto}>
           <div className="titleBgnd">
             <h2 className="title">{plan.title}</h2>
-            <div className="planDetDateDiv"><img className="calendarlogoPlanDet" src={calendarLogo} alt="Calendar Icon"/><h6 className="dateInfo">Date: {plan.date} at {plan.time}</h6></div>
+            <div className="planDetDateDiv">
+              <img
+                className="calendarlogoPlanDet"
+                src={calendarLogo}
+                alt="Calendar Icon"
+              />
+              <h6 className="dateInfo">
+                Date: {plan.date} at {plan.time}
+              </h6>
+            </div>
             <div className="DIV-BUTTONS buttonsPlan">
-          {plan.isAdmin !== user.username && !status && (plan.invited?.includes(user._id) || plan.privacy === 'public') && !plan.accepted.includes(user._id) && !plan.declined.includes(user._id) &&
-          <div className="">
+              {plan.isAdmin !== user.username &&
+                !status &&
+                (plan.invited?.includes(user._id) ||
+                  plan.privacy === "public") &&
+                !plan.accepted.includes(user._id) &&
+                !plan.declined.includes(user._id) && (
+                  <div className="">
+                    <button
+                      onClick={acceptHandle}
+                      type="button"
+                      className="btn btn-primary btn-success"
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      onClick={declineHandle}
+                      type="button"
+                      className="btn btn-primary btn-danger declineButton"
+                    >
+                      Decline
+                    </button>
+                  </div>
+                )}
+              {(plan.isAdmin === user.username ||
+                user.username === "moderador") && (
+                <div>
                   <button
-                    onClick={acceptHandle}
                     type="button"
-                    className="btn btn-primary btn-success"
+                    className="btn btn-secondary editPlanBut"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={handleEdit}
                   >
-                    Confirm
-                  </button>
-                  <button
-                    onClick={declineHandle}
-                    type="button"
-                    className="btn btn-primary btn-danger declineButton"
-                  >
-                    Decline
+                    Edit this plan
                   </button>
                 </div>
-              }
-            {(plan.isAdmin === user.username ||
-              user.username === "moderador") && (
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-secondary editPlanBut"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={handleEdit}
-                >
-                  Edit this plan
-                </button>
-              </div>
-            )}
+              )}
+            </div>
+            <p className="CreatedBy">
+              Created by:{" "}
+              <Link className="createdByUser" to={`/${plan.isAdmin}/profile`}>
+                {plan.isAdmin === user.username ? "Me" : plan.isAdmin}
+              </Link>
+            </p>
           </div>
-          <p className="CreatedBy">
-            Created by:{" "}
-            <Link className="createdByUser" to={`/${plan.isAdmin}/profile`}>
-              {plan.isAdmin === user.username ? "Me" : plan.isAdmin}
+          <div className="DIV-GUESTSICON guestsPosition">
+            {guests?.length > 0 && (
+              <img
+                className="guestsGlimpse"
+                src={guests[0].profileImage}
+                alt="guest profImg"
+              />
+            )}
+            {guests?.length > 1 && (
+              <img
+                className="guestsGlimpse"
+                src={guests[1].profileImage}
+                alt="guest profImg"
+              />
+            )}
+            {guests?.length > 2 && (
+              <img
+                className="guestsGlimpse"
+                src={guests[2].profileImage}
+                alt="guest profImg"
+              />
+            )}
+            {/* <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link> */}
+            <Link to={"/plans/" + planId + "/guests"}>
+              <button className="btn guestsIcon">
+                Guests
+                <br />
+                page
+              </button>
             </Link>
-          </p>
+          </div>
         </div>
-        <div className="DIV-GUESTSICON guestsPosition">
-          {guests?.length > 0 && (
-            <img
-              className="guestsGlimpse"
-              src={guests[0].profileImage}
-              alt="guest profImg"
-            />
-          )}
-          {guests?.length > 1 && (
-            <img
-              className="guestsGlimpse"
-              src={guests[1].profileImage}
-              alt="guest profImg"
-            />
-          )}
-          {guests?.length > 2 && (
-            <img
-              className="guestsGlimpse"
-              src={guests[2].profileImage}
-              alt="guest profImg"
-            />
-          )}
-          {/* <Link to={"/plans/"+planId+"/guests"}><img className="guestsIcon" src={guestsIcon} alt="Plan Guests"/></Link> */}
-          <Link to={"/plans/" + planId + "/guests"}>
-            <button className="btn guestsIcon">
-              Guests
-              <br />
-              page
-            </button>
-          </Link>
-        </div>
-      </div>
 
         <div className="infoPlan">
-            <div className="description">
-              <h5 className="descriptionTitle">ℹ️ Description</h5>
-              <p className="descriptionPlan">{plan.description}</p>
-              {(plan.musicList?.length !== 0 || plan.photoCloud?.length !== 0 || plan.interestingLinks?.length !== 0) && <h6 className="mediaLinksTitle">Media Resources</h6>}
-              <div className="linkAnchorDiv">
-              {plan.musicList?.length >= 3 && <a href={plan.musicList} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={spotifyIcon} alt="Spotify List"/></a>}
-              {plan.photoCloud?.length >= 3 && <a href={plan.photoCloud} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={picsIcon} alt="Photos Cloud"/></a>}
-              {plan.interestingLinks?.length >= 3 && <a href={plan.interestingLinks} className="linkAnchor" target="_blank" rel="noreferrer"><img className="linkIcon" src={linkIcon} alt="Other Links"/></a>}
-              </div>                
-            </div>  
-              
-            <div className="description">  
-              <h5 className="locationTitle">📍 Location</h5>    
-              <p className="descriptionPlan"><a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer">{plan.location}</a></p>
-              <p>{plan.coordinates}</p>
-            </div>    
-            <a target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(plan.location)}`} rel="noreferrer"><NewPlanMap lat={parseFloat(plan.latitud)} lng={parseFloat(plan.longitud)}></NewPlanMap> </a>        
-        
-      <div className="description">
-          <h5 className="pollsTitle">{polls.length?"📨 Polls":null}</h5>
-          {polls && polls.map(poll => {
-            return <LeafPoll
-            key={poll._id}
-            type="multiple"
-            // className="poll"
-            question={poll.pollQuestion}
-            results={poll.pollAnswers}
-            theme={themeData}
-            onVote={vote}
-            isVoted={false}
-          />
-          })}
-          
-        </div> 
+          <div className="description">
+            <h5 className="descriptionTitle">ℹ️ Description</h5>
+            <p className="descriptionPlan">{plan.description}</p>
+            {(plan.musicList?.length !== 0 ||
+              plan.photoCloud?.length !== 0 ||
+              plan.interestingLinks?.length !== 0) && (
+              <h6 className="mediaLinksTitle">Media Resources</h6>
+            )}
+            <div className="linkAnchorDiv">
+              {plan.musicList?.length >= 3 && (
+                <a
+                  href={plan.musicList}
+                  className="linkAnchor"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="linkIcon"
+                    src={spotifyIcon}
+                    alt="Spotify List"
+                  />
+                </a>
+              )}
+              {plan.photoCloud?.length >= 3 && (
+                <a
+                  href={plan.photoCloud}
+                  className="linkAnchor"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img className="linkIcon" src={picsIcon} alt="Photos Cloud" />
+                </a>
+              )}
+              {plan.interestingLinks?.length >= 3 && (
+                <a
+                  href={plan.interestingLinks}
+                  className="linkAnchor"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img className="linkIcon" src={linkIcon} alt="Other Links" />
+                </a>
+              )}
+            </div>
+          </div>
 
-      {!showPoll && plan.isAdmin === user.username &&  <button className="btn btn-light pollBut" onClick={showPollHandler}>Add Poll</button>}
+          <div className="description">
+            <h5 className="locationTitle">📍 Location</h5>
+            <p className="descriptionPlan">
+              <a
+                target="_blank"
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(
+                  plan.location
+                )}`}
+                rel="noreferrer"
+              >
+                {plan.location}
+              </a>
+            </p>
+            <p>{plan.coordinates}</p>
+          </div>
+          <a
+            target="_blank"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURI(
+              plan.location
+            )}`}
+            rel="noreferrer"
+          >
+            <NewPlanMap
+              lat={parseFloat(plan.latitud)}
+              lng={parseFloat(plan.longitud)}
+            ></NewPlanMap>{" "}
+          </a>
 
-      {showPoll && (
-        <form onSubmit={addPollHandler}>
-          <label>Question</label>
-          <br />
-          <input
-            type="text"
-            name="pollQuestion"
-            autoComplete="off"
-            className="pollInput"
-            required
-            onChange={handlePollQuestion}
-          ></input>
-          <br />
-          <label className="">Answers</label>
-          <br />
-          <input
-            type="text"
-            name="pollAnswer1"
-            autoComplete="off"
-            className="pollInput"
-            required
-            onBlur={handlePollAnswers}
-            // onFocus={handlePollFocus}
-          ></input>
-          <br />
-          <input
-            type="text"
-            name="pollAnswer2"
-            autoComplete="off"
-            className="pollInput"
-            required
-            onBlur={handlePollAnswers}
-            // onFocus={handlePollFocus}
-          ></input>
-          <br />
-          <button className="pollBut2 btn btn-primary" type="submit">Save</button>
-          <button className="pollBut2 btn btn-secondary" onClick={cancelPollHandler}>Cancel</button>
-        </form>
-      )}
-      </div>
+          <div className="description">
+            <h5 className="pollsTitle">{polls.length ? "📨 Polls" : null}</h5>
+            {polls &&
+              polls.map((poll) => {
+                return (
+                  <LeafPoll
+                    key={poll._id}
+                    type="multiple"
+                    question={poll.pollQuestion}
+                    results={poll.pollAnswers}
+                    theme={themeData}
+                    onVote={vote}
+                    isVoted={false}
+                  />
+                );
+              })}
+          </div>
 
+          {!showPoll && plan.isAdmin === user.username && (
+            <button className="btn btn-light pollBut" onClick={showPollHandler}>
+              Add Poll
+            </button>
+          )}
+
+          {showPoll && (
+            <form onSubmit={addPollHandler}>
+              <label>Question</label>
+              <br />
+              <input
+                type="text"
+                name="pollQuestion"
+                autoComplete="off"
+                className="pollInput"
+                required
+                onChange={handlePollQuestion}
+              ></input>
+              <br />
+              <label className="">Answers</label>
+              <br />
+              <input
+                type="text"
+                name="pollAnswer1"
+                autoComplete="off"
+                className="pollInput"
+                required
+                onBlur={handlePollAnswers}
+              ></input>
+              <br />
+              <input
+                type="text"
+                name="pollAnswer2"
+                autoComplete="off"
+                className="pollInput"
+                required
+                onBlur={handlePollAnswers}
+              ></input>
+              <br />
+              <button className="pollBut2 btn btn-primary" type="submit">
+                Save
+              </button>
+              <button
+                className="pollBut2 btn btn-secondary"
+                onClick={cancelPollHandler}
+              >
+                Cancel
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

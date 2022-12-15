@@ -3,19 +3,18 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import planService from "../../services/plan.service";
 import spotifyIcon from "../../assets/spotifyIcon.png";
-import picsIcon from "../../assets/picsIcon.png"
-import linkIcon from "../../assets/linkIcon.png"
-import locationIcon from "../../assets/locationIcon.webp"
+import picsIcon from "../../assets/picsIcon.png";
+import linkIcon from "../../assets/linkIcon.png";
+import locationIcon from "../../assets/locationIcon.webp";
 // Google Maps Places Autcomplete import
-import React from 'react';
+import React from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from 'react-places-autocomplete';
-
+} from "react-places-autocomplete";
 
 function EditPlanPage() {
-  const {planId} = useParams();
+  const { planId } = useParams();
   const [plan, setPlan] = useState({});
 
   const [title, setTitle] = useState("");
@@ -32,128 +31,124 @@ function EditPlanPage() {
   const [privacy, setPrivacy] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    planService.getPlan(planId)
-    .then(response => {
-        setPlan(response.data);
-        setTitle(response.data.title)
-        setDescription(response.data.description)
-        setDate(response.data.date)
-        setTime(response.data.time)
-        setLocation(response.data.location)
-        setLatitud(response.data.latitud)
-        setLongitud(response.data.longitud)
-        setMusicList(response.data.musicList);
-        setPhotoCloud(response.data.photoCloud);
-        setPrivacy(response.data.privacy);
-        setInterestingLinks(response.data.interestingLinks);
-    })
+  useEffect(() => {
+    planService.getPlan(planId).then((response) => {
+      setPlan(response.data);
+      setTitle(response.data.title);
+      setDescription(response.data.description);
+      setDate(response.data.date);
+      setTime(response.data.time);
+      setLocation(response.data.location);
+      setLatitud(response.data.latitud);
+      setLongitud(response.data.longitud);
+      setMusicList(response.data.musicList);
+      setPhotoCloud(response.data.photoCloud);
+      setPrivacy(response.data.privacy);
+      setInterestingLinks(response.data.interestingLinks);
+    });
+  }, [planId]);
 
-}, [planId])
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleDescription = (e) => setDescription(e.target.value);
+  const handleDate = (e) => setDate(e.target.value);
+  const handleTime = (e) => setTime(e.target.value);
+  const handleLocation = (e) => setLocation(e.target.value);
+  const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
+  const handleMusicList = (e) => setMusicList(e.target.value);
+  const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
+  const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
+  const handlePrivacy = (e) => setPrivacy(e.target.value);
 
-const handleTitle = (e) => setTitle(e.target.value);
-const handleDescription = (e) => setDescription(e.target.value);
-const handleDate = (e) => setDate(e.target.value);
-const handleTime = (e) => setTime(e.target.value);
-const handleLocation = (e) => setLocation(e.target.value);
-const handlePlanImage = (e) => setPlanImage(e.target.files[0]);
-const handleMusicList = (e) => setMusicList(e.target.value);
-const handlePhotoCloud = (e) => setPhotoCloud(e.target.value);
-const handleInterestingLinks = (e) => setInterestingLinks(e.target.value);
-const handlePrivacy = (e) => setPrivacy(e.target.value);
+  const cancelEdit = () => {
+    navigate("/plans/" + planId);
+  };
+  const deletePlan = () => {
+    planService
+      .deletePlan(planId)
+      .then((response) => {
+        navigate("/plans");
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
 
+  const handleImageSubmit = (e) => {
+    e.preventDefault();
+    const uploadData = new FormData();
+    uploadData.append("planImage", planImage);
 
-const cancelEdit = () => {navigate("/plans/" + planId)};
-const deletePlan = () => {
-  planService
-  .deletePlan(planId)
-  .then(response => {
-    navigate("/plans")
-  })
-  .catch((error) => {
-    const errorDescription = error.response.data.message;
-    setErrorMessage(errorDescription);
-  })
-}
+    planService
+      .editPlan(planId, uploadData)
+      .then((response) => {
+        navigate("/plans/" + planId);
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
 
-const handleImageSubmit = (e) => {
-  e.preventDefault();
-  const uploadData = new FormData();
-  uploadData.append('planImage', planImage)
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const planBody = {
+      title,
+      description,
+      date,
+      time,
+      location,
+      musicList,
+      photoCloud,
+      interestingLinks,
+      latitud,
+      longitud,
+      privacy,
+    };
 
-  planService
-  .editPlan(planId, uploadData)
-  .then((response) => {
-    navigate("/plans/" + planId)
-  })
-  .catch((error) => {
-    const errorDescription = error.response.data.message;
-    setErrorMessage(errorDescription);
-  });
-}
+    planService
+      .editPlan(planId, planBody)
+      .then((response) => {
+        navigate("/plans/" + planId, {
+          state: {
+            title: "Plan edited successfully!",
+            message: `The plan: ${title} has been edited!`,
+          },
+        });
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
 
-const handleEditSubmit = (e) => {
-  e.preventDefault();
-  const planBody = {
-    title,
-    description, 
-    date,
-    time,
-    location,
-    musicList,
-    photoCloud,
-    interestingLinks,
-    latitud,
-    longitud,
-    privacy
-  }
-  
-  planService
-  .editPlan(planId, planBody)
-  .then((response) => {
-    navigate("/plans/" + planId, {
-      state: {
-        title: "Plan edited successfully!",
-        message: `The plan: ${title} has been edited!`
-      }
-    })
-  })
-  .catch((error) => {
-    const errorDescription = error.response.data.message;
-    setErrorMessage(errorDescription);
-  });
+  //GOOGLE MAPS
 
-}
-
-    
-//GOOGLE MAPS
-    
   const [address, setAddress] = useState("");
   const [coords, setCoords] = useState({
-  lat: null,
-  lng: null
-})
+    lat: null,
+    lng: null,
+  });
 
-  const handleSelect = async value => {
-  const results = await geocodeByAddress(value);
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
 
-  const latLng = await getLatLng(results[0])
-  setAddress(value)
-  setCoords(latLng)
-  setLatitud(latLng.lat)
-  setLongitud(latLng.lng)
-
-}
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoords(latLng);
+    setLatitud(latLng.lat);
+    setLongitud(latLng.lng);
+  };
 
   return (
     <div className="editPlanDiv">
       <h1>Edit Plan</h1>
       <div className="">
         <div className="">
-          <img className="planImage" src={plan.planImage} alt={plan.title} /><br/>
+          <img className="planImage" src={plan.planImage} alt={plan.title} />
+          <br />
           {/* <!-- Button trigger modal --> */}
           <button
             type="button"
@@ -218,17 +213,36 @@ const handleEditSubmit = (e) => {
             </div>
           </div>
           <form onSubmit={handleEditSubmit}>
-          
-          <div className="ppDivEdit">
-          <div className="pubPri">
-            <input className="pubPriIn" type="radio" id="public" name="privacy" value="public" onChange={handlePrivacy} checked={privacy === 'public'}/>
-            <label className="pubPriLab" htmlFor="public">Public</label>
-          </div>
-          <div className="pubPri">
-            <input className="pubPriIn" type="radio" id="private" name="privacy" value="private" onChange={handlePrivacy} checked={privacy === 'private'}/>
-            <label className="pubPriLab" htmlFor="private">Private</label>
-          </div>
-          </div>
+            <div className="ppDivEdit">
+              <div className="pubPri">
+                <input
+                  className="pubPriIn"
+                  type="radio"
+                  id="public"
+                  name="privacy"
+                  value="public"
+                  onChange={handlePrivacy}
+                  checked={privacy === "public"}
+                />
+                <label className="pubPriLab" htmlFor="public">
+                  Public
+                </label>
+              </div>
+              <div className="pubPri">
+                <input
+                  className="pubPriIn"
+                  type="radio"
+                  id="private"
+                  name="privacy"
+                  value="private"
+                  onChange={handlePrivacy}
+                  checked={privacy === "private"}
+                />
+                <label className="pubPriLab" htmlFor="private">
+                  Private
+                </label>
+              </div>
+            </div>
             <div className="gen titleDivEdit">
               <label htmlFor="formGroupExampleInput" className="titlePlan">
                 Title:{" "}
@@ -260,12 +274,12 @@ const handleEditSubmit = (e) => {
             <div className="gen dateDiv">
               <label htmlFor="dateLabel" className="titlePlan">
                 Date & Time:{" "}
-              </label><br/>
+              </label>
+              <br />
               <input
                 type="date"
                 name="date"
-                
-                min={new Date().toLocaleDateString('en-ca')}
+                min={new Date().toLocaleDateString("en-ca")}
                 value={date}
                 onChange={handleDate}
                 className="date"
@@ -275,9 +289,6 @@ const handleEditSubmit = (e) => {
               />
             </div>
             <div className="gen time">
-              {/* <label htmlFor="formGroupExampleInput" className="form-label">
-                Time:{" "}
-              </label> */}
               <input
                 type="time"
                 name="time"
@@ -289,68 +300,94 @@ const handleEditSubmit = (e) => {
               />
             </div>
             <div className="gen locationDiv">
-            <img src={locationIcon} alt="location icon" className="iconPng"/>
+              <img src={locationIcon} alt="location icon" className="iconPng" />
 
-<PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div 
-          key={suggestions.description}
-          >
-            <input
-              {...getInputProps({
-                className: 'location-search-input',
-              })}
-              className='location' placeholder={plan.location} name="location" onSelect={handleLocation} id="locationLabel"
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: 'lightblue', cursor: 'pointer' }
-                  : { backgroundColor: 'white', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
+              <PlacesAutocomplete
+                value={address}
+                onChange={setAddress}
+                onSelect={handleSelect}
+              >
+                {({
+                  getInputProps,
+                  suggestions,
+                  getSuggestionItemProps,
+                  loading,
+                }) => (
+                  <div key={suggestions.description}>
+                    <input
+                      {...getInputProps({
+                        className: "location-search-input",
+                      })}
+                      className="location"
+                      placeholder={plan.location}
+                      name="location"
+                      onSelect={handleLocation}
+                      id="locationLabel"
+                    />
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map((suggestion) => {
+                        const className = suggestion.active
+                          ? "suggestion-item--active"
+                          : "suggestion-item";
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: "lightblue", cursor: "pointer" }
+                          : { backgroundColor: "white", cursor: "pointer" };
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style,
+                            })}
+                          >
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
+                )}
+              </PlacesAutocomplete>
             </div>
 
-          
             <br></br>
             <div className="gen linksDiv">
-              <img src={spotifyIcon} alt="music icon" className="iconPng"/>
-              <input type="text" className="location" name="musicList" placeholder={plan.musicList} onChange={handleMusicList}/>
+              <img src={spotifyIcon} alt="music icon" className="iconPng" />
+              <input
+                type="text"
+                className="location"
+                name="musicList"
+                placeholder={plan.musicList}
+                onChange={handleMusicList}
+              />
             </div>
             <div className="gen linksDiv">
-              <img src={picsIcon} alt="pics icon" className="iconPng"/>
-              <input type="text" className="location" name="photoCloud" placeholder={plan.photoCloud} onChange={handlePhotoCloud}/>
+              <img src={picsIcon} alt="pics icon" className="iconPng" />
+              <input
+                type="text"
+                className="location"
+                name="photoCloud"
+                placeholder={plan.photoCloud}
+                onChange={handlePhotoCloud}
+              />
             </div>
             <div className="gen linksDiv">
-              <img src={linkIcon} alt="link icon" className="iconPng"/>
-              <input type="text" className="location" name="interestingLinks" placeholder={plan.interestingLinks} onChange={handleInterestingLinks}/>
+              <img src={linkIcon} alt="link icon" className="iconPng" />
+              <input
+                type="text"
+                className="location"
+                name="interestingLinks"
+                placeholder={plan.interestingLinks}
+                onChange={handleInterestingLinks}
+              />
             </div>
 
             <div className="twoButsEdit">
-              <button className="btn btn-primary butEdit" type="submit">Edit Plan</button>
-              <br/>
+              <button className="btn btn-primary butEdit" type="submit">
+                Edit Plan
+              </button>
+              <br />
               <button
                 className="btn btn-secondary butEdit"
                 type="button"

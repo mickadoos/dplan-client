@@ -3,15 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 
 function HomePage() {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
-    navigate('/login')
-  }, [])
-  return (
-    <div>
-    </div>
-  );
+    navigate("/login");
+  }, []);
+  return <div></div>;
 }
 
 export default HomePage;

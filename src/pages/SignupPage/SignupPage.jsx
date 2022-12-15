@@ -3,7 +3,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
-import logo from "../../assets/DPlan Logo.png"
+import logo from "../../assets/DPlan Logo.png";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -27,24 +27,23 @@ function SignupPage() {
   const handleCountry = (e) => setCountry(e.target.value);
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value);
   const handleBirthdate = (e) => setBirthdate(e.target.value);
-  const handleProfileImage = (e) => setProfileImage(e.target.files[0])
-  
-  
+  const handleProfileImage = (e) => setProfileImage(e.target.files[0]);
+
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
     // const requestBody = { email, password, name, username, gender, country, phoneNumber, birthdate, profileImage: uploadData}; //UPDATE MODEL
 
     const uploadData = new FormData();
-    uploadData.append('email', email)
-    uploadData.append('password', password)
-    uploadData.append('name', name)
-    uploadData.append('username', username)
-    uploadData.append('gender', gender)
-    uploadData.append('country', country)
-    uploadData.append('phoneNumber', phoneNumber)
-    uploadData.append('birthdate', birthdate)
-    uploadData.append('profileImage', profileImage)
+    uploadData.append("email", email);
+    uploadData.append("password", password);
+    uploadData.append("name", name);
+    uploadData.append("username", username);
+    uploadData.append("gender", gender);
+    uploadData.append("country", country);
+    uploadData.append("phoneNumber", phoneNumber);
+    uploadData.append("birthdate", birthdate);
+    uploadData.append("profileImage", profileImage);
 
     // Send a request to the server using axios
     /* 
@@ -72,30 +71,52 @@ function SignupPage() {
   };
 
   const errorMessageClick = () => {
-    setErrorMessage(null)
-  }
+    setErrorMessage(null);
+  };
 
   return (
     <div className="SignupPage">
-     <img className="DPlanLogoSU" src={logo} alt="DPlan logo"></img>
+      <img className="DPlanLogoSU" src={logo} alt="DPlan logo"></img>
       <h1>Sign Up</h1>
 
-      <form className="container" onSubmit={handleSignupSubmit} encType="multipart/form-data">
-      <label>Name:</label>
-        <input className="form-control col-4" type="text" name="name" value={name} onChange={handleName} />
+      <form
+        className="container"
+        onSubmit={handleSignupSubmit}
+        encType="multipart/form-data"
+      >
+        <label>Name:</label>
+        <input
+          className="form-control col-4"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleName}
+        />
 
         <br></br>
         <label>Username:</label>
-        <input className="form-control col-4" type="text" name="username" value={username} onChange={handleUsername} />
+        <input
+          className="form-control col-4"
+          type="text"
+          name="username"
+          value={username}
+          onChange={handleUsername}
+        />
 
         <br></br>
         <label>Email:</label>
-        <input className="form-control col-4" type="email" name="email" value={email} onChange={handleEmail} />
+        <input
+          className="form-control col-4"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleEmail}
+        />
 
         <br></br>
         <label>Password:</label>
         <input
-        className="form-control col-4"
+          className="form-control col-4"
           type="password"
           name="password"
           value={password}
@@ -103,57 +124,81 @@ function SignupPage() {
         />
         <br></br>
 
-         
-      <label htmlFor="gender"> Select you gender: </label>
-      <select name="gender" onChange={handleGender}>
-        <option value="">Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-      <br></br>
-      <br></br>
+        <label htmlFor="gender"> Select you gender: </label>
+        <select name="gender" onChange={handleGender}>
+          <option value="">Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <br></br>
+        <br></br>
 
-      <label>Country:</label>
-      <input className="form-control col-4" type="text" name="country" value={country} onChange={handleCountry} />
-    <br></br>
+        <label>Country:</label>
+        <input
+          className="form-control col-4"
+          type="text"
+          name="country"
+          value={country}
+          onChange={handleCountry}
+        />
+        <br></br>
 
-       
-      <label>Phone Number:</label>
-      <input className="form-control col-4" type="tel" name="phoneNumber" pattern="[0-9]{9}" onChange={handlePhoneNumber}></input>
-      <br></br>
+        <label>Phone Number:</label>
+        <input
+          className="form-control col-4"
+          type="tel"
+          name="phoneNumber"
+          pattern="[0-9]{9}"
+          onChange={handlePhoneNumber}
+        ></input>
+        <br></br>
 
-      <label>Birthdate:</label>
-      <input  className="form-control col-4" type="date" id="datePickerId" onChange={handleBirthdate}/>
-    <br></br>
+        <label>Birthdate:</label>
+        <input
+          className="form-control col-4"
+          type="date"
+          id="datePickerId"
+          onChange={handleBirthdate}
+        />
+        <br></br>
 
-      
-      {/* <label>Profile Image:</label>
-      <input type="file" name="profileImage" onChange={handleProfileImage}/>
-      <br></br>
-      <br></br> */}
-
-      <div className="">
-            <label  htmlFor="customFile">Profile Image:</label>
-            <input type="file" className="form-control" name="profileImage" id="profileImage" onChange={handleProfileImage} />
-            <br></br>
-      </div>
-
-        <button type="submit" className="btn btn-primary btn-block mb-4">Sign Up</button>
-      </form>
-      
-
-      {errorMessage && 
-        <div className="alert alert-danger alert-dismissible fade show" role="alert">
-        {errorMessage}
-        <button type="button" onClick={errorMessageClick} className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div className="">
+          <label htmlFor="customFile">Profile Image:</label>
+          <input
+            type="file"
+            className="form-control"
+            name="profileImage"
+            id="profileImage"
+            onChange={handleProfileImage}
+          />
+          <br></br>
         </div>
-      }
 
+        <button type="submit" className="btn btn-primary btn-block mb-4">
+          Sign Up
+        </button>
+      </form>
+
+      {errorMessage && (
+        <div
+          className="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {errorMessage}
+          <button
+            type="button"
+            onClick={errorMessageClick}
+            className="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+      )}
 
       <p>Already have account?</p>
       <Link to={"/login"}> Login</Link>
-      </div>
+    </div>
   );
 }
 

@@ -20,31 +20,27 @@ function PlansPage() {
   const [AlertMsg, setAlertMsg] = useState(null);
   const location = useLocation();
 
-  let titleFromEvent = location.state?.title
-  let messageFromEvent = location.state?.message
+  let titleFromEvent = location.state?.title;
+  let messageFromEvent = location.state?.message;
 
   useEffect(() => {
     if (isLoggedIn) {
-
       //PUBLIC PLANS DEV
       const userPlans = userService.getUserPlans(user.username);
       const publicPlans = planService.getPublicPlans();
-      Promise.all([userPlans, publicPlans])
-      .then(results => {
+      Promise.all([userPlans, publicPlans]).then((results) => {
         allPlans = results[0].data.plans.map((plan) => {
           return plan;
         });
-   
-        const dbPublicPlans = results[1].data.map(element => {
-     
-          return {_id: element, status: "public"};
+
+        const dbPublicPlans = results[1].data.map((element) => {
+          return { _id: element, status: "public" };
         });
 
-
-        const publicPlans = dbPublicPlans.filter(publicPlan => {
+        const publicPlans = dbPublicPlans.filter((publicPlan) => {
           let planExists = false;
-          for(let x in allPlans){
-            if(allPlans[x]._id._id === publicPlan._id._id){
+          for (let x in allPlans) {
+            if (allPlans[x]._id._id === publicPlan._id._id) {
               planExists = true;
             }
           }
@@ -55,23 +51,20 @@ function PlansPage() {
           let planDate = new Date(plan._id.date);
           return planDate >= currentTime;
         });
-   
-         setPlans(allPlansUnexpired);
- 
-  })
 
+        setPlans(allPlansUnexpired);
+      });
     }
-
   }, [isLoggedIn, reset]);
 
   useEffect(() => {
-    if (titleFromEvent){
+    if (titleFromEvent) {
       setAlertMsg({
         title: titleFromEvent,
-        message: messageFromEvent
-      })
+        message: messageFromEvent,
+      });
     }
-  }, [])
+  }, []);
 
   const adminHandler = () => {
     setPlans(
@@ -130,13 +123,6 @@ function PlansPage() {
     <div className="plansDiv">
       <h1>{user.username} Plans</h1>
       {/* Buttons colored */}
-      {/* <div className="buttonsStatus">
-          <button className="butGen btn btn-dark" onClick={resetHandler}>All Plans</button>
-          <button className="butGen btn btn-success" onClick={confirmedHandler}>Confirmed</button>
-          <button className="butGen btn btn-danger" onClick={declinedHandler}>Declined</button>
-          <button className="butGen btn btn-secondary" onClick={pendingHandler}>Pending</button>
-          <button className="butGen myPlansBut btn btn-warning" onClick={adminHandler}>My Plans</button>
-        </div> */}
       {/* Buttons colors Simple */}
       <div className="buttonsStatusPlans">
         <button className="butGen btn btn-dark" onClick={resetHandler}>
