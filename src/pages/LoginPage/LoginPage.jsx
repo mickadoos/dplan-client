@@ -34,6 +34,7 @@ function LoginPage() {
         // If the POST request is successful store the authentication token,
         // after the token is stored authenticate the user
         // and at last navigate to the home page
+        console.log(response.data.authToken)
         storeToken(response.data.authToken);
         authenticateUser();
         navigate("/plans");
