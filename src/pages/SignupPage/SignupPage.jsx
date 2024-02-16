@@ -16,7 +16,7 @@ function SignupPage() {
   const [birthdate, setBirthdate] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(false);
   const [displayText, setDisplayText] = useState(false);
   const [loadingText, setLoadingText] = useState("");
 
