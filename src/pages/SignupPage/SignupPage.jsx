@@ -16,19 +16,32 @@ function SignupPage() {
   const [birthdate, setBirthdate] = useState("");
   const [profileImage, setProfileImage] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
   const [displayText, setDisplayText] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
 
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDisplayText(true);
-    }, 3000);
+  const loadingMessages = [
+    "First time it takes a while...",
+    "It takes less than a minute, I swear...",
+    "al_ps says: Free plans are noted as having slower deploys...",
+    "Thank you so much for your patience, it will be worth it!",
+    "We're almost there..........."
+  ]
 
-    return () => clearTimeout(timer);
-  }, [isLoading]); 
+  useEffect(() => {
+    if (isLoading) {
+      setDisplayText(true);
+      let messageIndex = 0;
+      const timer = setInterval(() => {
+        setLoadingText(loadingMessages[messageIndex++ % loadingMessages.length]);
+      }, 6000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -198,7 +211,7 @@ function SignupPage() {
         </form>
       )}
 
-      {displayText && isLoading && <p>First time it takes a while...</p>}
+      {displayText && isLoading && <p>{loadingText}</p>}
 
       {errorMessage && (
         <div
