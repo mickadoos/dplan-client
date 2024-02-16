@@ -23,6 +23,27 @@ form {
     width: 250px;
 }
 
+/* Loading animation */
+.spinner{
+    position: relative;
+    top: 50%;
+    left: 38%;
+    margin-bottom: 20px;
+    height: 60px !important;
+    width: 60px !important;
+    border: 6px solid;
+    border-color: white transparent white transparent;
+    border-radius: 50%;
+    animation: spin 1.3s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
 @media screen and (max-width:480px){
     .DPlanLogoSU{
         width: 25vw;

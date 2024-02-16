@@ -1,5 +1,5 @@
 import "./LoginPage.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
@@ -9,17 +9,29 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [isLoading, setisLoading] = useState(false);
+  const [displayText, setDisplayText] = useState(false);
 
+  
   const navigate = useNavigate();
-
+  
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisplayText(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [isLoading]); 
+  
   const handleUsername = (e) => setUsername(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-
+  
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { username, password };
+    setisLoading(true);
 
     // Send a request to the server using axios
     /* 
@@ -34,14 +46,16 @@ function LoginPage() {
         // If the POST request is successful store the authentication token,
         // after the token is stored authenticate the user
         // and at last navigate to the home page
-        console.log(response.data.authToken)
+        console.log(response.data.authToken);
         storeToken(response.data.authToken);
         authenticateUser();
+        setisLoading(false);
         navigate("/plans");
       })
       .catch((error) => {
         // If the request resolves with an error, set the error message in the state
         const errorDescription = error.response.data.message;
+        setisLoading(false);
         setErrorMessage(errorDescription);
       });
   };
@@ -55,42 +69,48 @@ function LoginPage() {
       <img className="DPlanLogo" src={logo} alt="DPlan logo"></img>
       <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit} className="container">
-        {/* <!-- Username input --> */}
-        <div className="form-outline mb-4">
-          <label className="form-label col-4" htmlFor="form2Example1">
-            Username
-          </label>
-          <input
-            type="text"
-            id="form2Example1"
-            className="form-control col-4"
-            name="username"
-            value={username}
-            onChange={handleUsername}
-          />
-        </div>
+      {isLoading ? (
+        <div className="spinner"></div>
+      ) : (
+        <form onSubmit={handleLoginSubmit} className="container">
+          {/* <!-- Username input --> */}
+          <div className="form-outline mb-4">
+            <label className="form-label col-4" htmlFor="form2Example1">
+              Username
+            </label>
+            <input
+              type="text"
+              id="form2Example1"
+              className="form-control col-4"
+              name="username"
+              value={username}
+              onChange={handleUsername}
+            />
+          </div>
 
-        {/* <!-- Password input --> */}
-        <div className="form-outline mb-4">
-          <label className="form-label" htmlFor="form2Example2">
-            Password
-          </label>
-          <input
-            type="password"
-            id="form2Example2"
-            className="form-control"
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
-        </div>
+          {/* <!-- Password input --> */}
+          <div className="form-outline mb-4">
+            <label className="form-label" htmlFor="form2Example2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="form2Example2"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </div>
 
-        {/* <!-- Submit button --> */}
-        <button type="submit" className="btn btn-primary btn-block mb-4">
-          Sign in
-        </button>
-      </form>
+          {/* <!-- Submit button --> */}
+          <button type="submit" className="btn btn-primary btn-block mb-4">
+            Sign in
+          </button>
+        </form>
+      )}
+
+      {displayText && isLoading && <p>First time it takes a while...</p>}
 
       {errorMessage && (
         <div
